@@ -1,0 +1,52 @@
+{
+  "ts": "2026-05-23T05:00:31.106Z",
+  "type": "uicheck",
+  "mode": "single",
+  "typeDir": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck",
+  "files": [
+    "1779512431100-el2o2r-dev_screenshot.png",
+    "1779512431103-pooppk-design_mockup.png"
+  ],
+  "selection": {
+    "devFile": "1779512431100-el2o2r-dev_screenshot.png",
+    "designFile": "1779512431103-pooppk-design_mockup.png",
+    "imageFiles": [
+      "1779512431100-el2o2r-dev_screenshot.png",
+      "1779512431103-pooppk-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779512431100-el2o2r-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779512431103-pooppk-design_mockup.png"
+    ],
+    "sortedByMtimeDesc": [
+      {
+        "file": "1779512431103-pooppk-design_mockup.png",
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png",
+        "mtimeMs": 1779512431104.214,
+        "size": 155245
+      },
+      {
+        "file": "1779512431100-el2o2r-dev_screenshot.png",
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+        "mtimeMs": 1779512431103.5916,
+        "size": 154956
+      }
+    ]
+  },
+  "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+  "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png",
+  "devInfo": {
+    "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+    "width": 414,
+    "height": 896,
+    "size": 154956
+  },
+  "designInfo": {
+    "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png",
+    "width": 414,
+    "height": 896,
+    "size": 155245
+  }
+}

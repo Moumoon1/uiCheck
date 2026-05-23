@@ -130,55 +130,8 @@
         <div id="cliInfo" style="margin-bottom: 12px; padding: 8px 12px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; font-size: 13px; color: #0369a1; display: none;">
           <span id="cliToolName"></span>
         </div>
-
-        <div class="model-dropdown" id="modelDropdown">
-          <div class="model-dropdown-trigger" id="modelTrigger" onclick="toggleModelDropdown()">
-            <span class="model-dropdown-label" id="modelLabel">GPT 5.4（推荐）</span>
-            <svg class="model-dropdown-arrow" id="modelArrow" viewBox="0 0 12 12" width="14" height="14"><path d="M3 4.5L6 7.5L9 4.5" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="model-dropdown-menu" id="modelMenu">
-            <!-- GPT 系列模型（所有 CLI 都支持） -->
-            <div class="model-dropdown-item gpt-model" data-value="gpt-5.5" onclick="selectModel('gpt-5.5', 'GPT 5.5')">
-              <span class="model-item-name">GPT 5.5</span>
-              <span class="model-item-tag new">最新</span>
-            </div>
-            <div class="model-dropdown-item gpt-model selected" data-value="gpt-5.4" onclick="selectModel('gpt-5.4', 'GPT 5.4（推荐）')">
-              <span class="model-item-name">GPT 5.4</span>
-              <span class="model-item-tag recommended">推荐</span>
-            </div>
-
-            <!-- Claude 系列模型（仅 Claude CLI 支持） -->
-            <div class="model-dropdown-item claude-model" data-value="claude-opus-4-7-20250705" onclick="selectModel('claude-opus-4-7-20250705', 'Claude Opus 4.7')" style="display:none;">
-              <span class="model-item-name">Claude Opus 4.7</span>
-            </div>
-            <div class="model-dropdown-item claude-model" data-value="claude-sonnet-4-6-20250514" onclick="selectModel('claude-sonnet-4-6-20250514', 'Claude Sonnet 4.6')" style="display:none;">
-              <span class="model-item-name">Claude Sonnet 4.6</span>
-            </div>
-
-            <!-- 其他模型 -->
-            <div class="model-dropdown-item other-model" data-value="glm-5.1" onclick="selectModel('glm-5.1', 'GLM 5.1')">
-              <span class="model-item-name">GLM 5.1</span>
-            </div>
-            <div class="model-dropdown-item other-model" data-value="gemini-3.1-pro" onclick="selectModel('gemini-3.1-pro', 'Gemini 3.1 Pro')">
-              <span class="model-item-name">Gemini 3.1 Pro</span>
-            </div>
-            <div class="model-dropdown-item other-model" data-value="kimi-k2.5" onclick="selectModel('kimi-k2.5', 'Kimi K2.5')">
-              <span class="model-item-name">Kimi K2.5</span>
-            </div>
-            <div class="model-dropdown-item other-model" data-value="qwen3.6-plus" onclick="selectModel('qwen3.6-plus', 'Qwen 3.6 Plus')">
-              <span class="model-item-name">Qwen 3.6 Plus</span>
-            </div>
-          </div>
-          <input type="hidden" id="visionModel" value="gpt-5.4">
-        </div>
-        <p class="model-note" id="modelNote">选择用于读图的视觉模型。</p>
-
-        <!-- 自定义模型输入 -->
-        <div style="margin-top: 12px;">
-          <input type="text" id="customModel" placeholder="或输入自定义模型名称（如：gpt-4o-vision）"
-                 style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 13px;"
-                 oninput="updateCustomModel()">
-        </div>
+        <p class="model-note">使用 CLI 配置的模型，推荐使用 GPT、Claude、Gemini 或 Qwen 模型。</p>
+        <input type="hidden" id="visionModel" value="">
       </div>
 
       <!-- API 模式 -->
@@ -272,92 +225,6 @@
   </div>
 
   <style>
-    /* Custom model dropdown */
-    .model-dropdown {
-      position: relative;
-      user-select: none;
-    }
-    .model-dropdown-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      background: #fff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      min-height: 42px;
-    }
-    .model-dropdown-trigger:hover {
-      border-color: #d1d5db;
-    }
-    .model-dropdown-trigger.open {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
-      border-radius: 8px 8px 0 0;
-    }
-    .model-dropdown-label {
-      font-size: 14px;
-      color: #1e293b;
-      font-family: 'Inter', sans-serif;
-    }
-    .model-dropdown-arrow {
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
-    .model-dropdown-trigger.open .model-dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    .model-dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: #fff;
-      border: 1px solid #6366f1;
-      border-top: none;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      z-index: 10;
-      display: none;
-      overflow: hidden;
-    }
-    .model-dropdown-menu.show {
-      display: block;
-    }
-    .model-dropdown-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .model-dropdown-item:hover {
-      background: #f5f3ff;
-    }
-    .model-dropdown-item.selected {
-      background: #f5f3ff;
-    }
-    .model-item-name {
-      font-size: 14px;
-      color: #1e293b;
-    }
-    .model-item-tag {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 100px;
-      font-weight: 500;
-    }
-    .model-item-tag.recommended {
-      background: #ede9fe;
-      color: #6366f1;
-    }
-    .model-item-tag.limited {
-      background: #fef3c7;
-      color: #92400e;
-    }
     .model-note {
       font-size: 12px;
       color: #94a3b8;
@@ -617,7 +484,7 @@
     let currentTab = 'single';
     const folderFiles = { dev: [], design: [] };
 
-    // 初始化：获取 CLI 信息并更新模型列表
+    // 初始化：获取 CLI 信息
     async function initCliInfo() {
       try {
         const response = await fetch('/api/cli-info');
@@ -632,38 +499,11 @@
         cliInfo.style.display = 'block';
 
         if (currentCliTool === 'claude') {
-          cliToolName.textContent = '✓ 当前使用 Claude CLI - 支持所有模型';
-          cliInfo.style.background = '#f0f9ff';
-          cliInfo.style.borderColor = '#bae6fd';
-          cliInfo.style.color = '#0369a1';
-
-          // 显示所有模型
-          document.querySelectorAll('.claude-model, .other-model').forEach(el => {
-            el.style.display = 'flex';
-          });
-
-          // 更新提示文字
-          document.getElementById('modelNote').textContent = '选择用于读图的视觉模型。支持 GPT、Claude、Gemini、Kimi 等多种模型。';
-
+          cliToolName.textContent = '✓ 当前使用 Claude CLI';
         } else if (currentCliTool === 'codex') {
-          cliToolName.textContent = '✓ 当前使用 Codex CLI - 仅支持 GPT 模型';
-          cliInfo.style.background = '#fef3c7';
-          cliInfo.style.borderColor = '#fde68a';
-          cliInfo.style.color = '#92400e';
-
-          // 隐藏非 GPT 模型
-          document.querySelectorAll('.claude-model, .other-model').forEach(el => {
-            el.style.display = 'none';
-          });
-
-          // 确保选中的是 GPT 模型
-          const currentModel = document.getElementById('visionModel').value;
-          if (!currentModel.startsWith('gpt')) {
-            selectModel('gpt-5.4', 'GPT 5.4（推荐）');
-          }
-
-          // 更新提示文字
-          document.getElementById('modelNote').textContent = 'Codex CLI 仅支持 GPT 系列模型。如需使用其他模型，请使用 Claude Code 打开此项目。';
+          cliToolName.textContent = '✓ 当前使用 Codex CLI';
+        } else if (currentCliTool === 'cursor') {
+          cliToolName.textContent = '✓ 当前使用 Cursor CLI';
         }
 
       } catch (error) {
@@ -689,36 +529,6 @@
       note.textContent = type === 'b'
         ? 'B端：管理后台、数据看板、运营工具，关注表格、筛选、操作区的结构还原。'
         : 'C端：移动端活动页、功能页，关注视觉还原和结构一致性。';
-    }
-
-    // Custom model dropdown
-    function toggleModelDropdown() {
-      const trigger = document.getElementById('modelTrigger');
-      const menu = document.getElementById('modelMenu');
-      const isOpen = trigger.classList.contains('open');
-      trigger.classList.toggle('open');
-      menu.classList.toggle('show');
-    }
-    function selectModel(value, label) {
-      document.getElementById('visionModel').value = value;
-      document.getElementById('modelLabel').textContent = label;
-      document.getElementById('customModel').value = '';  // 清空自定义输入
-      document.querySelectorAll('.model-dropdown-item').forEach(item => {
-        item.classList.toggle('selected', item.dataset.value === value);
-      });
-      toggleModelDropdown();
-    }
-
-    function updateCustomModel() {
-      const customValue = document.getElementById('customModel').value.trim();
-      if (customValue) {
-        document.getElementById('visionModel').value = customValue;
-        document.getElementById('modelLabel').textContent = customValue;
-        // 取消下拉菜单的选中状态
-        document.querySelectorAll('.model-dropdown-item').forEach(item => {
-          item.classList.remove('selected');
-        });
-      }
     }
 
     // API 配置相关函数

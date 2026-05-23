@@ -202,50 +202,59 @@ function detectAndGetCliPath() {
       'win32-x64': '@anthropic-ai/claude-agent-sdk-win32-x64'
     },
     'codex': {
-      'darwin-arm64': '@openai/codex-cli-darwin-arm64',
-      'darwin-x64': '@openai/codex-cli-darwin-x64',
-      'linux-x64': '@openai/codex-cli-linux-x64',
-      'win32-x64': '@openai/codex-cli-win32-x64'
+      'darwin-arm64': '@anthropic-ai/claude-agent-sdk-darwin-arm64',
+      'darwin-x64': '@anthropic-ai/claude-agent-sdk-darwin-x64',
+      'linux-x64': '@anthropic-ai/claude-agent-sdk-linux-x64',
+      'win32-x64': '@anthropic-ai/claude-agent-sdk-win32-x64'
+    },
+    'cursor': {
+      'darwin-arm64': '@anthropic-ai/claude-agent-sdk-darwin-arm64',
+      'darwin-x64': '@anthropic-ai/claude-agent-sdk-darwin-x64',
+      'linux-x64': '@anthropic-ai/claude-agent-sdk-linux-x64',
+      'win32-x64': '@anthropic-ai/claude-agent-sdk-win32-x64'
     }
   };
 
   // 检测当前是在哪个工具中运行
   function detectCurrentTool() {
     // 1. 检查环境变量
-    // Claude Code 可能设置的环境变量
     if (process.env.CLAUDE_CODE || process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY) {
       console.log('[CLI] 检测到 Claude Code 环境（通过环境变量）');
       return 'claude';
     }
 
-    // Codex 可能设置的环境变量
-    if (process.env.CODEX_API_KEY || process.env.OPENAI_API_KEY || process.env.CODEX_SESSION) {
+    if (process.env.CURSOR_AGENT || process.env.CURSOR_API_KEY) {
+      console.log('[CLI] 检测到 Cursor 环境（通过环境变量）');
+      return 'cursor';
+    }
+
+    if (process.env.OPENAI_API_KEY || process.env.CODEX_API_KEY) {
       console.log('[CLI] 检测到 Codex 环境（通过环境变量）');
       return 'codex';
     }
 
-    // 2. 检查父进程（看看是谁启动的 node）
+    // 2. 检查父进程
     try {
       const ppid = process.ppid;
       const parentCmd = require('child_process')
         .execSync(`ps -p ${ppid} -o comm=`, { stdio: ['pipe', 'pipe', 'pipe'] })
         .toString()
         .trim();
-
       console.log('[CLI] 父进程:', parentCmd);
 
       if (parentCmd.includes('claude') || parentCmd.includes('Claude')) {
         console.log('[CLI] 检测到 Claude Code 环境（通过父进程）');
         return 'claude';
       }
-
-      if (parentCmd.includes('codex') || parentCmd.includes('Codex')) {
+      if (parentCmd.includes('codex')) {
         console.log('[CLI] 检测到 Codex 环境（通过父进程）');
         return 'codex';
       }
-    } catch (e) {
-      // 无法获取父进程信息，继续其他检测
-    }
+      if (parentCmd.includes('cursor')) {
+        console.log('[CLI] 检测到 Cursor 环境（通过父进程）');
+        return 'cursor';
+      }
+    } catch {}
 
     // 3. 检查工作目录的配置文件
     const claudeMdPath = path.join(PARENT_DIR, 'CLAUDE.md');
@@ -254,53 +263,57 @@ function detectAndGetCliPath() {
       return 'claude';
     }
 
+    const cursorRulesPath = path.join(PARENT_DIR, '.cursorrules');
+    if (fs.existsSync(cursorRulesPath)) {
+      console.log('[CLI] 检测到 Cursor 环境（通过 .cursorrules）');
+      return 'cursor';
+    }
+
     // 4. 默认：检查哪个 CLI 可用
-    const tools = ['claude', 'codex'];
+    const tools = ['claude', 'cursor-agent', 'codex'];
     for (const tool of tools) {
       try {
         require('child_process').execSync(`which ${tool}`, { stdio: 'pipe' });
-        console.log(`[CLI] 未检测到特定环境，使用可用的 ${tool} CLI`);
-        return tool;
+        const normalizedTool = tool === 'cursor-agent' ? 'cursor' : tool;
+        console.log(`[CLI] 未检测到特定环境，使用可用的 ${tool}`);
+        return normalizedTool;
       } catch {
         continue;
       }
     }
 
-    // 5. 最终默认
     console.warn('[CLI] 无法检测运行环境，默认使用 claude');
     return 'claude';
   }
 
-  // 检测当前工具
-  const detectedTool = detectCurrentTool();
-
   // 获取该工具的 CLI 路径
+  const detectedTool = detectCurrentTool();
   const platformPackage = platformPackages[detectedTool]?.[`${platform}-${arch}`];
   if (platformPackage) {
-    const localPath = path.join(PROJECT_DIR, 'node_modules', platformPackage, detectedTool);
+    const cliBin = detectedTool === 'cursor' ? 'claude' : detectedTool;
+    const localPath = path.join(PROJECT_DIR, 'node_modules', platformPackage, cliBin);
     if (fs.existsSync(localPath)) {
       console.log(`[CLI] 使用本地安装: ${localPath}`);
       return { cliPath: localPath, tool: detectedTool };
     }
   }
 
-  // 检查 bin 链接
   const binPath = path.join(PROJECT_DIR, 'node_modules', '.bin', detectedTool);
   if (fs.existsSync(binPath)) {
     console.log(`[CLI] 使用 bin 链接: ${binPath}`);
     return { cliPath: binPath, tool: detectedTool };
   }
 
-  // 检查全局命令
+  const globalCmd = detectedTool === 'cursor' ? 'cursor-agent' : detectedTool;
   try {
-    require('child_process').execSync(`which ${detectedTool}`, { stdio: 'pipe' });
-    console.log(`[CLI] 使用全局命令: ${detectedTool}`);
-    return { cliPath: detectedTool, tool: detectedTool };
+    require('child_process').execSync(`which ${globalCmd}`, { stdio: 'pipe' });
+    console.log(`[CLI] 使用全局命令: ${globalCmd}`);
+    return { cliPath: globalCmd, tool: detectedTool };
   } catch {
-    // 降级到另一个工具
-    console.warn(`[CLI] ${detectedTool} CLI 不可用，尝试使用其他 CLI`);
-    const fallbackTool = detectedTool === 'claude' ? 'codex' : 'claude';
-    return { cliPath: fallbackTool, tool: fallbackTool };
+    const fallbacks = { claude: 'codex', codex: 'claude', cursor: 'claude' };
+    const fallback = fallbacks[detectedTool] || 'claude';
+    console.warn(`[CLI] ${detectedTool} CLI 不可用，降级到 ${fallback}`);
+    return { cliPath: fallback, tool: fallback };
   }
 }
 
@@ -523,12 +536,25 @@ function getInputsDir(type) {
 
 // Parse JSON from Claude API's text output
 function parseIssuesFromOutput(text) {
-  // Try code block first
-  const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (!text) return { confirmed: [], suspected: [] };
+  // Try code block with object {confirmed, suspected}
+  const jsonMatch = text.match(/```json\s*(\{[\s\S]*?\})\s*```/);
   if (jsonMatch) {
     try {
       const parsed = JSON.parse(jsonMatch[1]);
-      if (parsed && (parsed.confirmed || parsed.suspected)) return parsed;
+      if (parsed && (parsed.confirmed || parsed.suspected)) {
+        return { confirmed: parsed.confirmed || [], suspected: parsed.suspected || [] };
+      }
+    } catch {}
+  }
+  // Try code block with array (module scan format)
+  const arrMatch = text.match(/```json\s*(\[[\s\S]*?\])\s*```/);
+  if (arrMatch) {
+    try {
+      const items = JSON.parse(arrMatch[1]);
+      if (Array.isArray(items) && items.length > 0 && (items[0].problem || items[0].id)) {
+        return { confirmed: [], suspected: items };
+      }
     } catch {}
   }
   // Try bare JSON object with confirmed/suspected keys
@@ -536,15 +562,17 @@ function parseIssuesFromOutput(text) {
   if (objMatch) {
     try {
       const parsed = JSON.parse(objMatch[0]);
-      if (parsed && (parsed.confirmed || parsed.suspected)) return parsed;
+      if (parsed && (parsed.confirmed || parsed.suspected)) {
+        return { confirmed: parsed.confirmed || [], suspected: parsed.suspected || [] };
+      }
     } catch {}
   }
   // Fallback: flat array (legacy format)
-  const arrMatch = text.match(/\[[\s\S]*"issue"[\s\S]*\]/);
-  if (arrMatch) {
-    try { return { confirmed: JSON.parse(arrMatch[0]), suspected: [] }; } catch {}
+  const flatMatch = text.match(/\[[\s\S]*"issue"[\s\S]*\]/);
+  if (flatMatch) {
+    try { return { confirmed: JSON.parse(flatMatch[0]), suspected: [] }; } catch {}
   }
-  return null;
+  return { confirmed: [], suspected: [] };
 }
 
 // Convert dev_y (0-100 percentage) to crop parameters (y ratio, height ratio)
@@ -751,6 +779,32 @@ function parseDesignSpecFromOutput(text) {
     try { return JSON.parse(sanitizeJson(text.slice(first, last + 1))); } catch {}
   }
   return null;
+}
+
+// Parse combined step1 output: {modules: [...], confirmed: [...], suspected: [...]}
+function parseCombinedStep1Output(text) {
+  const sanitized = text.replace(/"/g, '"').replace(/"/g, '"').replace(/'/g, "'").replace(/'/g, "'");
+  const jsonMatch = sanitized.match(/```json\s*(\{[\s\S]*?\})\s*```/);
+  if (jsonMatch) {
+    try {
+      const obj = JSON.parse(jsonMatch[1]);
+      if (obj.modules || obj.confirmed || obj.suspected) {
+        return { modules: obj.modules || [], confirmed: obj.confirmed || [], suspected: obj.suspected || [] };
+      }
+    } catch {}
+  }
+  // Fallback: try to find any JSON object
+  const first = sanitized.indexOf('{');
+  const last = sanitized.lastIndexOf('}');
+  if (first !== -1 && last > first) {
+    try {
+      const obj = JSON.parse(sanitized.slice(first, last + 1));
+      if (obj.modules || obj.confirmed || obj.suspected) {
+        return { modules: obj.modules || [], confirmed: obj.confirmed || [], suspected: obj.suspected || [] };
+      }
+    } catch {}
+  }
+  return { modules: [], confirmed: [], suspected: [] };
 }
 
 // Compress image by file size (not pixel dimensions) to prevent model read failure.
@@ -999,7 +1053,7 @@ ${inlineSkill}
 ${inlineRules}
 
 ### 输出限制
-- 最多输出 15 条问题（confirmed + suspected 合计）
+- 不限制问题数量，宁可多报也不要漏报
 - 疑似问题不要过于保守——只要两图间有任何可见的视觉差异迹象，且不是明确的动态数据差异，都应该纳入 suspected，宁可多报也不要漏报
 - 坐标使用 0.0-1.0 比例
 - 先识别同一个对象，再分别给 dev/design 坐标，禁止位置投影
@@ -1007,11 +1061,11 @@ ${inlineRules}
 - 每条问题的 problem 必须描述你在两张图中分别看到的具体差异，不允许模糊描述
 
 ### 截图坐标强制规则（必须遵守）
-- **devCropRegion 和 designCropRegion 必须完全相同**：两张截图的上下文视窗必须对齐，用户才能左右对比，不同的 CropRegion 会导致截图范围错位，无法对比。
-- **devBox 和 designBox 坐标必须不同（除非两图该元素位置完全一致）**：你必须分别在 dev 图和 design 图中独立定位问题元素的精确位置，而不是复制同一个坐标。同一个元素在两张图里的实际位置往往有偏差，框的坐标应该反映各自图片中的真实位置。
-- 合格示例：标题"创作任务"在 dev 图中偏右（devBox.left=0.35），在 design 图中居中（designBox.left=0.28），两个 Box 坐标不同是正确的。
-- 不合格示例：devBox 和 designBox 完全一样——说明你没有独立定位，而是复制了坐标，这会导致一边框准另一边框歪。
-- 不合格示例：dev CropRegion = {top:0.47, bottom:0.73}，design CropRegion = {top:0.43, bottom:0.51}，两个截图窗口完全不同——禁止这样输出。
+- **devCropRegion 和 designCropRegion 必须分别在各自图中独立识别**：同一模块在两张图中的位置可能不同（上方可能有插入或缺失的模块），必须在 dev 图中独立识别该模块的 top/bottom，在 design 图中也独立识别。**禁止将一张图的 CropRegion 直接照搬到另一张图。**
+- **CropRegion 必须覆盖模块区域**：从模块标题行顶部开始，到模块主体底部结束。禁止只裁红框周围一小块，否则截图无法表达上下文。
+- **devBox 和 designBox 必须分别独立定位**：在各自图中读取问题元素的精确位置。合格示例：标题"创作任务"在 dev 图中偏右（devBox.left=0.35），在 design 图中居中（designBox.left=0.28），两个 Box 坐标不同是正确的。
+- **不合格示例**：devBox 和 designBox 完全一样——说明没有独立定位，而是一边框准另一边框歪。
+- **不合格示例**：CropRegion 只裁红框周围一小块——截图失去上下文，用户看不出问题所在。
 
 ### 动态数据禁止上报（强制）
 以下差异**绝对不允许出现在输出 JSON 中**（confirmed 和 suspected 都不行）：
@@ -1471,8 +1525,10 @@ app.get('/api/cli-info', (req, res) => {
     tool,
     cliPath,
     availableModels: tool === 'claude'
-      ? ['all']  // Claude CLI 支持所有模型
-      : ['gpt-5.5', 'gpt-5.4', 'gpt-4o', 'gpt-4-turbo']  // Codex 只支持 GPT
+      ? ['all']
+      : tool === 'codex'
+        ? ['gpt-5.5', 'gpt-5.4', 'gpt-4o', 'gpt-4-turbo']
+        : ['all']  // cursor 支持所有模型
   });
 });
 
@@ -1611,6 +1667,171 @@ const UICHECK_VISION_MODELS = {
   'gemini-3.1-pro': 'gemini-3.1-pro'
 };
 const UICHECK_DEFAULT_MODEL = 'gpt-5.4';
+
+// ── Step 2B: crop a module region from an image ──
+async function cropImageByRegion(srcPath, region, suffix) {
+  if (!srcPath || !fs.existsSync(srcPath) || !region) return srcPath;
+  const outDir = UICHECK_ANALYSIS_IMAGES_DIR;
+  fs.mkdirSync(outDir, { recursive: true });
+  const base = path.basename(srcPath, path.extname(srcPath));
+  const targetPath = path.join(outDir, `${base}-${suffix}-module-crop.jpg`);
+  try {
+    const meta = await sharp(srcPath).metadata();
+    const w = meta.width, h = meta.height;
+    let top = Math.max(0, Math.round(h * region.top));
+    let bottom = Math.min(h, Math.round(h * region.bottom));
+    let left = Math.max(0, Math.round(w * region.left));
+    let right = Math.min(w, Math.round(w * region.right));
+    // Add padding: extend top/bottom by 15% of the module height for context
+    const moduleH = bottom - top;
+    const pad = Math.round(moduleH * 0.15);
+    top = Math.max(0, top - pad);
+    bottom = Math.min(h, bottom + pad);
+    const cropW = right - left;
+    const cropH = bottom - top;
+    if (cropW <= 0 || cropH <= 0) return srcPath;
+    await sharp(srcPath)
+      .extract({ left, top, width: cropW, height: cropH })
+      .jpeg({ quality: 90 })
+      .toFile(targetPath);
+    console.log(`[cropImageByRegion] ${Math.round(region.top * 100)}%- ${Math.round(region.bottom * 100)}% → ${cropW}x${cropH}px (+${pad}px padding)`);
+    return targetPath;
+  } catch (err) {
+    console.log('[cropImageByRegion] fallback to original:', err.message);
+    return srcPath;
+  }
+}
+
+// ── Step 2B: build per-module detail scan prompt ──
+function buildModuleScanPrompt(module, croppedDevPath, croppedDesignPath) {
+  return `你是一个资深 UI 走查助手。下面两张图片是同一个模块的开发稿局部图和设计稿局部图。
+
+模块名称：${module.name || '未知'}
+模块内容：${module.content || ''}
+模块视觉特征：${module.visual || ''}
+
+## 图片输入
+开发稿（局部）：
+${toClaudeFileRef(croppedDevPath)}
+
+设计稿（局部）：
+${toClaudeFileRef(croppedDesignPath)}
+
+## 硬读图验证
+先分别读取两张图片，确认：
+1. 两张图都是同一模块的局部截图
+2. 能识别出模块标题和主要内容
+3. 能区分 dev / design 身份
+如果读图失败，输出"读图验证失败：[原因]"并停止。
+
+## 走查任务
+逐细节检查以下属性是否一致，发现任何差异（无论多小）都要上报为疑似问题（suspected）：
+- 字号（font-size）：同一文字的像素大小是否不同
+- 字重（font-weight）：同一文字是否一个粗一个细
+- 行高（line-height）：文字行间距是否不同
+- 间距（gap/margin）：元素之间的水平或垂直间距是否不同
+- 内边距（padding）：卡片/容器内部留白是否不同
+- 按钮高度/宽度：按钮或输入框的尺寸是否不同
+- 图标尺寸：图标的宽高是否不同
+- 圆角（border-radius）：卡片/按钮/输入框的圆角是否不同
+- 描边/边框：边框粗细、颜色、样式是否不同
+- 阴影（box-shadow）：投影是否存在或深浅不同
+- 文字颜色：同一文字的色值是否不同
+- 对齐方式：文字或元素是否一个居中一个左对齐
+
+## 输出要求
+- 不限制问题数量，宁可多报也不要漏报
+- 所有发现的差异都进入 suspected，priority 默认 P2
+- 动态数据（金额、时间、用户昵称、头像、进度数字）不报
+- 每条问题必须包含：id, problem, suggestion, priority, location, devBox, designBox, reason, basis, whyNotConfirmed, verifySuggestion
+- devBox/designBox 填问题元素在各自截图中的精确位置（0.0-1.0 比例，相对于当前两张局部裁图）
+- 不要输出 CropRegion 字段（后端会自动填充）
+- 如果该模块完全一致，输出空数组 []
+
+先输出读图验证文字，然后输出一个 JSON 代码块：
+\`\`\`json
+[
+  {"id": "1", "problem": "...", "suggestion": "...", "priority": "P2", "status": "待确认", "location": "...", "devBox": {"top":0.1,"bottom":0.2,"left":0.05,"right":0.5}, "designBox": {"top":0.12,"bottom":0.22,"left":0.06,"right":0.52}, "reason": "为什么怀疑", "basis": "可见证据", "whyNotConfirmed": "为何不能确认", "verifySuggestion": "如何进一步确认"}
+]
+\`\`\`
+`;
+}
+
+// ── Step 2B: run a single module scan CLI and return parsed suspected issues ──
+async function runModuleScanCLI(prompt, cliEnv) {
+  const { cliPath, tool } = getCliPath();
+  let baseArgs;
+  if (tool === 'claude') {
+    baseArgs = ['--output-format', 'stream-json', '--permission-mode', 'bypassPermissions', '--verbose', '-p', prompt];
+  } else if (tool === 'codex') {
+    baseArgs = ['-q', '--approval-mode', 'yolo', '--output-format', 'stream-json', prompt];
+  } else {
+    baseArgs = ['--output-format', 'stream-json', '--full-auto', prompt];
+  }
+
+  return new Promise((resolve, reject) => {
+    const proc = spawn(cliPath, baseArgs, { cwd: PARENT_DIR, env: { ...process.env, ...cliEnv } });
+    let rawOutput = '';
+    proc.stdout.on('data', (chunk) => { rawOutput += chunk.toString(); });
+    proc.stderr.on('data', (chunk) => { console.log(`[module-scan stderr]`, chunk.toString().slice(0, 200)); });
+    proc.on('close', (code) => {
+      const textOutput = extractTextFromStreamJson(rawOutput);
+      try {
+        const parsed = parseIssuesFromOutput(textOutput);
+        console.log(`[module-scan] exit ${code}, found ${parsed.confirmed.length + parsed.suspected.length} issues`);
+        resolve(parsed.suspected || []);
+      } catch (err) {
+        console.log('[module-scan] parse error:', err.message);
+        resolve([]);
+      }
+    });
+    proc.on('error', (err) => {
+      console.log('[module-scan] error:', err.message);
+      resolve([]);
+    });
+  });
+}
+
+// ── Transform Step 2B issue coordinates from cropped-relative to original-image-relative ──
+// Step 2B model sees cropped module images and outputs Box coordinates relative to those crops.
+// We need CropRegion = the actual module region on the original image,
+// and Box coordinates converted so they work when applied to the original full image.
+function transformStep2BCoordinates(issues, moduleRegion) {
+  return issues.map(issue => {
+    const result = { ...issue };
+
+    // Inject the module's actual crop region for both dev and design
+    result.devCropRegion = { ...moduleRegion };
+    result.designCropRegion = { ...moduleRegion };
+
+    // Convert Box from cropped-relative → original-image-relative
+    const topRatio = moduleRegion.top;
+    const bottomRatio = moduleRegion.bottom;
+    const leftRatio = moduleRegion.left;
+    const rightRatio = moduleRegion.right;
+    const cropH = bottomRatio - topRatio;
+    const cropW = rightRatio - leftRatio;
+
+    if (result.devBox && result.devBox.top !== undefined) {
+      result.devBox = {
+        top: topRatio + result.devBox.top * cropH,
+        bottom: topRatio + result.devBox.bottom * cropH,
+        left: leftRatio + result.devBox.left * cropW,
+        right: leftRatio + result.devBox.right * cropW
+      };
+    }
+    if (result.designBox && result.designBox.top !== undefined) {
+      result.designBox = {
+        top: topRatio + result.designBox.top * cropH,
+        bottom: topRatio + result.designBox.bottom * cropH,
+        left: leftRatio + result.designBox.left * cropW,
+        right: leftRatio + result.designBox.right * cropW
+      };
+    }
+
+    return result;
+  });
+}
 
 app.get('/api/analyze/:type', async (req, res) => {
   const { type } = req.params;
@@ -1754,7 +1975,7 @@ app.get('/api/analyze/:type', async (req, res) => {
     });
   }
 
-  res.write(`data: ${JSON.stringify({ type: 'status', content: 'Claude API 调用中...' })}\n\n`);
+  res.write(`data: ${JSON.stringify({ type: 'status', content: 'AI 模型调用中...' })}\n\n`);
 
   // uicheck only keeps the single-page uicheck_pro main flow
   let finalPrompt = prompt;
@@ -1798,37 +2019,49 @@ app.get('/api/analyze/:type', async (req, res) => {
     }
   }
 
-  // 自动检测并获取 CLI 路径（Claude Code / Codex）
+  // 自动检测并获取 CLI 路径（Claude Code / Codex / Cursor）
   const { cliPath, tool } = getCliPath();
 
   // 根据工具类型使用不同的参数
+  // CLI 模式下不指定 --model，让 CLI 自行使用配置的模型（如 cc switch 配置的代理模型）
   let baseArgs;
   if (tool === 'claude') {
-    // Claude Code CLI 参数
     baseArgs = [
-      '--model', uicheckVisionModel,
       '--output-format', outputFormat,
       '--permission-mode', 'bypassPermissions',
-      '--verbose',  // stream-json 需要这个参数
-      '-p',  // --print 的简写，非交互模式
+      '--verbose',
+      '-p',
       prompt
     ];
-  } else {
-    // Codex CLI 参数（假设与 OpenAI 兼容）
+  } else if (tool === 'codex') {
     baseArgs = [
-      '--model', uicheckVisionModel,
-      '-q',
-      '--approval-mode', 'yolo',
-      '--output-format', outputFormat,
-      prompt
+      'exec', prompt,
+      '--full-auto',
+      '--quiet'
+    ];
+  } else if (tool === 'cursor') {
+    baseArgs = [
+      '-p', prompt,
+      '--full-auto'
     ];
   }
 
-  console.log(`[uicheck] 使用 ${tool} CLI: ${cliPath}, model: ${uicheckVisionModel}`);
+  console.log(`[uicheck] 使用 ${tool} CLI: ${cliPath}（使用 CLI 自身配置的模型）`);
   console.log('[uicheck] args:', JSON.stringify(baseArgs));
-  const claude = spawn(cliPath, baseArgs, {
+
+  // 读取全局 AI 助手设置，注入环境变量
+  const claudeSettingsPath = path.join(require('os').homedir(), '.claude', 'settings.json');
+  let cliEnv = {};
+  try {
+    if (fs.existsSync(claudeSettingsPath)) {
+      const settings = JSON.parse(fs.readFileSync(claudeSettingsPath, 'utf-8'));
+      if (settings.env) cliEnv = settings.env;
+    }
+  } catch {}
+
+  const agentProc = spawn(cliPath, baseArgs, {
     cwd: PARENT_DIR,
-    env: { ...process.env }
+    env: { ...process.env, ...cliEnv }
   });
 
   // Collect full output for uicheck post-processing
@@ -1838,7 +2071,7 @@ app.get('/api/analyze/:type', async (req, res) => {
   // For uicheck single-page mode, hide step 1 output from frontend
   const uicheckSinglePage = type === 'uicheck';
 
-  claude.stdout.on('data', (chunk) => {
+  agentProc.stdout.on('data', (chunk) => {
     const text = chunk.toString();
     fullRawOutput += text;
     if (!uicheckSinglePage && !useStreamJson) {
@@ -1846,7 +2079,7 @@ app.get('/api/analyze/:type', async (req, res) => {
     }
   });
 
-  claude.stderr.on('data', (chunk) => {
+  agentProc.stderr.on('data', (chunk) => {
     const text = chunk.toString();
     if (!useStreamJson) {
       res.write(`data: ${JSON.stringify({ type: 'stderr', content: text })}\n\n`);
@@ -1854,7 +2087,7 @@ app.get('/api/analyze/:type', async (req, res) => {
     console.log(`[${type} stderr]`, text.slice(0, 200));
   });
 
-  claude.on('close', async (code) => {
+  agentProc.on('close', async (code) => {
     // For stream-json mode, extract the text content
     if (useStreamJson) {
       fullTextOutput = extractTextFromStreamJson(fullRawOutput);
@@ -1869,8 +2102,8 @@ app.get('/api/analyze/:type', async (req, res) => {
     if (code !== 0) {
       const quotaErr = /quota|authenticate|403|token-plan/i.test(fullTextOutput + fullRawOutput);
       const errMsg = quotaErr
-        ? 'Claude API 调用失败：鉴权异常。请检查 API 密钥配置。'
-        : `Claude API 调用失败（退出码 ${code}）。请查看服务端日志和 .claude/uicheck-runtime-debug-output.txt。`;
+        ? 'AI 模型调用失败：鉴权异常。请检查 API 密钥或代理配置。'
+        : `AI 模型调用失败（退出码 ${code}）。请查看服务端日志和 .claude/uicheck-runtime-debug-output.txt。`;
       res.write(`data: ${JSON.stringify({ type: 'error', content: errMsg })}\n\n`);
       res.end();
       return;
@@ -1887,18 +2120,23 @@ app.get('/api/analyze/:type', async (req, res) => {
       }
     }
 
-    // For uicheck: fixed single-page main flow
+    // For uicheck: single combined step — module analysis + full-page comparison
     if (type === 'uicheck') {
-      const designSpec = parseDesignSpecFromOutput(fullTextOutput);
+      // Parse combined output: {modules: [...], confirmed: [...], suspected: [...]}
+      const combinedResult = parseCombinedStep1Output(fullTextOutput);
+      const designSpec = combinedResult.modules || [];
+      const step1Confirmed = combinedResult.confirmed || [];
+      const step1Suspected = combinedResult.suspected || [];
+
       const latestUploadState = readUICheckLatestUploadState();
       const flow = resolveUICheckFlow(files, latestUploadState);
-      console.log('[uicheck step1] parsed JSON:', JSON.stringify(designSpec, null, 2));
+      console.log('[uicheck step1] parsed modules:', designSpec.length, 'confirmed:', step1Confirmed.length, 'suspected:', step1Suspected.length);
       console.log('[uicheck step1] verification text:', fullTextOutput.slice(0, 500));
 
       const step1Verification = ensureUICheckReadVerificationOrThrow(fullTextOutput, 'step1');
       if (!step1Verification.ok) {
         console.log('[uicheck step1] verification failed:', step1Verification.reason);
-        res.write(`data: ${JSON.stringify({ type: 'error', content: '设计稿读图验证失败：' + step1Verification.reason + '。请检查上传的设计稿图片是否正确。' })}\n\n`);
+        res.write(`data: ${JSON.stringify({ type: 'error', content: '读图验证失败：' + step1Verification.reason + '。请检查上传的截图是否正确。' })}\n\n`);
         res.end();
         return;
       }
@@ -1906,242 +2144,92 @@ app.get('/api/analyze/:type', async (req, res) => {
       const selection = await selectSinglePageUICheckFiles(files, typeDir, latestUploadState);
       const devFile = selection.devFile;
       const designFile = selection.designFile;
-      const bgFile = files.find(f => /background\.txt$/i.test(f));
-      const bgPath = bgFile ? path.join(typeDir, bgFile) : '';
-      const bgContent = bgPath && fs.existsSync(bgPath)
-        ? fs.readFileSync(bgPath, 'utf-8').trim().slice(0, 2000)
-        : '';
 
-      if (devFile && designFile && Array.isArray(designSpec) && designSpec.length > 0) {
-        console.log('[uicheck step 2] design spec modules:', designSpec.length);
-        res.write(`data: ${JSON.stringify({ type: 'status', content: '正在对比开发稿...' })}\n\n`);
-
+      if (devFile && designFile && designSpec.length > 0) {
         const devPath = path.join(typeDir, devFile);
         const designFilePath = path.join(typeDir, designFile);
-        console.log('[uicheck step 2] files:', files);
-        console.log('[uicheck step 2] devFiles:', selection.devFiles);
-        console.log('[uicheck step 2] designFiles:', selection.designFiles);
-        console.log('[uicheck step 2] devFile:', devFile);
-        console.log('[uicheck step 2] designFile:', designFile);
-        console.log('[uicheck step 2] devPath:', devPath);
-        console.log('[uicheck step 2] designFilePath:', designFilePath);
-        // Compress large images (by file size) before passing to step2 model
-        const step2DevInfo = await logImageInfo('step2-dev-original', devPath);
-        const step2DesignInfo = await logImageInfo('step2-design-original', designFilePath);
-        let analysisDevPath = await createAnalysisImage(devPath, 'step2-dev');
-        const analysisDesignPath = await createAnalysisImage(designFilePath, 'step2-design');
-        // B端专用：将开发稿宽度对齐设计稿，减少比例差异导致的坐标估算偏差
-        if (pageType === 'b') {
-          analysisDevPath = await resizeDevToMatchDesign(analysisDevPath, analysisDesignPath, 'step2');
-        }
-        const step2AnalysisDevInfo = await logImageInfo('step2-dev-for-model', analysisDevPath);
-        const step2AnalysisDesignInfo = await logImageInfo('step2-design-for-model', analysisDesignPath);
-        const step2AnalysisPrompt = buildUICheckStep2AnalysisPrompt(designSpec, analysisDevPath, analysisDesignPath, bgContent, pageType);
-        const step2PromptPath = writeUICheckPromptDebugFile('step2-analysis', step2AnalysisPrompt);
-        const step2References = [SKILL_MD_PATH, ...loadSkillContext('analysis', pageType).map(f => f.path)].filter(fp => fs.existsSync(fp));
-        logUICheckRunMeta('step2', {
-          flowName: flow.flowName,
-          flowFunction: flow.flowFunction,
-          promptFilePath: step2PromptPath,
-          imageRefs: [toClaudeFileRef(analysisDevPath), toClaudeFileRef(analysisDesignPath)],
-          referenceFiles: step2References
-        });
-        console.log('[uicheck step2] final prompt:\n' + step2AnalysisPrompt);
-        console.log('[uicheck step2] prompt image refs:', JSON.stringify([
-          toClaudeFileRef(analysisDevPath),
-          toClaudeFileRef(analysisDesignPath)
-        ]));
-        await appendUICheckRuntimeDebug({
-          phase: 'step2-before-model',
-          flow,
-          promptFilePath: step2PromptPath,
-          files,
-          devFiles: selection.devFiles,
-          designFiles: selection.designFiles,
-          selected: {
-            devFile,
-            designFile,
-            devPath,
-            designPath: designFilePath,
-            analysisDevPath,
-            analysisDesignPath
-          },
-          imageInfo: {
-            dev: step2DevInfo,
-            design: step2DesignInfo,
-            analysisDev: step2AnalysisDevInfo,
-            analysisDesign: step2AnalysisDesignInfo
-          },
-          referenceFiles: step2References,
-          imageRefs: [toClaudeFileRef(analysisDevPath), toClaudeFileRef(analysisDesignPath)],
-          prompt: step2AnalysisPrompt,
-          parsedJson: designSpec
-        });
+        console.log('[uicheck] devPath:', devPath);
+        console.log('[uicheck] designFilePath:', designFilePath);
+        console.log('[uicheck] design spec modules:', designSpec.length);
 
-        // Phase A: issue detection only (stream-json for raw debug + final text extraction)
-        // 使用自动检测的 CLI（Claude Code / Codex）
-        const { cliPath: step2ClaudePath, tool: step2Tool } = getCliPath();
+        // ── Step 2B: Per-module detail scan ──
+        console.log(`[uicheck step2b] starting per-module detail scan for ${designSpec.length} modules`);
+        res.write(`data: ${JSON.stringify({ type: 'status', content: '整页分析完成，正在进行模块级细节扫描...' })}\n\n`);
 
-        let step2Args;
-        if (step2Tool === 'claude') {
-          // Claude Code CLI 参数
-          step2Args = [
-            '--model', visionModel,
-            '--output-format', 'stream-json',
-            '--permission-mode', 'bypassPermissions',
-            '--verbose',  // stream-json 需要这个参数
-            '-p',
-            step2AnalysisPrompt
-          ];
-        } else {
-          // Codex CLI 参数
-          step2Args = [
-            '--model', visionModel,
-            '-q', '--approval-mode', 'yolo',
-            '--output-format', 'stream-json',
-            step2AnalysisPrompt
-          ];
+        const allSuspected = [...step1Suspected];
+        let scannedModules = 0;
+
+        for (const mod of designSpec) {
+          const modRegion = mod.designCropRegion;
+          if (!modRegion) {
+            console.log(`[uicheck step2b] module "${mod.name}" has no designCropRegion, skipping`);
+            continue;
+          }
+          scannedModules++;
+          console.log(`[uicheck step2b] scanning module ${scannedModules}/${designSpec.length}: "${mod.name}"`);
+          res.write(`data: ${JSON.stringify({ type: 'status', content: `正在细扫模块：${mod.name}（${scannedModules}/${designSpec.length}）` })}\n\n`);
+
+          const croppedDevPath = await cropImageByRegion(devPath, modRegion, `module-${mod.order}-dev`);
+          const croppedDesignPath = await cropImageByRegion(designFilePath, modRegion, `module-${mod.order}-design`);
+
+          const moduleScanPrompt = buildModuleScanPrompt(mod, croppedDevPath, croppedDesignPath);
+          const moduleIssues = await runModuleScanCLI(moduleScanPrompt, cliEnv);
+
+          if (moduleIssues && moduleIssues.length > 0) {
+            // Transform coordinates: convert Box from cropped-relative to original-image-relative,
+            // and inject the actual module CropRegion
+            const transformedIssues = transformStep2BCoordinates(moduleIssues, modRegion);
+            console.log(`[uicheck step2b] module "${mod.name}": found ${transformedIssues.length} suspected issues`);
+            allSuspected.push(...transformedIssues);
+          }
         }
 
-        console.log('[uicheck step2] claude args:', JSON.stringify(step2Args));
-        console.log(`[uicheck step2] 使用 ${step2Tool} CLI: ${step2ClaudePath}`);
-        const claude2 = spawn(step2ClaudePath, step2Args, {
-          cwd: PARENT_DIR,
-          env: { ...process.env }
-        });
+        console.log(`[uicheck step2b] done. confirmed: ${step1Confirmed.length}, suspected: ${allSuspected.length} (step1: ${step1Suspected.length}, step2b: ${allSuspected.length - step1Suspected.length})`);
 
-        const STEP2_ANALYSIS_TIMEOUT_MS = 8 * 60 * 1000;
-        let step2AnalysisTimedOut = false;
-        const step2AnalysisTimer = setTimeout(() => {
-          step2AnalysisTimedOut = true;
-          console.log('[uicheck step2 analysis] timeout - killing process');
-          claude2.kill('SIGTERM');
-          setTimeout(() => { try { claude2.kill('SIGKILL'); } catch {} }, 3000);
-        }, STEP2_ANALYSIS_TIMEOUT_MS);
+        // 统一重新编号：确认问题保持原 ID（1, 2, 3...），疑似问题接续编号
+        const lastConfirmedId = step1Confirmed.length;
+        allSuspected.forEach((item, i) => { item.id = String(lastConfirmedId + i + 1); });
 
-        let step2StartTime = Date.now();
-        const heartbeat = setInterval(() => {
-          const elapsed = Math.round((Date.now() - step2StartTime) / 1000);
-          res.write(`data: ${JSON.stringify({ type: 'status', content: `正在对比开发稿...（已运行 ${elapsed} 秒）` })}\n\n`);
-        }, 15000);
+        const mergedIssueData = {
+          confirmed: step1Confirmed,
+          suspected: allSuspected
+        };
 
-        let step2RawLines = '';
-        claude2.stdout.on('data', (chunk) => {
-          step2RawLines += chunk.toString();
-        });
-        claude2.stderr.on('data', (chunk) => {
-          console.log('[uicheck step2 analysis stderr]', chunk.toString().slice(0, 200));
-        });
+        res.write(`data: ${JSON.stringify({ type: 'status', content: '正在生成问题截图...' })}\n\n`);
 
-        claude2.on('close', async (code2) => {
-          clearTimeout(step2AnalysisTimer);
-          const rawOutput = step2RawLines;
-          const analysisOutput = extractTextFromStreamJson(step2RawLines).trim();
-          fs.writeFileSync(UICHECK_RUNTIME_DEBUG_PATH.replace('.json', '-step2-raw.txt'), rawOutput);
-          fs.writeFileSync(UICHECK_RUNTIME_DEBUG_PATH.replace('.json', '-step2.txt'), analysisOutput);
-          console.log('[uicheck step2 analysis] closed, code:', code2, 'output length:', analysisOutput.length);
-
-          if (step2AnalysisTimedOut) {
-            clearInterval(heartbeat);
-            res.write(`data: ${JSON.stringify({ type: 'error', content: '开发稿问题识别超时（8分钟），请查看 .claude/uicheck-runtime-debug-step2.txt' })}\n\n`);
-            res.end();
-            return;
-          }
-
-          if (code2 !== 0) {
-            clearInterval(heartbeat);
-            const quotaErr2 = /quota|authenticate|403|token-plan/i.test(analysisOutput);
-            const errMsg2 = quotaErr2
-              ? '开发稿对比失败：Claude API 鉴权异常。请检查 API 密钥配置。'
-              : `开发稿对比失败（退出码 ${code2}）。请查看服务端日志和 .claude/uicheck-runtime-debug-step2.txt`;
-            res.write(`data: ${JSON.stringify({ type: 'error', content: errMsg2 })}\n\n`);
-            res.end();
-            return;
-          }
-
-          // Detect vision model quota exhaustion for step2
-          const step2QuotaExhausted = /额度上限|已达到使用额度|fallback to wanqing/i.test(rawOutput);
-          if (step2QuotaExhausted) {
-            clearInterval(heartbeat);
-            console.log('[uicheck step2] ERROR: vision model quota exhausted');
-            res.write(`data: ${JSON.stringify({ type: 'error', content: '对比阶段视觉模型额度已用完，无法读图。请等待额度刷新（约12小时）后重试。' })}\n\n`);
-            res.end();
-            return;
-          }
-
-          const issueData = parseIssuesFromOutput(analysisOutput);
-          console.log('[uicheck step2] parsed JSON:', JSON.stringify(issueData, null, 2));
-
-          const verificationGate = ensureUICheckReadVerificationOrThrow(analysisOutput, 'step2');
-          if (!verificationGate.ok) {
-            clearInterval(heartbeat);
-            console.log('[uicheck step2] verification failed:', verificationGate.reason);
-            await appendUICheckRuntimeDebug({
-              phase: 'step2-verification-failed',
-              flow,
-              verification: verificationGate.verification,
-              reason: verificationGate.reason,
-              rawOutput,
-              analysisOutput
-            });
-            res.write(`data: ${JSON.stringify({ type: 'error', content: '读图验证失败：' + verificationGate.reason + '。请检查上传的开发截图和设计稿是否正确。' })}\n\n`);
-            res.end();
-            return;
-          }
-
-          if (!issueData) {
-            clearInterval(heartbeat);
-            res.write(`data: ${JSON.stringify({ type: 'error', content: '开发稿问题识别完成，但未解析到有效 JSON。请查看 .claude/uicheck-runtime-debug-step2.txt' })}\n\n`);
-            res.end();
-            return;
-          }
-
-          res.write(`data: ${JSON.stringify({ type: 'status', content: '正在生成问题截图...' })}\n\n`);
-
-          // Phase B: Generate issue screenshots
-          // Primary: Node.js sharp (no Python dependency)
-          // Fallback: Python Pillow script if sharp fails
+        // Phase B: Generate issue screenshots
+        try {
+          await generateIssueScreenshotsWithSharp(mergedIssueData, devPath, designFilePath);
+          console.log('[uicheck screenshot] sharp done');
+        } catch (sharpErr) {
+          console.log('[uicheck screenshot] sharp error:', sharpErr.message, '- falling back to Python');
+          const flatIssues = flattenIssueData(mergedIssueData);
+          const screenshotScript = generateScreenshotScript(flatIssues, devPath, designFilePath);
           try {
-            await generateIssueScreenshotsWithSharp(issueData, devPath, designFilePath);
-            console.log('[uicheck step2 screenshot] sharp done');
-          } catch (sharpErr) {
-            console.log('[uicheck step2 screenshot] sharp error:', sharpErr.message, '- falling back to Python');
-            const flatIssues = flattenIssueData(issueData);
-            const screenshotScript = generateScreenshotScript(flatIssues, devPath, designFilePath);
-            try {
-              const scriptResult = await executeScreenshotScript(screenshotScript);
-              console.log('[uicheck step2 screenshot] Python fallback done:', scriptResult.stdout.trim());
-            } catch (pyErr) {
-              console.log('[uicheck step2 screenshot] Python fallback also failed:', pyErr.message);
-              res.write(`data: ${JSON.stringify({ type: 'warning', content: '截图生成失败：sharp 和 Python/Pillow 均不可用。请运行: pip3 install Pillow' })}\n\n`);
-            }
+            const scriptResult = await executeScreenshotScript(screenshotScript);
+            console.log('[uicheck screenshot] Python fallback done:', scriptResult.stdout.trim());
+          } catch (pyErr) {
+            console.log('[uicheck screenshot] Python fallback also failed:', pyErr.message);
+            res.write(`data: ${JSON.stringify({ type: 'warning', content: '截图生成失败：sharp 和 Python/Pillow 均不可用。请运行: pip3 install Pillow' })}\n\n`);
           }
+        }
 
-          const mergedData = attachGeneratedIssueImages(issueData);
-          clearInterval(heartbeat);
-          const mergedJsonStr = '```json\n' + JSON.stringify(mergedData, null, 2) + '\n```';
-          await appendUICheckRuntimeDebug({
-            phase: 'step2-after-model',
-            flow,
-            parsedJson: issueData,
-            mergedJson: mergedData
-          });
-          await generateIssueTable(mergedJsonStr, files, typeDir, false, res);
-          res.write(`data: ${JSON.stringify({ type: 'done', code: 0 })}\n\n`);
-          res.end();
+        const mergedData = attachGeneratedIssueImages(mergedIssueData);
+        const mergedJsonStr = '```json\n' + JSON.stringify(mergedData, null, 2) + '\n```';
+        await appendUICheckRuntimeDebug({
+          phase: 'step-after-model',
+          flow,
+          parsedJson: mergedIssueData,
+          mergedJson: mergedData
         });
-        claude2.on('error', (err) => {
-          clearTimeout(step2AnalysisTimer);
-          clearInterval(heartbeat);
-          console.log('[uicheck step2] error:', err.message);
-          res.write(`data: ${JSON.stringify({ type: 'error', content: err.message })}\n\n`);
-          res.end();
-        });
+        await generateIssueTable(mergedJsonStr, files, typeDir, false, res);
+        res.write(`data: ${JSON.stringify({ type: 'done', code: 0 })}\n\n`);
+        res.end();
         return;
       }
 
-      console.log('[uicheck step 2] missing dev file or empty design spec');
-      res.write(`data: ${JSON.stringify({ type: 'error', content: '设计稿结构解析失败，请检查设计稿是否可读，或查看 .claude/uicheck-runtime-debug-output.txt 排查 Claude API 输出。' })}\n\n`);
+      console.log('[uicheck] missing dev file or empty design spec');
+      res.write(`data: ${JSON.stringify({ type: 'error', content: '设计稿结构解析失败，请检查开发截图和设计稿是否都已上传。' })}\n\n`);
       res.end();
       return;
     }
@@ -2150,7 +2238,7 @@ app.get('/api/analyze/:type', async (req, res) => {
     res.end();
   });
 
-  claude.on('error', (err) => {
+  agentProc.on('error', (err) => {
     console.log('[uicheck] error:', err.message);
     res.write(`data: ${JSON.stringify({ type: 'error', content: err.message })}\n\n`);
     res.end();
@@ -2188,11 +2276,14 @@ function buildUICheckPrompt(files, type, uicheckContext = null) {
     throw new Error('uicheck folder-mode is disabled for current requests');
   }
 
-  // Single page mode — Step 1: analyze design ONLY, output module spec
+  // Single page mode — Step 1: analyze design modules + full-page comparison in ONE call
   const designFile = files.find(f => /design_mockup/i.test(f)) || files.find(f => /^design[_-]/i.test(f)) || files.find(f => isUICheckImageFile(f));
   const designRawPath = path.resolve(path.join(typeDir, designFile));
-  // Use pre-compressed path from context if available, otherwise use raw path
   const designAbsPath = uicheckContext?.step1DesignPath || designRawPath;
+
+  const devFile = uicheckContext?.devFile || '';
+  const devPath = devFile ? path.join(typeDir, devFile) : '';
+  const devAbsPath = devPath && fs.existsSync(devPath) ? path.resolve(devPath) : '';
 
   const bgContent = txtFiles.length > 0
     ? readTextFileIfExists(path.resolve(path.join(typeDir, txtFiles[0]))).trim().slice(0, 2000)
@@ -2200,35 +2291,88 @@ function buildUICheckPrompt(files, type, uicheckContext = null) {
 
   const bHint = pageType === 'b' ? readTextFileIfExists(path.join(REF_DIR_B, 'step1_hint.md')) : '';
 
-  let prompt = `你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。
-${bHint ? `\n${bHint}\n` : ''}
-## 设计稿图片
+  // Embed SKILL.md and reference rules (same as Step 2A used to do)
+  const skillMarkdown = loadUICheckSkillMarkdown(pageType);
+  const skillCtx = loadSkillContext('analysis', pageType);
+  const inlineSkill = skillMarkdown ? `\n## uicheck_pro SKILL.md（已内嵌，无需额外读取）\n${skillMarkdown}\n` : '';
+  let inlineRules = '';
+  for (const f of skillCtx) {
+    inlineRules += `\n### ${f.name}\n${f.content}\n`;
+  }
 
+  let prompt = `你是一名资深 UI 走查助手。你需要完成两项任务：
+
+**任务 A（认模块）**：分析设计稿图片，从上到下识别页面模块，输出每个模块的名称、内容概述、视觉特征、以及在设计稿中的位置坐标（designCropRegion）。
+
+**任务 B（找大问题）**：对比开发稿和设计稿两张整图，找出明显的结构差异：模块缺失、顺序错误、明显样式不一致等。动态数据（金额、时间、用户昵称等）不报。
+${bHint ? `\n${bHint}\n` : ''}
+## 图片输入
+
+开发稿：
+${toClaudeFileRef(devAbsPath || designAbsPath)}
+
+设计稿：
 @${designAbsPath}
 
-## 读图验证（必须先执行）
+## 硬读图验证（必须先执行）
 
-先输出“读图验证”段落，严格包含：
-1. 图片中真实可见的标题/页面名称（逐字引用）
-2. 图片顶部主色、主背景色
-3. 从上到下第一个主要模块名称
+先分别读取两张图片，输出”读图验证”段落，严格包含：
+1. 开发稿真实可见的页面标题/顶部文字（逐字引用）
+2. 开发稿顶部主色、页面主背景色、顶部第一个模块名称
+3. 设计稿真实可见的页面标题/顶部文字（逐字引用）
+4. 设计稿顶部主色、页面主背景色、顶部第一个模块名称
+5. 回答”开发稿和设计稿是否为两张不同图片：是/否”
+6. 回答”这两张图是否描述同一个页面：是/否 + 理由”
 
-如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。
+如果任意一项无法基于图片直接回答，输出”读图验证失败：[具体原因]”并停止。
 
-禁止凭想象编造内容，只输出图片中实际可见的。
-JSON 字段值中禁止出现中文引号（""），只用英文双引号，如需引用含引号的文字用单引号替代。
+## 走查规则（已内嵌，无需额外读取）
+${inlineSkill}
+## reference 规则补充（已内嵌，无需额外读取）
+${inlineRules}
+
+### 输出限制
+- 不限制问题数量，宁可多报也不要漏报
+- 疑似问题不要过于保守——只要两图间有任何可见的视觉差异迹象，且不是明确的动态数据差异，都应该纳入 suspected
+- 坐标使用 0.0-1.0 比例
+- 先识别同一对象，再分别给 dev/design 坐标，禁止位置投影
+- 不得框整图、不得框错对象、不得把 design 的位置投影到 dev
+- 每条问题的 problem 必须描述你在两张图中分别看到的具体差异
+
+### 截图坐标强制规则（必须遵守）
+- **devCropRegion 和 designCropRegion 必须分别在各自图中独立识别**：同一模块在两张图中的位置可能不同，必须在各自图中独立识别该模块区域。
+- **CropRegion 必须覆盖模块区域**：从模块标题行顶部到模块主体底部，禁止只裁红框周围一小块。
+- **devBox 和 designBox 必须分别独立定位**：在各自图中读取问题元素的精确位置。
+- **不合格示例**：devBox 和 designBox 完全一样——说明没有独立定位。
+
+### 动态数据禁止上报（强制）
+以下差异**绝对不允许出现在输出 JSON 中**：
+- 用户昵称不同、用户头像不同
+- 金额/数值/时间/日期不同
+- 任务进度数字不同
+- 运营配置文案不同
+只有当**结构本身**发生变化时才可以报。
 `;
   if (bgContent) {
     prompt += `\n## 背景信息\n${bgContent}\n`;
   }
-  prompt += `\n## 输出格式\n`;
-  prompt += `先输出读图验证，然后输出 JSON 数组：\n`;
+  prompt += `\n## 最终输出\n`;
+  prompt += `先输出读图验证文字，然后输出一个 JSON 对象，包含模块清单和走查问题：\n`;
   prompt += `\`\`\`json\n`;
-  prompt += `[\n`;
-  prompt += `  {"order": 1, "name": "模块名称", "content": "模块内容概述", "visual": "视觉特征概述"},\n`;
-  prompt += `  {"order": 2, "name": "模块名称", "content": "模块内容概述", "visual": "视觉特征概述"}\n`;
-  prompt += `]\n`;
+  prompt += `{\n`;
+  prompt += `  “modules”: [\n`;
+  prompt += `    {“order”: 1, “name”: “模块名称”, “content”: “模块内容概述”, “visual”: “视觉特征概述”, “designCropRegion”: {“top”: 0.0, “bottom”: 0.15, “left”: 0.0, “right”: 1.0}},\n`;
+  prompt += `    {“order”: 2, “name”: “模块名称”, “content”: “模块内容概述”, “visual”: “视觉特征概述”, “designCropRegion”: {“top”: 0.15, “bottom”: 0.35, “left”: 0.0, “right”: 1.0}}\n`;
+  prompt += `  ],\n`;
+  prompt += `  “confirmed”: [],\n`;
+  prompt += `  “suspected”: []\n`;
+  prompt += `}\n`;
   prompt += `\`\`\`\n`;
+  prompt += `\n坐标说明：\n`;
+  prompt += `- modules[].designCropRegion：该模块在设计稿中的位置，top/bottom 从标题行顶部到主体底部，0.0-1.0 比例\n`;
+  prompt += `- confirmed/suspected 每条必须包含：id, problem, suggestion, priority, status, location, devCropRegion, devBox, designCropRegion, designBox\n`;
+  prompt += `- suspected 还需要：reason, basis, whyNotConfirmed, verifySuggestion\n`;
+  prompt += `- devCropRegion 和 designCropRegion 分别独立定位，不要照搬坐标`;
 
   return prompt;
 }

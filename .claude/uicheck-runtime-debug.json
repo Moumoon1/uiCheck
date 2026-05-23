@@ -1,0 +1,1867 @@
+[
+  {
+    "ts": "2026-05-23T03:30:01.998Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779507001991-rlj4bz-dev_screenshot.png",
+      "1779507001991-zatst7-background.txt",
+      "1779507001992-j073gc-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779507001991-rlj4bz-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779507001992-j073gc-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779507001991-rlj4bz-dev_screenshot.png",
+      "designFile": "1779507001992-j073gc-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001991-rlj4bz-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001991-rlj4bz-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T03:30:02.009Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T03-30-02-009Z-step1.md",
+    "files": [
+      "1779507001991-rlj4bz-dev_screenshot.png",
+      "1779507001991-zatst7-background.txt",
+      "1779507001992-j073gc-design_mockup.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779507001991-rlj4bz-dev_screenshot.png",
+      "designFile": "1779507001992-j073gc-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001991-rlj4bz-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001991-rlj4bz-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001991-zatst7-background.txt"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。\n\n## 设计稿图片\n\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507001992-j073gc-design_mockup.png\n\n## 读图验证（必须先执行）\n\n先输出“读图验证”段落，严格包含：\n1. 图片中真实可见的标题/页面名称（逐字引用）\n2. 图片顶部主色、主背景色\n3. 从上到下第一个主要模块名称\n\n如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。\n\n禁止凭想象编造内容，只输出图片中实际可见的。\nJSON 字段值中禁止出现中文引号（\"\"），只用英文双引号，如需引用含引号的文字用单引号替代。\n\n## 背景信息\n走查\n\n## 输出格式\n先输出读图验证，然后输出 JSON 数组：\n```json\n[\n  {\"order\": 1, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"},\n  {\"order\": 2, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"}\n]\n```\n"
+  },
+  {
+    "ts": "2026-05-23T03:40:31.972Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779507631968-atkmol-design_mockup.png",
+      "1779507631968-ug7up1-dev_screenshot.png"
+    ],
+    "devFiles": [
+      "1779507631968-ug7up1-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779507631968-atkmol-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779507631968-ug7up1-dev_screenshot.png",
+      "designFile": "1779507631968-atkmol-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-ug7up1-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-ug7up1-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T03:40:31.977Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T03-40-31-976Z-step1.md",
+    "files": [
+      "1779507631968-atkmol-design_mockup.png",
+      "1779507631968-ug7up1-dev_screenshot.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779507631968-ug7up1-dev_screenshot.png",
+      "designFile": "1779507631968-atkmol-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-ug7up1-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-ug7up1-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。\n\n## 设计稿图片\n\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779507631968-atkmol-design_mockup.png\n\n## 读图验证（必须先执行）\n\n先输出“读图验证”段落，严格包含：\n1. 图片中真实可见的标题/页面名称（逐字引用）\n2. 图片顶部主色、主背景色\n3. 从上到下第一个主要模块名称\n\n如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。\n\n禁止凭想象编造内容，只输出图片中实际可见的。\nJSON 字段值中禁止出现中文引号（\"\"），只用英文双引号，如需引用含引号的文字用单引号替代。\n\n## 输出格式\n先输出读图验证，然后输出 JSON 数组：\n```json\n[\n  {\"order\": 1, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"},\n  {\"order\": 2, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"}\n]\n```\n"
+  },
+  {
+    "ts": "2026-05-23T04:03:55.914Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779509035908-1mt1zf-dev_screenshot.png",
+      "1779509035909-kfq5r3-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779509035908-1mt1zf-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779509035909-kfq5r3-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779509035908-1mt1zf-dev_screenshot.png",
+      "designFile": "1779509035909-kfq5r3-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035908-1mt1zf-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035908-1mt1zf-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T04:03:55.920Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T04-03-55-919Z-step1.md",
+    "files": [
+      "1779509035908-1mt1zf-dev_screenshot.png",
+      "1779509035909-kfq5r3-design_mockup.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779509035908-1mt1zf-dev_screenshot.png",
+      "designFile": "1779509035909-kfq5r3-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035908-1mt1zf-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035908-1mt1zf-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。\n\n## 设计稿图片\n\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509035909-kfq5r3-design_mockup.png\n\n## 读图验证（必须先执行）\n\n先输出“读图验证”段落，严格包含：\n1. 图片中真实可见的标题/页面名称（逐字引用）\n2. 图片顶部主色、主背景色\n3. 从上到下第一个主要模块名称\n\n如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。\n\n禁止凭想象编造内容，只输出图片中实际可见的。\nJSON 字段值中禁止出现中文引号（\"\"），只用英文双引号，如需引用含引号的文字用单引号替代。\n\n## 输出格式\n先输出读图验证，然后输出 JSON 数组：\n```json\n[\n  {\"order\": 1, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"},\n  {\"order\": 2, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"}\n]\n```\n"
+  },
+  {
+    "ts": "2026-05-23T04:05:39.212Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779509139207-hks5uk-background.txt",
+      "1779509139207-tj970o-dev_screenshot.png",
+      "1779509139208-kofh03-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779509139207-tj970o-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779509139208-kofh03-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779509139207-tj970o-dev_screenshot.png",
+      "designFile": "1779509139208-kofh03-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T04:05:39.217Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T04-05-39-216Z-step1.md",
+    "files": [
+      "1779509139207-hks5uk-background.txt",
+      "1779509139207-tj970o-dev_screenshot.png",
+      "1779509139208-kofh03-design_mockup.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779509139207-tj970o-dev_screenshot.png",
+      "designFile": "1779509139208-kofh03-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-hks5uk-background.txt"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。\n\n## 设计稿图片\n\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png\n\n## 读图验证（必须先执行）\n\n先输出“读图验证”段落，严格包含：\n1. 图片中真实可见的标题/页面名称（逐字引用）\n2. 图片顶部主色、主背景色\n3. 从上到下第一个主要模块名称\n\n如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。\n\n禁止凭想象编造内容，只输出图片中实际可见的。\nJSON 字段值中禁止出现中文引号（\"\"），只用英文双引号，如需引用含引号的文字用单引号替代。\n\n## 背景信息\n走查\n\n## 输出格式\n先输出读图验证，然后输出 JSON 数组：\n```json\n[\n  {\"order\": 1, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"},\n  {\"order\": 2, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"}\n]\n```\n"
+  },
+  {
+    "ts": "2026-05-23T04:06:01.000Z",
+    "phase": "step2-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T04-06-00-999Z-step2-analysis.md",
+    "files": [
+      "1779509139207-hks5uk-background.txt",
+      "1779509139207-tj970o-dev_screenshot.png",
+      "1779509139208-kofh03-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779509139207-tj970o-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779509139208-kofh03-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779509139207-tj970o-dev_screenshot.png",
+      "designFile": "1779509139208-kofh03-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png",
+      "analysisDevPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+      "analysisDesignPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      },
+      "analysisDev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "analysisDesign": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/issue_rules.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/false_positives.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/output_schema.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/runtime_guardrails.md"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png",
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png"
+    ],
+    "prompt": "你是一个资深的设计走查助手，负责对比开发稿截图和设计稿截图的视觉差异。\n\n## 图片输入（必须按附件读取，不要把路径当普通文本）\n开发稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png\n\n设计稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png\n\n## ⚠️ 必须先完成硬读图验证（严格执行）\n- 先分别读取上面的两张图片\n- 如果任意一张图片没有被当成真实视觉输入读取，立即输出“读图验证失败：[原因]”并停止\n- 禁止在读图失败时继续输出问题 JSON、issue table 或任何问题列表\n\n### 硬读图验证输出要求\n请先输出“读图验证”小节，并严格包含以下内容：\n1. 开发稿真实可见的页面标题/顶部文字（逐字引用）\n2. 开发稿顶部主色、页面主背景色、顶部第一个模块名称\n3. 设计稿真实可见的页面标题/顶部文字（逐字引用）\n4. 设计稿顶部主色、页面主背景色、顶部第一个模块名称\n5. 回答“开发稿和设计稿是否为两张不同图片：是/否”\n6. 回答“这两张图是否描述同一个页面或同一组模块：是/否 + 理由”\n\n如果任意一项无法基于图片直接回答，输出：\n“读图验证失败：[具体原因]”\n然后停止，不要输出 JSON。\n\n## 图片身份铁则\n- 开发稿截图 = 代码实现产物（路径：/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139207-tj970o-dev_screenshot.png）\n- 设计稿截图 = 设计目标效果图（路径：/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509139208-kofh03-design_mockup.png）\n- 两张图禁止交换身份，先分别识别两张图中的同一对象，再比较差异\n- 只基于这两张图做判断，不要引入其他图片或历史上下文\n- 开发稿中的文字/模块名称必须从开发稿图片中实际读取，不要从设计稿推测\n- 设计稿中的文字/模块名称必须从设计稿图片中实际读取，不要从开发稿推测\n\n## 走查规则（已内嵌，无需额外读取）\n\n## uicheck_pro SKILL.md（已内嵌，无需额外读取）\n---\nname: uicheck\ndescription: 接收开发截图和设计稿进行页面走查。输出正式问题和疑似问题。导出 docx 时，文档主体为问题表格；每条问题需在开发图和设计稿中分别框选同一元素；问题描述仅包含“问题、建议”，位置通过截图表达。\n---\n\n# Goal\n\n1. 找出可稳定确认的正式问题\n2. 记录疑似问题\n3. 文档输出为表格\n4. 双图必须框同一问题对象\n5. 图片必须先保存到 workspace\n\n## Reference 文件结构\n\nSKILL.md 放总规则和最高优先级约束，reference 按阶段拆分：\n\n| 文件 | 加载阶段 | 内容 |\n|------|---------|------|\n| `issue_rules.md` | analysis | 问题分类、优先关注、设计完整性、数据排除 |\n| `false_positives.md` | analysis | 误判信号、模板污染、默认处理 |\n| `output_schema.md` | analysis | JSON 字段规范、输出格式 |\n| `runtime_guardrails.md` | analysis | 图片引用格式、防模板污染、assets 不进 analysis |\n| `screenshot_rules.md` | 截图 | CropRegion/Box 拆分、元素匹配、反投影 |\n| `doc_rules.md` | docx 导出 | 表格结构、表头、列内容 |\n\n# Input Identity & Read Verification\n\n- `dev` = 开发实现图，`design` = 设计目标图\n- 用户已指定 dev/design 时不得交换；未指定时才可结合文件名与上下文推断\n- `@绝对路径` 只负责把本地图片作为附件传入；是否能真正读图取决于当前运行模型是否具备 vision 能力\n- 若当前模型是纯文本模型或未开启 vision，必须直接视为“无法读图”，不得因为 prompt 中出现了 `@绝对路径` 就声称已经看到了图片\n- 开始判断前，必须先逐一读取两张原图，确认：\n  - 图片已成功读取\n  - 能区分 dev / design 身份\n  - 能看清主要模块与关键元素\n- 若任一图片未读到、读错、路径失效、内容不可辨认，必须立即停止并输出：`读图验证失败：[原因]`\n- 未完成读图验证前，不得输出正式问题、疑似问题或最终结论\n- 分析过程中必须反复保持身份不变：`dev = 已实现结果`，`design = 应还原目标`\n\n# Runtime Guardrails（最高优先级约束）\n\n- 图片输入必须使用 `@绝对路径` 格式；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只是附件引用格式，不等于模型一定具备读图能力\n- 若当前模型不支持 vision，则应把图片读取视为失败，停止分析，不得宣称模型已读取图片\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，且优先使用独立行块格式，不要把 `@图片路径` 混在自然语言句子里，例如：\n  - `开发稿：\\n@/absolute/path/dev.png`\n  - `设计稿：\\n@/absolute/path/design.png`\n- 分析用中间图片必须优先落到 workspace 内可读目录（如 `runtime_images/`），不要默认写到 `/tmp`，避免 IDE Agent / CLI 无权限或不可见\n- 在调用模型前必须打印并落盘最终 prompt 与最终图片 refs，确认传入的确实是本次运行的 `@绝对路径`\n- 对 `/api/analyze/uicheck` 主链路，优先调试 `claude2 + stream-json + step2AnalysisPrompt`；旧的 text/fullPrompt 流程只作为 legacy/debug 旁路\n- 当怀疑 CLI 没有真正附图时，先在终端做最小验证：直接用 `codeflicker -q` + 本次图片 `@绝对路径`，要求模型回答图片里真实可见的标题文字、主色、顶部模块；若能回答具体可见内容，说明当前环境下 `-q` 可读图，问题更可能在主链路 prompt 或验证门禁\n- 背景信息传纯文本内容，不要把本地文件路径当作背景正文\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n\n> 详细运行时规则见 `reference/runtime_guardrails.md`\n\n# Issue Rules\n\n差异分三类：\n\n- 正式问题\n- 疑似问题\n- 不纳入问题（动态数据 / 滚动 / 状态栏 / 轻微渲染）\n\n优先关注：\n- 模块缺失 / 顺序错误\n- 骨架 / 层级 / 对齐问题\n- 关键组件 / 颜色 / 尺寸\n- 信息架构错误\n- 标签 / 图例 / 字段规则错误\n\n---\n\n## Design Completeness Rule\n\n必须以设计稿为基准逐模块检查：\n\n- 设计稿中每个模块 / 元素，都必须在开发页确认是否存在\n- 若存在于设计稿但开发页不存在 → 必须输出正式问题\n- 不得因为未发现差异而跳过模块\n\n---\n\n## Data & Chart Exclusion Rule\n\n以下差异默认不作为问题：\n\n- 金额、数量、百分比、转化率\n- 日期、时间、用户名、头像、排名、状态\n- 图表数据值、报表数值\n- 数据驱动的图形变化（宽度 / 高度 / 面积 / 曲线）\n\n对于图表 / 漏斗：\n\n只检查：\n- 结构\n- 标签\n- 单位\n- 图例\n- 样式 / 布局 / 层级\n\n不检查：\n- 数值一致性\n- 图形形态（漏斗宽度、柱高等）\n\n只有以下情况才算问题：\n\n- 字段缺失\n- 标签错误\n- 单位错误\n- 图例错误\n- 结构 / 样式 / 层级错误\n- 设计稿明确固定形态但未实现\n\n---\n\n# Screenshot Rules\n\n## Assets Screenshot Guide（按需加载）\n\nassets/screenshots 示例图用于学习截图框选规范：\n- `good_pair_annotation.png` — 双图必须框同一对象\n- `good_element_level_box.png` — 元素级精确框选\n- `good_module_level_box.png` — 模块级保留上下文\n- `bad_pair_annotation.png` — 错误配对、错误投影和错误框法\n\n**加载策略**：\n- analysis 阶段默认不加载 assets/examples（减少幻觉污染）\n- 截图规则调试或误判案例排查时按需加载\n- 截图/docx 阶段复用同一份 issues JSON，由本地程序裁图、画框和导出\n\n## CropRegion vs Box\n\n坐标输出必须拆分为两组：\n\n- **CropRegion**：裁图区域，略大于问题区域，保留上下文，方便用户看懂问题所处环境\n- **Box**：红框区域，问题元素本身的精确位置，框尽量小而准\n\n规则：\n- 元素级问题 → Box 尽量小，只框具体元素\n- 模块级问题 → Box 框住整个出问题的模块\n- 细节级问题 → Box 框住对应细节区域\n- `Box == CropRegion` 只适用于整个裁图区域都是问题的大范围结构问题\n- 不合格的 Box：框整张图（`top=0 bottom=1 left=0 right=1`）→ 必须缩小\n\n## Element Matching Rule\n\n双图框选必须基于“元素匹配”，不得基于位置：\n\n1. 先在设计稿识别元素（按钮 / 卡片 / 图表等）\n2. 在开发页按语义查找对应元素\n3. 找到后再框选\n\n## No Position Projection Rule\n\n禁止：\n- 把设计稿框直接映射到开发图同一位置\n\n原因：\n- 尺寸不同\n- 布局偏移\n- 滚动差异\n\n## Matching Failure Handling\n\n若开发页找不到对应元素：\n\n- 不得框空白\n- 不得猜位置\n- 必须标记为“组件缺失”或“未实现”\n\n截图方式：\n- 设计稿：精确框元素\n- 开发页：框模块区域或标注未实现区域\n\n## 基础规则\n\n- 两边必须框同一对象\n- 框选必须与问题描述一致\n- 一条问题必须有双图\n- 不得用模糊区域代替\n\n---\n\n# Problem Description Rule\n\n只允许：\n\n- 问题\n- 建议\n\n不允许：\n\n- 标题\n- 位置\n- 长分析\n- reference 示例原句\n- 截图里不存在的业务词\n\n写法要求：\n\n- 只写当前截图可见差异\n- 句子必须可执行、可复核\n- 不能因为 reference 出现过某个说法，就直接套到本次问题里\n\n---\n\n# Reference Usage Rule\n\n- reference 的作用是补充边界、排除项、字段规范和中性模板\n- assets 的作用是提供截图规范示例，尤其用于指导 `CropRegion` / `Box` 的框法\n- reference 中的示例只能当“句式模板”，不能当“内容模板”\n- 若示例里出现具体业务对象、模块名或视觉细节，输出时必须改写成基于当前截图证据的描述\n- 如果无法从截图证据中复核某个说法，就不要输出该说法\n\n---\n\n# Document Output Rules\n\n结构固定：\n\n1. 标题\n2. 摘要\n3. 页面总览\n4. 问题表格\n\n表头：\n\n- 序号 / 问题描述 / 状态 / 截图 / 日期 / 优先级 / 走查人 / 跟进人\n\n---\n\n# Folder Mapping Rule\n\n- 按文件名匹配 dev / design\n- 不匹配的必须提示\n- 每一对独立走查\n\n---\n\n# Restrictions\n\n- 不得交换 dev/design\n- 不得在未读图验证通过前输出结论\n- 不得把动态数据当问题\n- 不得把数据驱动图形当问题\n- 不得混淆正式 / 疑似\n- 不得框错对象\n- 不得框空白\n- 不得用位置映射代替元素匹配\n- 不得把“数据差异”脑补为“规则问题”\n- 不得复述 reference 示例中的现成问题句子\n\n\n## reference 规则补充（已内嵌，无需额外读取）\n\n### issue_rules.md\n# Issue Rules\n\n## 正式问题\n正式问题要满足：\n- 差异明确稳定\n- 不太可能由截图条件造成\n- 可以直接提给开发修改\n\n常见正式问题类型：\n- 模块类型不一致\n- 核心信息结构不一致\n- 对齐关系明显错误\n- 关键按钮大小、颜色或位置明显不对\n- 核心区域被遮挡、压叠\n- 模块顺序明显错误\n- 切图/裁剪错误（卡片或图片边缘被截断、元素溢出被裁掉、圆角被切掉）\n\n## 疑似问题\n疑似问题用于记录：\n- 看起来有偏差\n- 对设计质量重要\n- 但暂时不适合直接作为“必须修改”的正式问题\n\n常见疑似问题类型：\n- 曲线形态疑似更硬\n- 光效疑似过重\n- 背景层次疑似更弱\n- 圆角气质疑似不同\n- 局部留白节奏疑似不同\n\n## 问题描述怎么写\n\n### 正式问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 使用当前截图中可见、可复核的描述\n- 描述差异本身，不复述 reference 里的现成业务对象\n- 句子要能直接指导修改\n\n### 疑似问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 明确这是“疑似”而非已确认事实\n- 建议里写清如何进一步确认\n- 仍然只能基于截图可见证据，不得凭示例补内容\n\n## 不要这样写\n- 写成长段小作文\n- 在问题描述里重复写位置\n- 在问题描述里重复写优先级和状态\n- 在问题描述里塞很多背景解释\n- 直接复制示例句子作为本次结论\n\n\n### false_positives.md\n# Common False Positives\n\n以下内容默认不作为正式问题：\n\n## 1. 动态数据差异\n以下属于用户/运营动态数据，**禁止报为任何问题（confirmed 或 suspected）**，即使两图有差异也不输出：\n- 用户昵称不同（如\"我是沐月\" vs \"发疯的女侠\"）\n- 用户头像不同（头像图片、头像样式）\n- 金额数值不同\n- 时间/日期不同\n- 列表条数不同\n- 运营配置文案不同（如活动说明、奖励描述）\n- 任务进度数字不同（如 0/1、1/3）\n\n前提：结构仍然成立时，不报。如果结构本身发生了变化（比如有头像+昵称 vs 无头像），才可以报结构差异，但不要描述昵称/头像的具体内容不同。\n\n## 2. 截图条件差异\n- 滚动位置不同\n- 截图长度不同\n- 缩放比例不同\n- 图片压缩不同\n\n## 3. 系统层差异\n- 状态栏时间不同\n- Wi-Fi / 电量图标不同\n- 系统默认字体渲染轻微不同\n\n## 4. 低价值细节\n- 1~2px 级别的上下偏移（**注意：如果是卡片/图片边缘明显被裁切、切图不完整，不属于此类，应作为问题上报**）\n- 个别小字号差异\n- 个别小间距差异\n\n注意：视觉感觉型判断（光效、曲线形态、质感、圆角气质、留白节奏等）应纳入疑似问题，不要默认忽略。\n\n## 5. 模板污染信号\n- 问题描述复用了 reference 中现成的业务名或模块名\n- 结论里出现截图中看不到的对象名称\n- 同一批结果多条问题使用高度相似的模板句\n\n## 默认处理建议\n- 证据稳定：进正式问题\n- 有迹象但不稳定：进疑似问题\n- 价值低且证据弱：不纳入问题\n- 若怀疑模板污染：回查读图结果、运行时 prompt 和最终输出的一致性\n\n\n### output_schema.md\n# 输出字段规范\n\n分析阶段只允许输出一个 JSON 代码块，且每条问题都必须包含后续截图生成所需字段。\n\n## 顶层结构\n\n```json\n{\n  \"confirmed\": [],\n  \"suspected\": []\n}\n```\n\n## confirmed 每条必填字段\n\n```json\n{\n  \"id\": \"1\",\n  \"problem\": \"一句话问题描述\",\n  \"suggestion\": \"一句话修改建议\",\n  \"priority\": \"P0\",\n  \"status\": \"待修改\",\n  \"location\": \"问题所在区域\",\n  \"devCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5},\n  \"designCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5}\n}\n```\n\n## suspected 每条必填字段\n\n```json\n{\n  \"id\": \"A1\",\n  \"problem\": \"一句话疑似问题描述\",\n  \"suggestion\": \"一句话建议\",\n  \"priority\": \"P2\",\n  \"status\": \"待确认\",\n  \"location\": \"疑似所在区域\",\n  \"devCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"designCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"reason\": \"为什么怀疑有问题\",\n  \"basis\": \"截图中可见的证据\",\n  \"whyNotConfirmed\": \"暂不能确认为正式问题的原因\",\n  \"verifySuggestion\": \"建议如何进一步确认\"\n}\n```\n\n## 坐标规则\n\n- 所有坐标字段必须使用 0.0 到 1.0 的比例值。\n- `CropRegion` 表示截图裁切上下文范围，`Box` 表示需要画红框的精确元素。\n- **devCropRegion 和 designCropRegion 必须完全相同**，确保两张截图的视窗范围对齐，用户才能做左右对比。\n- **devBox 和 designBox 必须分别独立定位**，不能复制相同坐标。同一元素在 dev 和 design 中的实际位置往往不同，必须在各自图片中单独读取位置后再填写。复制坐标会导致一张图框准、另一张框歪。\n- 开发图和设计图必须分别识别，不允许把一张图的 Box 位置直接照搬到另一张图（禁止坐标投影）。\n- 不要输出 `dev_y` / `design_y` 作为主字段；如果额外输出也不能替代上述四个坐标对象。\n- 任一问题缺少 `devCropRegion`、`devBox`、`designCropRegion`、`designBox` 时，后续 Python 截图会失败。\n\n\n### runtime_guardrails.md\n# Runtime Guardrails\n\n## 输出格式约束\n- 面向页面展示的内容只能使用最终结果文本或最终 JSON，不得直接透传 stream-json、reasoning 或 tool 过程文本\n- 若需要生成分析用缩略图或转码图，文件扩展名必须与真实格式一致；输出为 PNG 时，文件名也必须是 `.png`\n\n## 图片引用格式\n- 图片输入必须使用 CodeFlicker 可识别的引用格式：`@绝对路径`（或官方 attachment 格式）；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只表示把本地文件作为附件传入，不代表底层模型一定具备 vision 能力\n- 在调用模型前必须打印并落盘最终 prompt，确保每张图片引用都是本次上传文件的 `@绝对路径`\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，并要求先做读图验证；若当前模型是纯文本模型或未开启 vision，则必须直接判定为读图失败并停止输出，不得继续分析\n\n## sharp 中间转换陷阱（已验证）\n- **禁止**用 sharp 对上传图片做中间 re-encode 再传给模型：sharp 转码后的 PNG 文件内容会与原图不一致，导致模型读出完全错误的页面内容（如原图是\"AI灵境计划\"，模型读出\"数据概览\"）\n- step1/step2 必须直接使用用户上传的原始文件（`inputs/uicheck/` 目录下），不得经过任何 sharp 压缩或格式转换\n- 若将来需要压缩大图，必须先用 `codeflicker -q` 在终端验证转换后的文件模型能否正确读取内容，再决定是否启用\n\n## codeflicker CLI 模型选择机制（已验证 v0.5.3）\n- **核心发现**：`codeflicker -q` **不继承 IDE 面板选择的模型**，默认走 `wanqing/glm-5`（无视觉能力）；必须显式传 `--model <modelId>`\n- **可用视觉模型 ID**：\n  - `sonnet` → `claude-4.6-sonnet`（有视觉，推荐用于 uicheck）\n  - `flash` → `gemini-3.1-pro`（有视觉，可作为备选）\n  - `wanqing/glm-5` / `wanqing/glm-5.1` → GLM（无视觉，**不能用于读图**）\n  - 其他名称（`gpt-4o`, `claude-3-5-sonnet`, `claude-sonnet` 等）均 fallback 到 GLM\n- **额度耗尽时的危险行为**：当视觉模型额度用完，codeflicker **静默 fallback** 到 GLM，不报错、不警告；GLM 会幻觉出虚假图片内容，输出看起来\"正常\"但完全是编造的\n- **server.js 必须做的事**：\n  1. uicheck step1/step2 都传 `--model sonnet`\n  2. 检测 raw output 中的 `额度上限|fallback to wanqing` 字样，若发现立即返回错误提示给前端，不要继续流程\n  3. 读图验证逻辑也作为第二道防线：验证内容必须与真实图片一致\n\n## codeflicker CLI 调用模式选择（已验证 v0.5.3）\n- **interactive 模式**（无 `-q`）：**不能从 Node.js spawn 调用**，会报 \"Raw mode is not supported on the current process.stdin\" 错误（Ink 框架需要 TTY）。仅适用于终端手动调用\n- **`-q` 模式**：可从 spawn 调用，模型有 Read 工具可用，但关键是**必须配 `--model sonnet` 确保视觉能力**\n- **结论**：server.js 中 uicheck step1/step2 统一用 `-q --model sonnet --output-format stream-json` + `@绝对路径`\n- step1 prompt 改为 `@绝对路径` 直接传图（不再用 Read 工具+相对路径，因为 interactive 模式不可用）\n- step2 prompt 同样用 `@绝对路径` 传两张图\n\n## 背景信息约束\n- 背景信息传给模型时应传纯文本内容，不要把本地文件路径当作背景正文\n\n## 身份稳定性\n- 若为了稳定性压缩分析图，压缩后仍要保持 dev/design 身份不变，并在 prompt 中再次声明身份\n- 文件选择优先使用本次上传状态，其次按修改时间倒序选择最新文件，避免历史残留图片被误选\n\n## 防模板污染\n- 若模型输出明显复述示例或模板句式，优先核对运行时落盘 prompt 与当前源码是否一致，并确认服务已重启到最新版本，避免\"源码已改但旧进程仍在跑\"\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 若某条结论的关键词只出现在 reference、不出现在截图证据中，必须删除或改写为基于截图可见事实的描述\n\n## Python 截图脚本 UTF-8 编码（v12 已修复）\n- `generateScreenshotScript()` 生成的 Python 脚本内嵌中文 JSON 数据（问题描述），脚本开头必须声明 `# -*- coding: utf-8 -*-`\n- 没有编码声明时，Python 3.9 解析器遇到中文 UTF-8 字节会抛 `SyntaxError: Non-UTF-8 code starting with '\\xe5'`，导致 Phase B 截图静默失败\n- **教训**：任何动态生成 Python 脚本并内嵌中文/非 ASCII 数据的场景，必须在脚本开头声明编码\n\n## 疑似问题检出率（v12 优化）\n- 数量上限从 8 改为 15（confirmed + suspected 合计）\n- specText（设计稿模块清单）不再截断 name/content/visual，模型能看到完整描述和视觉特征\n- false_positives.md 中\"极弱的视觉感觉型判断\"不再默认排除，改为建议纳入疑似问题\n- prompt 明确鼓励疑似问题多报：\"宁可多报也不要漏报\"\n\n## assets/examples 默认不进入 analysis\n- assets 和 examples 默认不进入 analysis 阶段 prompt，只在调试截图规则或误判案例时按需使用\n- 截图规范示例（assets/screenshots/）只在调试截图框选规则时按需加载，analysis 阶段不强制读取\n\n## devCropRegion / designCropRegion 必须相同（v13 新增）\n- **问题**：模型为 dev 和 design 输出了不同的 CropRegion，导致两张截图的视窗范围错位，用户无法左右对比\n- **规则**：`devCropRegion` 和 `designCropRegion` 必须完全相同（top/bottom/left/right 四值一致）；`devBox` 和 `designBox` 可以不同，但必须框选同一视觉元素\n- **写入位置**：`server.js buildUICheckStep2AnalysisPrompt()` 的\"截图坐标强制规则\"段；`output_schema.md` 坐标规则段\n- **验证方法**：检查 outputs/ 目录下同一 issue 的 dev/design 截图，确认两张图的高度相近（视窗一致）\n\n## 前端 zoomImages 数组覆盖 bug（v13 已修复）\n- **现象**：点击 confirmed 表格截图缩略图，放大图却显示 suspected 的截图（对不上）\n- **根因**：每次 `renderTable()` 都用局部 `zoomImages` 覆盖 `window._zoomImages`；suspected 表格渲染后，confirmed 的所有 idx 全部错位\n- **修复**：改为累积追加（`if (!window._zoomImages) window._zoomImages = []`，直接引用全局数组而非覆盖）；每次新走查开始时重置 `window._zoomImages = []`\n- **位置**：`uiwalkthroughtool/uicheck.html` 第 827 行及走查开始的 reset 处\n\n\n\n### 输出限制\n- 最多输出 15 条问题（confirmed + suspected 合计）\n- 疑似问题不要过于保守——只要两图间有任何可见的视觉差异迹象，且不是明确的动态数据差异，都应该纳入 suspected，宁可多报也不要漏报\n- 坐标使用 0.0-1.0 比例\n- 先识别同一个对象，再分别给 dev/design 坐标，禁止位置投影\n- 不得框整图、不得框错对象、不得把 design 的位置投影到 dev\n- 每条问题的 problem 必须描述你在两张图中分别看到的具体差异，不允许模糊描述\n\n### 截图坐标强制规则（必须遵守）\n- **devCropRegion 和 designCropRegion 必须完全相同**：两张截图的上下文视窗必须对齐，用户才能左右对比，不同的 CropRegion 会导致截图范围错位，无法对比。\n- **devBox 和 designBox 坐标必须不同（除非两图该元素位置完全一致）**：你必须分别在 dev 图和 design 图中独立定位问题元素的精确位置，而不是复制同一个坐标。同一个元素在两张图里的实际位置往往有偏差，框的坐标应该反映各自图片中的真实位置。\n- 合格示例：标题\"创作任务\"在 dev 图中偏右（devBox.left=0.35），在 design 图中居中（designBox.left=0.28），两个 Box 坐标不同是正确的。\n- 不合格示例：devBox 和 designBox 完全一样——说明你没有独立定位，而是复制了坐标，这会导致一边框准另一边框歪。\n- 不合格示例：dev CropRegion = {top:0.47, bottom:0.73}，design CropRegion = {top:0.43, bottom:0.51}，两个截图窗口完全不同——禁止这样输出。\n\n### 动态数据禁止上报（强制）\n以下差异**绝对不允许出现在输出 JSON 中**（confirmed 和 suspected 都不行）：\n- 用户昵称不同、用户头像不同\n- 金额/数值/时间/日期不同\n- 任务进度数字不同（如 0/1）\n- 运营配置文案不同\n只有当**结构本身**发生了变化（有 vs 无某个元素）时才可以报，但不能描述动态内容的具体差异。\n\n## 设计稿的页面结构清单（设计目标）\n1. 我的喜爱分：顶部数值卡片，显示当前喜爱分 890 分，以及 220 和 100/1000 的数据，包含 V4 会员标签和进度提示（今日喜爱分已超过 80% 的用户），视觉特征：粉色心形渐变卡片，白色数字 890，V4 等级徽章，整体为大尺寸顶部卡片\n2. 可享 9 项权益：四项权益卡片网格：平台激励、成长勋章、账号检测、合集，每个卡片带图标和描述文字，右上角有查看全部入口，视觉特征：白色圆角卡片区域，四个方形子卡片平均分布，每个卡片含圆形图标和文字说明\n3. 创作激励：数据统计区域，包含预估收入 1999 元（预估 1290 元）、播放量 1000、粉丝数 5 三项指标，视觉特征：白色圆角卡片，三个数据项水平排列，用灰色竖线分隔\n4. 提升喜爱分得现金：等级进度条，显示当前在 1290-1500 分段，已提升 720 分额外得 20 元，右侧显示剩余 12 天。下方有多个目标节点（1500 分、2500 分、3500 分等）对应不同金额，视觉特征：橙色圆点标记当前进度，下方有橙色渐变进度条，金额以圆角气泡形式显示在各节点上方\n5. 做任务提升等级：任务列表，包含两个任务项：发布 3 部秒以上作品（+160 分）、开场 30 分钟以上直播（+160 分），每个任务右侧有完成按钮，视觉特征：白色圆角卡片，每个任务左侧有圆形图标和橙色加号标识，右侧为橙色圆角完成按钮\n\n## 背景信息\n走查\n\n\n## 最终输出\n\n先输出读图验证文字，然后输出一个 JSON 代码块：\n\n```json\n{\n  \"confirmed\": [],\n  \"suspected\": []\n}\n```\n\nconfirmed 和 suspected 每条问题必须包含以下字段：\n- id, problem, suggestion, priority(P0/P1/P2), status, location\n- devCropRegion: {top, bottom, left, right}（0.0-1.0比例）\n- devBox: {top, bottom, left, right}（0.0-1.0比例）\n- designCropRegion: {top, bottom, left, right}（0.0-1.0比例）\n- designBox: {top, bottom, left, right}（0.0-1.0比例）\n\nsuspected 还需要：reason, basis, whyNotConfirmed, verifySuggestion",
+    "parsedJson": [
+      {
+        "order": 1,
+        "name": "我的喜爱分",
+        "content": "顶部数值卡片，显示当前喜爱分 890 分，以及 220 和 100/1000 的数据，包含 V4 会员标签和进度提示（今日喜爱分已超过 80% 的用户）",
+        "visual": "粉色心形渐变卡片，白色数字 890，V4 等级徽章，整体为大尺寸顶部卡片"
+      },
+      {
+        "order": 2,
+        "name": "可享 9 项权益",
+        "content": "四项权益卡片网格：平台激励、成长勋章、账号检测、合集，每个卡片带图标和描述文字，右上角有查看全部入口",
+        "visual": "白色圆角卡片区域，四个方形子卡片平均分布，每个卡片含圆形图标和文字说明"
+      },
+      {
+        "order": 3,
+        "name": "创作激励",
+        "content": "数据统计区域，包含预估收入 1999 元（预估 1290 元）、播放量 1000、粉丝数 5 三项指标",
+        "visual": "白色圆角卡片，三个数据项水平排列，用灰色竖线分隔"
+      },
+      {
+        "order": 4,
+        "name": "提升喜爱分得现金",
+        "content": "等级进度条，显示当前在 1290-1500 分段，已提升 720 分额外得 20 元，右侧显示剩余 12 天。下方有多个目标节点（1500 分、2500 分、3500 分等）对应不同金额",
+        "visual": "橙色圆点标记当前进度，下方有橙色渐变进度条，金额以圆角气泡形式显示在各节点上方"
+      },
+      {
+        "order": 5,
+        "name": "做任务提升等级",
+        "content": "任务列表，包含两个任务项：发布 3 部秒以上作品（+160 分）、开场 30 分钟以上直播（+160 分），每个任务右侧有完成按钮",
+        "visual": "白色圆角卡片，每个任务左侧有圆形图标和橙色加号标识，右侧为橙色圆角完成按钮"
+      }
+    ]
+  },
+  {
+    "ts": "2026-05-23T04:07:30.709Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779509250704-1m3z7c-background.txt",
+      "1779509250705-87wvf7-design_mockup.png",
+      "1779509250705-bo3c4e-dev_screenshot.png"
+    ],
+    "devFiles": [
+      "1779509250705-bo3c4e-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779509250705-87wvf7-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779509250705-bo3c4e-dev_screenshot.png",
+      "designFile": "1779509250705-87wvf7-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T04:07:30.715Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T04-07-30-714Z-step1.md",
+    "files": [
+      "1779509250704-1m3z7c-background.txt",
+      "1779509250705-87wvf7-design_mockup.png",
+      "1779509250705-bo3c4e-dev_screenshot.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779509250705-bo3c4e-dev_screenshot.png",
+      "designFile": "1779509250705-87wvf7-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250704-1m3z7c-background.txt"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 设计师。分析下面这张**设计稿**图片，从上到下列出页面模块。\n\n## 设计稿图片\n\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png\n\n## 读图验证（必须先执行）\n\n先输出“读图验证”段落，严格包含：\n1. 图片中真实可见的标题/页面名称（逐字引用）\n2. 图片顶部主色、主背景色\n3. 从上到下第一个主要模块名称\n\n如果无法看到图片内容，输出“读图验证失败：[reason]” 并停止。\n\n禁止凭想象编造内容，只输出图片中实际可见的。\nJSON 字段值中禁止出现中文引号（\"\"），只用英文双引号，如需引用含引号的文字用单引号替代。\n\n## 背景信息\n走查这两个c端页面\n\n## 输出格式\n先输出读图验证，然后输出 JSON 数组：\n```json\n[\n  {\"order\": 1, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"},\n  {\"order\": 2, \"name\": \"模块名称\", \"content\": \"模块内容概述\", \"visual\": \"视觉特征概述\"}\n]\n```\n"
+  },
+  {
+    "ts": "2026-05-23T04:07:58.452Z",
+    "phase": "step2-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T04-07-58-452Z-step2-analysis.md",
+    "files": [
+      "1779509250704-1m3z7c-background.txt",
+      "1779509250705-87wvf7-design_mockup.png",
+      "1779509250705-bo3c4e-dev_screenshot.png"
+    ],
+    "devFiles": [
+      "1779509250705-bo3c4e-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779509250705-87wvf7-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779509250705-bo3c4e-dev_screenshot.png",
+      "designFile": "1779509250705-87wvf7-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png",
+      "analysisDevPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+      "analysisDesignPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      },
+      "analysisDev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "analysisDesign": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/issue_rules.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/false_positives.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/output_schema.md",
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/reference/runtime_guardrails.md"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png",
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png"
+    ],
+    "prompt": "你是一个资深的设计走查助手，负责对比开发稿截图和设计稿截图的视觉差异。\n\n## 图片输入（必须按附件读取，不要把路径当普通文本）\n开发稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png\n\n设计稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png\n\n## ⚠️ 必须先完成硬读图验证（严格执行）\n- 先分别读取上面的两张图片\n- 如果任意一张图片没有被当成真实视觉输入读取，立即输出“读图验证失败：[原因]”并停止\n- 禁止在读图失败时继续输出问题 JSON、issue table 或任何问题列表\n\n### 硬读图验证输出要求\n请先输出“读图验证”小节，并严格包含以下内容：\n1. 开发稿真实可见的页面标题/顶部文字（逐字引用）\n2. 开发稿顶部主色、页面主背景色、顶部第一个模块名称\n3. 设计稿真实可见的页面标题/顶部文字（逐字引用）\n4. 设计稿顶部主色、页面主背景色、顶部第一个模块名称\n5. 回答“开发稿和设计稿是否为两张不同图片：是/否”\n6. 回答“这两张图是否描述同一个页面或同一组模块：是/否 + 理由”\n\n如果任意一项无法基于图片直接回答，输出：\n“读图验证失败：[具体原因]”\n然后停止，不要输出 JSON。\n\n## 图片身份铁则\n- 开发稿截图 = 代码实现产物（路径：/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-bo3c4e-dev_screenshot.png）\n- 设计稿截图 = 设计目标效果图（路径：/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779509250705-87wvf7-design_mockup.png）\n- 两张图禁止交换身份，先分别识别两张图中的同一对象，再比较差异\n- 只基于这两张图做判断，不要引入其他图片或历史上下文\n- 开发稿中的文字/模块名称必须从开发稿图片中实际读取，不要从设计稿推测\n- 设计稿中的文字/模块名称必须从设计稿图片中实际读取，不要从开发稿推测\n\n## 走查规则（已内嵌，无需额外读取）\n\n## uicheck_pro SKILL.md（已内嵌，无需额外读取）\n---\nname: uicheck\ndescription: 接收开发截图和设计稿进行页面走查。输出正式问题和疑似问题。导出 docx 时，文档主体为问题表格；每条问题需在开发图和设计稿中分别框选同一元素；问题描述仅包含“问题、建议”，位置通过截图表达。\n---\n\n# Goal\n\n1. 找出可稳定确认的正式问题\n2. 记录疑似问题\n3. 文档输出为表格\n4. 双图必须框同一问题对象\n5. 图片必须先保存到 workspace\n\n## Reference 文件结构\n\nSKILL.md 放总规则和最高优先级约束，reference 按阶段拆分：\n\n| 文件 | 加载阶段 | 内容 |\n|------|---------|------|\n| `issue_rules.md` | analysis | 问题分类、优先关注、设计完整性、数据排除 |\n| `false_positives.md` | analysis | 误判信号、模板污染、默认处理 |\n| `output_schema.md` | analysis | JSON 字段规范、输出格式 |\n| `runtime_guardrails.md` | analysis | 图片引用格式、防模板污染、assets 不进 analysis |\n| `screenshot_rules.md` | 截图 | CropRegion/Box 拆分、元素匹配、反投影 |\n| `doc_rules.md` | docx 导出 | 表格结构、表头、列内容 |\n\n# Input Identity & Read Verification\n\n- `dev` = 开发实现图，`design` = 设计目标图\n- 用户已指定 dev/design 时不得交换；未指定时才可结合文件名与上下文推断\n- `@绝对路径` 只负责把本地图片作为附件传入；是否能真正读图取决于当前运行模型是否具备 vision 能力\n- 若当前模型是纯文本模型或未开启 vision，必须直接视为“无法读图”，不得因为 prompt 中出现了 `@绝对路径` 就声称已经看到了图片\n- 开始判断前，必须先逐一读取两张原图，确认：\n  - 图片已成功读取\n  - 能区分 dev / design 身份\n  - 能看清主要模块与关键元素\n- 若任一图片未读到、读错、路径失效、内容不可辨认，必须立即停止并输出：`读图验证失败：[原因]`\n- 未完成读图验证前，不得输出正式问题、疑似问题或最终结论\n- 分析过程中必须反复保持身份不变：`dev = 已实现结果`，`design = 应还原目标`\n\n# Runtime Guardrails（最高优先级约束）\n\n- 图片输入必须使用 `@绝对路径` 格式；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只是附件引用格式，不等于模型一定具备读图能力\n- 若当前模型不支持 vision，则应把图片读取视为失败，停止分析，不得宣称模型已读取图片\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，且优先使用独立行块格式，不要把 `@图片路径` 混在自然语言句子里，例如：\n  - `开发稿：\\n@/absolute/path/dev.png`\n  - `设计稿：\\n@/absolute/path/design.png`\n- 分析用中间图片必须优先落到 workspace 内可读目录（如 `runtime_images/`），不要默认写到 `/tmp`，避免 IDE Agent / CLI 无权限或不可见\n- 在调用模型前必须打印并落盘最终 prompt 与最终图片 refs，确认传入的确实是本次运行的 `@绝对路径`\n- 对 `/api/analyze/uicheck` 主链路，优先调试 `claude2 + stream-json + step2AnalysisPrompt`；旧的 text/fullPrompt 流程只作为 legacy/debug 旁路\n- 当怀疑 CLI 没有真正附图时，先在终端做最小验证：直接用 `codeflicker -q` + 本次图片 `@绝对路径`，要求模型回答图片里真实可见的标题文字、主色、顶部模块；若能回答具体可见内容，说明当前环境下 `-q` 可读图，问题更可能在主链路 prompt 或验证门禁\n- 背景信息传纯文本内容，不要把本地文件路径当作背景正文\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n\n> 详细运行时规则见 `reference/runtime_guardrails.md`\n\n# Issue Rules\n\n差异分三类：\n\n- 正式问题\n- 疑似问题\n- 不纳入问题（动态数据 / 滚动 / 状态栏 / 轻微渲染）\n\n优先关注：\n- 模块缺失 / 顺序错误\n- 骨架 / 层级 / 对齐问题\n- 关键组件 / 颜色 / 尺寸\n- 信息架构错误\n- 标签 / 图例 / 字段规则错误\n\n---\n\n## Design Completeness Rule\n\n必须以设计稿为基准逐模块检查：\n\n- 设计稿中每个模块 / 元素，都必须在开发页确认是否存在\n- 若存在于设计稿但开发页不存在 → 必须输出正式问题\n- 不得因为未发现差异而跳过模块\n\n---\n\n## Data & Chart Exclusion Rule\n\n以下差异默认不作为问题：\n\n- 金额、数量、百分比、转化率\n- 日期、时间、用户名、头像、排名、状态\n- 图表数据值、报表数值\n- 数据驱动的图形变化（宽度 / 高度 / 面积 / 曲线）\n\n对于图表 / 漏斗：\n\n只检查：\n- 结构\n- 标签\n- 单位\n- 图例\n- 样式 / 布局 / 层级\n\n不检查：\n- 数值一致性\n- 图形形态（漏斗宽度、柱高等）\n\n只有以下情况才算问题：\n\n- 字段缺失\n- 标签错误\n- 单位错误\n- 图例错误\n- 结构 / 样式 / 层级错误\n- 设计稿明确固定形态但未实现\n\n---\n\n# Screenshot Rules\n\n## Assets Screenshot Guide（按需加载）\n\nassets/screenshots 示例图用于学习截图框选规范：\n- `good_pair_annotation.png` — 双图必须框同一对象\n- `good_element_level_box.png` — 元素级精确框选\n- `good_module_level_box.png` — 模块级保留上下文\n- `bad_pair_annotation.png` — 错误配对、错误投影和错误框法\n\n**加载策略**：\n- analysis 阶段默认不加载 assets/examples（减少幻觉污染）\n- 截图规则调试或误判案例排查时按需加载\n- 截图/docx 阶段复用同一份 issues JSON，由本地程序裁图、画框和导出\n\n## CropRegion vs Box\n\n坐标输出必须拆分为两组：\n\n- **CropRegion**：裁图区域，略大于问题区域，保留上下文，方便用户看懂问题所处环境\n- **Box**：红框区域，问题元素本身的精确位置，框尽量小而准\n\n规则：\n- 元素级问题 → Box 尽量小，只框具体元素\n- 模块级问题 → Box 框住整个出问题的模块\n- 细节级问题 → Box 框住对应细节区域\n- `Box == CropRegion` 只适用于整个裁图区域都是问题的大范围结构问题\n- 不合格的 Box：框整张图（`top=0 bottom=1 left=0 right=1`）→ 必须缩小\n\n## Element Matching Rule\n\n双图框选必须基于“元素匹配”，不得基于位置：\n\n1. 先在设计稿识别元素（按钮 / 卡片 / 图表等）\n2. 在开发页按语义查找对应元素\n3. 找到后再框选\n\n## No Position Projection Rule\n\n禁止：\n- 把设计稿框直接映射到开发图同一位置\n\n原因：\n- 尺寸不同\n- 布局偏移\n- 滚动差异\n\n## Matching Failure Handling\n\n若开发页找不到对应元素：\n\n- 不得框空白\n- 不得猜位置\n- 必须标记为“组件缺失”或“未实现”\n\n截图方式：\n- 设计稿：精确框元素\n- 开发页：框模块区域或标注未实现区域\n\n## 基础规则\n\n- 两边必须框同一对象\n- 框选必须与问题描述一致\n- 一条问题必须有双图\n- 不得用模糊区域代替\n\n---\n\n# Problem Description Rule\n\n只允许：\n\n- 问题\n- 建议\n\n不允许：\n\n- 标题\n- 位置\n- 长分析\n- reference 示例原句\n- 截图里不存在的业务词\n\n写法要求：\n\n- 只写当前截图可见差异\n- 句子必须可执行、可复核\n- 不能因为 reference 出现过某个说法，就直接套到本次问题里\n\n---\n\n# Reference Usage Rule\n\n- reference 的作用是补充边界、排除项、字段规范和中性模板\n- assets 的作用是提供截图规范示例，尤其用于指导 `CropRegion` / `Box` 的框法\n- reference 中的示例只能当“句式模板”，不能当“内容模板”\n- 若示例里出现具体业务对象、模块名或视觉细节，输出时必须改写成基于当前截图证据的描述\n- 如果无法从截图证据中复核某个说法，就不要输出该说法\n\n---\n\n# Document Output Rules\n\n结构固定：\n\n1. 标题\n2. 摘要\n3. 页面总览\n4. 问题表格\n\n表头：\n\n- 序号 / 问题描述 / 状态 / 截图 / 日期 / 优先级 / 走查人 / 跟进人\n\n---\n\n# Folder Mapping Rule\n\n- 按文件名匹配 dev / design\n- 不匹配的必须提示\n- 每一对独立走查\n\n---\n\n# Restrictions\n\n- 不得交换 dev/design\n- 不得在未读图验证通过前输出结论\n- 不得把动态数据当问题\n- 不得把数据驱动图形当问题\n- 不得混淆正式 / 疑似\n- 不得框错对象\n- 不得框空白\n- 不得用位置映射代替元素匹配\n- 不得把“数据差异”脑补为“规则问题”\n- 不得复述 reference 示例中的现成问题句子\n\n\n## reference 规则补充（已内嵌，无需额外读取）\n\n### issue_rules.md\n# Issue Rules\n\n## 正式问题\n正式问题要满足：\n- 差异明确稳定\n- 不太可能由截图条件造成\n- 可以直接提给开发修改\n\n常见正式问题类型：\n- 模块类型不一致\n- 核心信息结构不一致\n- 对齐关系明显错误\n- 关键按钮大小、颜色或位置明显不对\n- 核心区域被遮挡、压叠\n- 模块顺序明显错误\n- 切图/裁剪错误（卡片或图片边缘被截断、元素溢出被裁掉、圆角被切掉）\n\n## 疑似问题\n疑似问题用于记录：\n- 看起来有偏差\n- 对设计质量重要\n- 但暂时不适合直接作为“必须修改”的正式问题\n\n常见疑似问题类型：\n- 曲线形态疑似更硬\n- 光效疑似过重\n- 背景层次疑似更弱\n- 圆角气质疑似不同\n- 局部留白节奏疑似不同\n\n## 问题描述怎么写\n\n### 正式问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 使用当前截图中可见、可复核的描述\n- 描述差异本身，不复述 reference 里的现成业务对象\n- 句子要能直接指导修改\n\n### 疑似问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 明确这是“疑似”而非已确认事实\n- 建议里写清如何进一步确认\n- 仍然只能基于截图可见证据，不得凭示例补内容\n\n## 不要这样写\n- 写成长段小作文\n- 在问题描述里重复写位置\n- 在问题描述里重复写优先级和状态\n- 在问题描述里塞很多背景解释\n- 直接复制示例句子作为本次结论\n\n\n### false_positives.md\n# Common False Positives\n\n以下内容默认不作为正式问题：\n\n## 1. 动态数据差异\n以下属于用户/运营动态数据，**禁止报为任何问题（confirmed 或 suspected）**，即使两图有差异也不输出：\n- 用户昵称不同（如\"我是沐月\" vs \"发疯的女侠\"）\n- 用户头像不同（头像图片、头像样式）\n- 金额数值不同\n- 时间/日期不同\n- 列表条数不同\n- 运营配置文案不同（如活动说明、奖励描述）\n- 任务进度数字不同（如 0/1、1/3）\n\n前提：结构仍然成立时，不报。如果结构本身发生了变化（比如有头像+昵称 vs 无头像），才可以报结构差异，但不要描述昵称/头像的具体内容不同。\n\n## 2. 截图条件差异\n- 滚动位置不同\n- 截图长度不同\n- 缩放比例不同\n- 图片压缩不同\n\n## 3. 系统层差异\n- 状态栏时间不同\n- Wi-Fi / 电量图标不同\n- 系统默认字体渲染轻微不同\n\n## 4. 低价值细节\n- 1~2px 级别的上下偏移（**注意：如果是卡片/图片边缘明显被裁切、切图不完整，不属于此类，应作为问题上报**）\n- 个别小字号差异\n- 个别小间距差异\n\n注意：视觉感觉型判断（光效、曲线形态、质感、圆角气质、留白节奏等）应纳入疑似问题，不要默认忽略。\n\n## 5. 模板污染信号\n- 问题描述复用了 reference 中现成的业务名或模块名\n- 结论里出现截图中看不到的对象名称\n- 同一批结果多条问题使用高度相似的模板句\n\n## 默认处理建议\n- 证据稳定：进正式问题\n- 有迹象但不稳定：进疑似问题\n- 价值低且证据弱：不纳入问题\n- 若怀疑模板污染：回查读图结果、运行时 prompt 和最终输出的一致性\n\n\n### output_schema.md\n# 输出字段规范\n\n分析阶段只允许输出一个 JSON 代码块，且每条问题都必须包含后续截图生成所需字段。\n\n## 顶层结构\n\n```json\n{\n  \"confirmed\": [],\n  \"suspected\": []\n}\n```\n\n## confirmed 每条必填字段\n\n```json\n{\n  \"id\": \"1\",\n  \"problem\": \"一句话问题描述\",\n  \"suggestion\": \"一句话修改建议\",\n  \"priority\": \"P0\",\n  \"status\": \"待修改\",\n  \"location\": \"问题所在区域\",\n  \"devCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5},\n  \"designCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5}\n}\n```\n\n## suspected 每条必填字段\n\n```json\n{\n  \"id\": \"A1\",\n  \"problem\": \"一句话疑似问题描述\",\n  \"suggestion\": \"一句话建议\",\n  \"priority\": \"P2\",\n  \"status\": \"待确认\",\n  \"location\": \"疑似所在区域\",\n  \"devCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"designCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"reason\": \"为什么怀疑有问题\",\n  \"basis\": \"截图中可见的证据\",\n  \"whyNotConfirmed\": \"暂不能确认为正式问题的原因\",\n  \"verifySuggestion\": \"建议如何进一步确认\"\n}\n```\n\n## 坐标规则\n\n- 所有坐标字段必须使用 0.0 到 1.0 的比例值。\n- `CropRegion` 表示截图裁切上下文范围，`Box` 表示需要画红框的精确元素。\n- **devCropRegion 和 designCropRegion 必须完全相同**，确保两张截图的视窗范围对齐，用户才能做左右对比。\n- **devBox 和 designBox 必须分别独立定位**，不能复制相同坐标。同一元素在 dev 和 design 中的实际位置往往不同，必须在各自图片中单独读取位置后再填写。复制坐标会导致一张图框准、另一张框歪。\n- 开发图和设计图必须分别识别，不允许把一张图的 Box 位置直接照搬到另一张图（禁止坐标投影）。\n- 不要输出 `dev_y` / `design_y` 作为主字段；如果额外输出也不能替代上述四个坐标对象。\n- 任一问题缺少 `devCropRegion`、`devBox`、`designCropRegion`、`designBox` 时，后续 Python 截图会失败。\n\n\n### runtime_guardrails.md\n# Runtime Guardrails\n\n## 输出格式约束\n- 面向页面展示的内容只能使用最终结果文本或最终 JSON，不得直接透传 stream-json、reasoning 或 tool 过程文本\n- 若需要生成分析用缩略图或转码图，文件扩展名必须与真实格式一致；输出为 PNG 时，文件名也必须是 `.png`\n\n## 图片引用格式\n- 图片输入必须使用 CodeFlicker 可识别的引用格式：`@绝对路径`（或官方 attachment 格式）；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只表示把本地文件作为附件传入，不代表底层模型一定具备 vision 能力\n- 在调用模型前必须打印并落盘最终 prompt，确保每张图片引用都是本次上传文件的 `@绝对路径`\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，并要求先做读图验证；若当前模型是纯文本模型或未开启 vision，则必须直接判定为读图失败并停止输出，不得继续分析\n\n## sharp 中间转换陷阱（已验证）\n- **禁止**用 sharp 对上传图片做中间 re-encode 再传给模型：sharp 转码后的 PNG 文件内容会与原图不一致，导致模型读出完全错误的页面内容（如原图是\"AI灵境计划\"，模型读出\"数据概览\"）\n- step1/step2 必须直接使用用户上传的原始文件（`inputs/uicheck/` 目录下），不得经过任何 sharp 压缩或格式转换\n- 若将来需要压缩大图，必须先用 `codeflicker -q` 在终端验证转换后的文件模型能否正确读取内容，再决定是否启用\n\n## codeflicker CLI 模型选择机制（已验证 v0.5.3）\n- **核心发现**：`codeflicker -q` **不继承 IDE 面板选择的模型**，默认走 `wanqing/glm-5`（无视觉能力）；必须显式传 `--model <modelId>`\n- **可用视觉模型 ID**：\n  - `sonnet` → `claude-4.6-sonnet`（有视觉，推荐用于 uicheck）\n  - `flash` → `gemini-3.1-pro`（有视觉，可作为备选）\n  - `wanqing/glm-5` / `wanqing/glm-5.1` → GLM（无视觉，**不能用于读图**）\n  - 其他名称（`gpt-4o`, `claude-3-5-sonnet`, `claude-sonnet` 等）均 fallback 到 GLM\n- **额度耗尽时的危险行为**：当视觉模型额度用完，codeflicker **静默 fallback** 到 GLM，不报错、不警告；GLM 会幻觉出虚假图片内容，输出看起来\"正常\"但完全是编造的\n- **server.js 必须做的事**：\n  1. uicheck step1/step2 都传 `--model sonnet`\n  2. 检测 raw output 中的 `额度上限|fallback to wanqing` 字样，若发现立即返回错误提示给前端，不要继续流程\n  3. 读图验证逻辑也作为第二道防线：验证内容必须与真实图片一致\n\n## codeflicker CLI 调用模式选择（已验证 v0.5.3）\n- **interactive 模式**（无 `-q`）：**不能从 Node.js spawn 调用**，会报 \"Raw mode is not supported on the current process.stdin\" 错误（Ink 框架需要 TTY）。仅适用于终端手动调用\n- **`-q` 模式**：可从 spawn 调用，模型有 Read 工具可用，但关键是**必须配 `--model sonnet` 确保视觉能力**\n- **结论**：server.js 中 uicheck step1/step2 统一用 `-q --model sonnet --output-format stream-json` + `@绝对路径`\n- step1 prompt 改为 `@绝对路径` 直接传图（不再用 Read 工具+相对路径，因为 interactive 模式不可用）\n- step2 prompt 同样用 `@绝对路径` 传两张图\n\n## 背景信息约束\n- 背景信息传给模型时应传纯文本内容，不要把本地文件路径当作背景正文\n\n## 身份稳定性\n- 若为了稳定性压缩分析图，压缩后仍要保持 dev/design 身份不变，并在 prompt 中再次声明身份\n- 文件选择优先使用本次上传状态，其次按修改时间倒序选择最新文件，避免历史残留图片被误选\n\n## 防模板污染\n- 若模型输出明显复述示例或模板句式，优先核对运行时落盘 prompt 与当前源码是否一致，并确认服务已重启到最新版本，避免\"源码已改但旧进程仍在跑\"\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 若某条结论的关键词只出现在 reference、不出现在截图证据中，必须删除或改写为基于截图可见事实的描述\n\n## Python 截图脚本 UTF-8 编码（v12 已修复）\n- `generateScreenshotScript()` 生成的 Python 脚本内嵌中文 JSON 数据（问题描述），脚本开头必须声明 `# -*- coding: utf-8 -*-`\n- 没有编码声明时，Python 3.9 解析器遇到中文 UTF-8 字节会抛 `SyntaxError: Non-UTF-8 code starting with '\\xe5'`，导致 Phase B 截图静默失败\n- **教训**：任何动态生成 Python 脚本并内嵌中文/非 ASCII 数据的场景，必须在脚本开头声明编码\n\n## 疑似问题检出率（v12 优化）\n- 数量上限从 8 改为 15（confirmed + suspected 合计）\n- specText（设计稿模块清单）不再截断 name/content/visual，模型能看到完整描述和视觉特征\n- false_positives.md 中\"极弱的视觉感觉型判断\"不再默认排除，改为建议纳入疑似问题\n- prompt 明确鼓励疑似问题多报：\"宁可多报也不要漏报\"\n\n## assets/examples 默认不进入 analysis\n- assets 和 examples 默认不进入 analysis 阶段 prompt，只在调试截图规则或误判案例时按需使用\n- 截图规范示例（assets/screenshots/）只在调试截图框选规则时按需加载，analysis 阶段不强制读取\n\n## devCropRegion / designCropRegion 必须相同（v13 新增）\n- **问题**：模型为 dev 和 design 输出了不同的 CropRegion，导致两张截图的视窗范围错位，用户无法左右对比\n- **规则**：`devCropRegion` 和 `designCropRegion` 必须完全相同（top/bottom/left/right 四值一致）；`devBox` 和 `designBox` 可以不同，但必须框选同一视觉元素\n- **写入位置**：`server.js buildUICheckStep2AnalysisPrompt()` 的\"截图坐标强制规则\"段；`output_schema.md` 坐标规则段\n- **验证方法**：检查 outputs/ 目录下同一 issue 的 dev/design 截图，确认两张图的高度相近（视窗一致）\n\n## 前端 zoomImages 数组覆盖 bug（v13 已修复）\n- **现象**：点击 confirmed 表格截图缩略图，放大图却显示 suspected 的截图（对不上）\n- **根因**：每次 `renderTable()` 都用局部 `zoomImages` 覆盖 `window._zoomImages`；suspected 表格渲染后，confirmed 的所有 idx 全部错位\n- **修复**：改为累积追加（`if (!window._zoomImages) window._zoomImages = []`，直接引用全局数组而非覆盖）；每次新走查开始时重置 `window._zoomImages = []`\n- **位置**：`uiwalkthroughtool/uicheck.html` 第 827 行及走查开始的 reset 处\n\n\n\n### 输出限制\n- 最多输出 15 条问题（confirmed + suspected 合计）\n- 疑似问题不要过于保守——只要两图间有任何可见的视觉差异迹象，且不是明确的动态数据差异，都应该纳入 suspected，宁可多报也不要漏报\n- 坐标使用 0.0-1.0 比例\n- 先识别同一个对象，再分别给 dev/design 坐标，禁止位置投影\n- 不得框整图、不得框错对象、不得把 design 的位置投影到 dev\n- 每条问题的 problem 必须描述你在两张图中分别看到的具体差异，不允许模糊描述\n\n### 截图坐标强制规则（必须遵守）\n- **devCropRegion 和 designCropRegion 必须完全相同**：两张截图的上下文视窗必须对齐，用户才能左右对比，不同的 CropRegion 会导致截图范围错位，无法对比。\n- **devBox 和 designBox 坐标必须不同（除非两图该元素位置完全一致）**：你必须分别在 dev 图和 design 图中独立定位问题元素的精确位置，而不是复制同一个坐标。同一个元素在两张图里的实际位置往往有偏差，框的坐标应该反映各自图片中的真实位置。\n- 合格示例：标题\"创作任务\"在 dev 图中偏右（devBox.left=0.35），在 design 图中居中（designBox.left=0.28），两个 Box 坐标不同是正确的。\n- 不合格示例：devBox 和 designBox 完全一样——说明你没有独立定位，而是复制了坐标，这会导致一边框准另一边框歪。\n- 不合格示例：dev CropRegion = {top:0.47, bottom:0.73}，design CropRegion = {top:0.43, bottom:0.51}，两个截图窗口完全不同——禁止这样输出。\n\n### 动态数据禁止上报（强制）\n以下差异**绝对不允许出现在输出 JSON 中**（confirmed 和 suspected 都不行）：\n- 用户昵称不同、用户头像不同\n- 金额/数值/时间/日期不同\n- 任务进度数字不同（如 0/1）\n- 运营配置文案不同\n只有当**结构本身**发生了变化（有 vs 无某个元素）时才可以报，但不能描述动态内容的具体差异。\n\n## 设计稿的页面结构清单（设计目标）\n1. 我的喜爱分：核心分数展示区，显示当前喜爱分为 890，满分 250，等级为 V4，下方显示今日已集满进度条（今日集分已达超过 80% 的昨日得分），左下角有'进度说明'按钮，视觉特征：粉紫色渐变卡片背景，中央大号白色数字 890 加粗，上方 'V4' 徽章带皇冠，整体占据页面顶部约四分之一区域\n2. 可享 9 项权益：权益列表标题栏，右侧有'展开全部'文字加箭头，下方为四宫格权益入口，视觉特征：白色背景区域，标题加粗，'9 项权益'数字以粉色突出\n3. 权益四宫格：四个权益入口：平台激励（粉丝全部奖励）、成长激励（额外奖励翻倍）、账号检测（账号一键诊断）、合集（创建主题合集），每个入口配有对应图标，视觉特征：2x2 网格布局，浅蓝色/淡色背景卡片，每个卡片含图标 + 标题 + 副标题描述\n4. 创作激励：三项创作数据统计：预估 1999 元（到 1200 元）、1000 播放量、5 粉丝，三项数据横向排列，视觉特征：白色背景区域，三个数据项等宽横向排列，数值加粗显示，第一列为预估金额\n5. 提升喜爱分得现金：得分进度时间线，展示不同粉丝量级对应的现金奖励：100 粉 = 2 元、500 粉 = 4 元、1000 粉 = 6 元、2500 粉 = 12 元、3000 粉 = 12 元、3500 粉 = 12 元，顶部标注'剩余 12 天'，视觉特征：粉色进度条贯穿，圆点标记各里程碑节点，左侧有'提高 720 分额外得 20 元'提示，右上角'累计已得 24 元(6/6)'状态标识\n6. 做任务提升等级：两个任务项：发布 6 个作品以上作品得 160 分、开场 30 分钟以上直播得 160 分，每项右侧有'去完成'按钮，视觉特征：白色卡片区域，每项任务左侧有对应图标，右侧有粉色'去完成'按钮，任务之间用分割线隔开，标题旁有问号图标\n\n## 背景信息\n走查这两个c端页面\n\n\n## 最终输出\n\n先输出读图验证文字，然后输出一个 JSON 代码块：\n\n```json\n{\n  \"confirmed\": [],\n  \"suspected\": []\n}\n```\n\nconfirmed 和 suspected 每条问题必须包含以下字段：\n- id, problem, suggestion, priority(P0/P1/P2), status, location\n- devCropRegion: {top, bottom, left, right}（0.0-1.0比例）\n- devBox: {top, bottom, left, right}（0.0-1.0比例）\n- designCropRegion: {top, bottom, left, right}（0.0-1.0比例）\n- designBox: {top, bottom, left, right}（0.0-1.0比例）\n\nsuspected 还需要：reason, basis, whyNotConfirmed, verifySuggestion",
+    "parsedJson": [
+      {
+        "order": 1,
+        "name": "我的喜爱分",
+        "content": "核心分数展示区，显示当前喜爱分为 890，满分 250，等级为 V4，下方显示今日已集满进度条（今日集分已达超过 80% 的昨日得分），左下角有'进度说明'按钮",
+        "visual": "粉紫色渐变卡片背景，中央大号白色数字 890 加粗，上方 'V4' 徽章带皇冠，整体占据页面顶部约四分之一区域"
+      },
+      {
+        "order": 2,
+        "name": "可享 9 项权益",
+        "content": "权益列表标题栏，右侧有'展开全部'文字加箭头，下方为四宫格权益入口",
+        "visual": "白色背景区域，标题加粗，'9 项权益'数字以粉色突出"
+      },
+      {
+        "order": 3,
+        "name": "权益四宫格",
+        "content": "四个权益入口：平台激励（粉丝全部奖励）、成长激励（额外奖励翻倍）、账号检测（账号一键诊断）、合集（创建主题合集），每个入口配有对应图标",
+        "visual": "2x2 网格布局，浅蓝色/淡色背景卡片，每个卡片含图标 + 标题 + 副标题描述"
+      },
+      {
+        "order": 4,
+        "name": "创作激励",
+        "content": "三项创作数据统计：预估 1999 元（到 1200 元）、1000 播放量、5 粉丝，三项数据横向排列",
+        "visual": "白色背景区域，三个数据项等宽横向排列，数值加粗显示，第一列为预估金额"
+      },
+      {
+        "order": 5,
+        "name": "提升喜爱分得现金",
+        "content": "得分进度时间线，展示不同粉丝量级对应的现金奖励：100 粉 = 2 元、500 粉 = 4 元、1000 粉 = 6 元、2500 粉 = 12 元、3000 粉 = 12 元、3500 粉 = 12 元，顶部标注'剩余 12 天'",
+        "visual": "粉色进度条贯穿，圆点标记各里程碑节点，左侧有'提高 720 分额外得 20 元'提示，右上角'累计已得 24 元(6/6)'状态标识"
+      },
+      {
+        "order": 6,
+        "name": "做任务提升等级",
+        "content": "两个任务项：发布 6 个作品以上作品得 160 分、开场 30 分钟以上直播得 160 分，每项右侧有'去完成'按钮",
+        "visual": "白色卡片区域，每项任务左侧有对应图标，右侧有粉色'去完成'按钮，任务之间用分割线隔开，标题旁有问号图标"
+      }
+    ]
+  },
+  {
+    "ts": "2026-05-23T04:08:52.562Z",
+    "phase": "step2-after-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "parsedJson": {
+      "confirmed": [
+        {
+          "id": "1",
+          "problem": "做任务提升等级第2项任务文案时长不一致：开发稿显示\"开场30分钟以上直播\"，设计稿显示\"开场15分钟以上直播\"，时长要求从15分钟变为30分钟",
+          "suggestion": "将开发稿直播任务文案改为\"开场15分钟以上直播\"，与设计稿保持一致",
+          "priority": "P0",
+          "status": "待修改",
+          "location": "做任务提升等级-第2项任务",
+          "devCropRegion": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.88,
+            "bottom": 0.93,
+            "left": 0.22,
+            "right": 0.7
+          },
+          "designCropRegion": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.88,
+            "bottom": 0.93,
+            "left": 0.22,
+            "right": 0.7
+          }
+        }
+      ],
+      "suspected": [
+        {
+          "id": "A1",
+          "problem": "创作激励区域中\"提高 720 分额外得 20 元\"文字颜色疑似不一致：开发稿为橙色调，设计稿为紫红色调",
+          "suggestion": "确认该提示文字应使用的品牌色，统一开发稿与设计稿的颜色值",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "创作激励区域提示文字",
+          "devCropRegion": {
+            "top": 0.4,
+            "bottom": 0.48,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.415,
+            "bottom": 0.435,
+            "left": 0.08,
+            "right": 0.55
+          },
+          "designCropRegion": {
+            "top": 0.4,
+            "bottom": 0.48,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.415,
+            "bottom": 0.435,
+            "left": 0.08,
+            "right": 0.55
+          },
+          "reason": "同一提示文字在两图中呈现不同的色调，开发稿偏暖橙色，设计稿偏冷紫红色",
+          "basis": "开发稿截图中\"提高 720 分额外得 20 元\"文字呈橙红色；设计稿截图中同位置文字呈粉紫色",
+          "whyNotConfirmed": "颜色差异较小，可能是截图条件或显示设备导致的色差，也可能为设计调整但未更新设计稿",
+          "verifySuggestion": "查看设计规范文档中该提示文字的准确色值，或在开发者工具中检查实际CSS颜色值"
+        }
+      ]
+    },
+    "mergedJson": {
+      "confirmed": [
+        {
+          "id": "1",
+          "problem": "做任务提升等级第2项任务文案时长不一致：开发稿显示\"开场30分钟以上直播\"，设计稿显示\"开场15分钟以上直播\"，时长要求从15分钟变为30分钟",
+          "suggestion": "将开发稿直播任务文案改为\"开场15分钟以上直播\"，与设计稿保持一致",
+          "priority": "P0",
+          "status": "待修改",
+          "location": "做任务提升等级-第2项任务",
+          "devCropRegion": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.88,
+            "bottom": 0.93,
+            "left": 0.22,
+            "right": 0.7
+          },
+          "designCropRegion": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.88,
+            "bottom": 0.93,
+            "left": 0.22,
+            "right": 0.7
+          },
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_1_design.png"
+          ]
+        }
+      ],
+      "suspected": [
+        {
+          "id": "A1",
+          "problem": "创作激励区域中\"提高 720 分额外得 20 元\"文字颜色疑似不一致：开发稿为橙色调，设计稿为紫红色调",
+          "suggestion": "确认该提示文字应使用的品牌色，统一开发稿与设计稿的颜色值",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "创作激励区域提示文字",
+          "devCropRegion": {
+            "top": 0.4,
+            "bottom": 0.48,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.415,
+            "bottom": 0.435,
+            "left": 0.08,
+            "right": 0.55
+          },
+          "designCropRegion": {
+            "top": 0.4,
+            "bottom": 0.48,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.415,
+            "bottom": 0.435,
+            "left": 0.08,
+            "right": 0.55
+          },
+          "reason": "同一提示文字在两图中呈现不同的色调，开发稿偏暖橙色，设计稿偏冷紫红色",
+          "basis": "开发稿截图中\"提高 720 分额外得 20 元\"文字呈橙红色；设计稿截图中同位置文字呈粉紫色",
+          "whyNotConfirmed": "颜色差异较小，可能是截图条件或显示设备导致的色差，也可能为设计调整但未更新设计稿",
+          "verifySuggestion": "查看设计规范文档中该提示文字的准确色值，或在开发者工具中检查实际CSS颜色值",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_A1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_A1_design.png"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "ts": "2026-05-23T05:00:31.107Z",
+    "phase": "upload-complete",
+    "files": [
+      "1779512431100-el2o2r-dev_screenshot.png",
+      "1779512431103-pooppk-design_mockup.png"
+    ],
+    "devFiles": [
+      "1779512431100-el2o2r-dev_screenshot.png"
+    ],
+    "designFiles": [
+      "1779512431103-pooppk-design_mockup.png"
+    ],
+    "selected": {
+      "devFile": "1779512431100-el2o2r-dev_screenshot.png",
+      "designFile": "1779512431103-pooppk-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    }
+  },
+  {
+    "ts": "2026-05-23T05:00:31.119Z",
+    "phase": "step1-before-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "promptFilePath": "/Users/jinhuiyu/Desktop/uiCheck/.claude/uicheck-prompts/2026-05-23T05-00-31-118Z-step1.md",
+    "files": [
+      "1779512431100-el2o2r-dev_screenshot.png",
+      "1779512431103-pooppk-design_mockup.png"
+    ],
+    "devFiles": [],
+    "designFiles": [],
+    "selected": {
+      "devFile": "1779512431100-el2o2r-dev_screenshot.png",
+      "designFile": "1779512431103-pooppk-design_mockup.png",
+      "devPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+      "designPath": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png"
+    },
+    "imageInfo": {
+      "dev": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png",
+        "width": 414,
+        "height": 896,
+        "size": 154956
+      },
+      "design": {
+        "path": "/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png",
+        "width": 414,
+        "height": 896,
+        "size": 155245
+      }
+    },
+    "referenceFiles": [
+      "/Users/jinhuiyu/Desktop/uiCheck/.claude/skills/uicheck_pro/SKILL.md"
+    ],
+    "imageRefs": [
+      "@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png"
+    ],
+    "prompt": "你是一名资深 UI 走查助手。你需要完成两项任务：\n\n**任务 A（认模块）**：分析设计稿图片，从上到下识别页面模块，输出每个模块的名称、内容概述、视觉特征、以及在设计稿中的位置坐标（designCropRegion）。\n\n**任务 B（找大问题）**：对比开发稿和设计稿两张整图，找出明显的结构差异：模块缺失、顺序错误、明显样式不一致等。动态数据（金额、时间、用户昵称等）不报。\n\n## 图片输入\n\n开发稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431100-el2o2r-dev_screenshot.png\n\n设计稿：\n@/Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/inputs/uicheck/1779512431103-pooppk-design_mockup.png\n\n## 硬读图验证（必须先执行）\n\n先分别读取两张图片，输出”读图验证”段落，严格包含：\n1. 开发稿真实可见的页面标题/顶部文字（逐字引用）\n2. 开发稿顶部主色、页面主背景色、顶部第一个模块名称\n3. 设计稿真实可见的页面标题/顶部文字（逐字引用）\n4. 设计稿顶部主色、页面主背景色、顶部第一个模块名称\n5. 回答”开发稿和设计稿是否为两张不同图片：是/否”\n6. 回答”这两张图是否描述同一个页面：是/否 + 理由”\n\n如果任意一项无法基于图片直接回答，输出”读图验证失败：[具体原因]”并停止。\n\n## 走查规则（已内嵌，无需额外读取）\n\n## uicheck_pro SKILL.md（已内嵌，无需额外读取）\n---\nname: uicheck\ndescription: 接收开发截图和设计稿进行页面走查。输出正式问题和疑似问题。导出 docx 时，文档主体为问题表格；每条问题需在开发图和设计稿中分别框选同一元素；问题描述仅包含“问题、建议”，位置通过截图表达。\n---\n\n# Goal\n\n1. 找出可稳定确认的正式问题\n2. 记录疑似问题\n3. 文档输出为表格\n4. 双图必须框同一问题对象\n5. 图片必须先保存到 workspace\n\n## Reference 文件结构\n\nSKILL.md 放总规则和最高优先级约束，reference 按阶段拆分：\n\n| 文件 | 加载阶段 | 内容 |\n|------|---------|------|\n| `issue_rules.md` | analysis | 问题分类、优先关注、设计完整性、数据排除 |\n| `false_positives.md` | analysis | 误判信号、模板污染、默认处理 |\n| `output_schema.md` | analysis | JSON 字段规范、输出格式 |\n| `runtime_guardrails.md` | analysis | 图片引用格式、防模板污染、assets 不进 analysis |\n| `screenshot_rules.md` | 截图 | CropRegion/Box 拆分、元素匹配、反投影 |\n| `doc_rules.md` | docx 导出 | 表格结构、表头、列内容 |\n\n# Input Identity & Read Verification\n\n- `dev` = 开发实现图，`design` = 设计目标图\n- 用户已指定 dev/design 时不得交换；未指定时才可结合文件名与上下文推断\n- `@绝对路径` 只负责把本地图片作为附件传入；是否能真正读图取决于当前运行模型是否具备 vision 能力\n- 若当前模型是纯文本模型或未开启 vision，必须直接视为“无法读图”，不得因为 prompt 中出现了 `@绝对路径` 就声称已经看到了图片\n- 开始判断前，必须先逐一读取两张原图，确认：\n  - 图片已成功读取\n  - 能区分 dev / design 身份\n  - 能看清主要模块与关键元素\n- 若任一图片未读到、读错、路径失效、内容不可辨认，必须立即停止并输出：`读图验证失败：[原因]`\n- 未完成读图验证前，不得输出正式问题、疑似问题或最终结论\n- 分析过程中必须反复保持身份不变：`dev = 已实现结果`，`design = 应还原目标`\n\n# Runtime Guardrails（最高优先级约束）\n\n- 图片输入必须使用 `@绝对路径` 格式；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只是附件引用格式，不等于模型一定具备读图能力\n- 若当前模型不支持 vision，则应把图片读取视为失败，停止分析，不得宣称模型已读取图片\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，且优先使用独立行块格式，不要把 `@图片路径` 混在自然语言句子里，例如：\n  - `开发稿：\\n@/absolute/path/dev.png`\n  - `设计稿：\\n@/absolute/path/design.png`\n- 分析用中间图片必须优先落到 workspace 内可读目录（如 `runtime_images/`），不要默认写到 `/tmp`，避免 IDE Agent / CLI 无权限或不可见\n- 在调用模型前必须打印并落盘最终 prompt 与最终图片 refs，确认传入的确实是本次运行的 `@绝对路径`\n- 对 `/api/analyze/uicheck` 主链路，优先调试 `claude2 + stream-json + step2AnalysisPrompt`；旧的 text/fullPrompt 流程只作为 legacy/debug 旁路\n- 当怀疑 CLI 没有真正附图时，先在终端做最小验证：直接用 `codeflicker -q` + 本次图片 `@绝对路径`，要求模型回答图片里真实可见的标题文字、主色、顶部模块；若能回答具体可见内容，说明当前环境下 `-q` 可读图，问题更可能在主链路 prompt 或验证门禁\n- 背景信息传纯文本内容，不要把本地文件路径当作背景正文\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n\n> 详细运行时规则见 `reference/runtime_guardrails.md`\n\n# Issue Rules\n\n差异分三类：\n\n- 正式问题\n- 疑似问题\n- 不纳入问题（动态数据 / 滚动 / 状态栏 / 轻微渲染）\n\n优先关注：\n- 模块缺失 / 顺序错误\n- 骨架 / 层级 / 对齐问题\n- 关键组件 / 颜色 / 尺寸\n- 信息架构错误\n- 标签 / 图例 / 字段规则错误\n\n---\n\n## Design Completeness Rule\n\n必须以设计稿为基准逐模块检查：\n\n- 设计稿中每个模块 / 元素，都必须在开发页确认是否存在\n- 若存在于设计稿但开发页不存在 → 必须输出正式问题\n- 不得因为未发现差异而跳过模块\n\n---\n\n## Data & Chart Exclusion Rule\n\n以下差异默认不作为问题：\n\n- 金额、数量、百分比、转化率\n- 日期、时间、用户名、头像、排名、状态\n- 图表数据值、报表数值\n- 数据驱动的图形变化（宽度 / 高度 / 面积 / 曲线）\n\n对于图表 / 漏斗：\n\n只检查：\n- 结构\n- 标签\n- 单位\n- 图例\n- 样式 / 布局 / 层级\n\n不检查：\n- 数值一致性\n- 图形形态（漏斗宽度、柱高等）\n\n只有以下情况才算问题：\n\n- 字段缺失\n- 标签错误\n- 单位错误\n- 图例错误\n- 结构 / 样式 / 层级错误\n- 设计稿明确固定形态但未实现\n\n---\n\n# Screenshot Rules\n\n## Assets Screenshot Guide（按需加载）\n\nassets/screenshots 示例图用于学习截图框选规范：\n- `good_pair_annotation.png` — 双图必须框同一对象\n- `good_element_level_box.png` — 元素级精确框选\n- `good_module_level_box.png` — 模块级保留上下文\n- `bad_pair_annotation.png` — 错误配对、错误投影和错误框法\n\n**加载策略**：\n- analysis 阶段默认不加载 assets/examples（减少幻觉污染）\n- 截图规则调试或误判案例排查时按需加载\n- 截图/docx 阶段复用同一份 issues JSON，由本地程序裁图、画框和导出\n\n## CropRegion vs Box\n\n坐标输出必须拆分为两组：\n\n- **CropRegion**：裁图区域，略大于问题区域，保留上下文，方便用户看懂问题所处环境\n- **Box**：红框区域，问题元素本身的精确位置，框尽量小而准\n\n规则：\n- 元素级问题 → Box 尽量小，只框具体元素\n- 模块级问题 → Box 框住整个出问题的模块\n- 细节级问题 → Box 框住对应细节区域\n- `Box == CropRegion` 只适用于整个裁图区域都是问题的大范围结构问题\n- 不合格的 Box：框整张图（`top=0 bottom=1 left=0 right=1`）→ 必须缩小\n\n## Element Matching Rule\n\n双图框选必须基于“元素匹配”，不得基于位置：\n\n1. 先在设计稿识别元素（按钮 / 卡片 / 图表等）\n2. 在开发页按语义查找对应元素\n3. 找到后再框选\n\n## No Position Projection Rule\n\n禁止：\n- 把设计稿框直接映射到开发图同一位置\n\n原因：\n- 尺寸不同\n- 布局偏移\n- 滚动差异\n\n## Matching Failure Handling\n\n若开发页找不到对应元素：\n\n- 不得框空白\n- 不得猜位置\n- 必须标记为“组件缺失”或“未实现”\n\n截图方式：\n- 设计稿：精确框元素\n- 开发页：框模块区域或标注未实现区域\n\n## 基础规则\n\n- 两边必须框同一对象\n- 框选必须与问题描述一致\n- 一条问题必须有双图\n- 不得用模糊区域代替\n\n---\n\n# Problem Description Rule\n\n只允许：\n\n- 问题\n- 建议\n\n不允许：\n\n- 标题\n- 位置\n- 长分析\n- reference 示例原句\n- 截图里不存在的业务词\n\n写法要求：\n\n- 只写当前截图可见差异\n- 句子必须可执行、可复核\n- 不能因为 reference 出现过某个说法，就直接套到本次问题里\n\n---\n\n# Reference Usage Rule\n\n- reference 的作用是补充边界、排除项、字段规范和中性模板\n- assets 的作用是提供截图规范示例，尤其用于指导 `CropRegion` / `Box` 的框法\n- reference 中的示例只能当“句式模板”，不能当“内容模板”\n- 若示例里出现具体业务对象、模块名或视觉细节，输出时必须改写成基于当前截图证据的描述\n- 如果无法从截图证据中复核某个说法，就不要输出该说法\n\n---\n\n# Document Output Rules\n\n结构固定：\n\n1. 标题\n2. 摘要\n3. 页面总览\n4. 问题表格\n\n表头：\n\n- 序号 / 问题描述 / 状态 / 截图 / 日期 / 优先级 / 走查人 / 跟进人\n\n---\n\n# Folder Mapping Rule\n\n- 按文件名匹配 dev / design\n- 不匹配的必须提示\n- 每一对独立走查\n\n---\n\n# Restrictions\n\n- 不得交换 dev/design\n- 不得在未读图验证通过前输出结论\n- 不得把动态数据当问题\n- 不得把数据驱动图形当问题\n- 不得混淆正式 / 疑似\n- 不得框错对象\n- 不得框空白\n- 不得用位置映射代替元素匹配\n- 不得把“数据差异”脑补为“规则问题”\n- 不得复述 reference 示例中的现成问题句子\n\n\n## reference 规则补充（已内嵌，无需额外读取）\n\n### issue_rules.md\n# Issue Rules\n\n## 正式问题\n正式问题要满足：\n- 差异明确稳定\n- 不太可能由截图条件造成\n- 可以直接提给开发修改\n\n常见正式问题类型：\n- 模块类型不一致\n- 核心信息结构不一致\n- 对齐关系明显错误\n- 关键按钮大小、颜色或位置明显不对\n- 核心区域被遮挡、压叠\n- 模块顺序明显错误\n- 切图/裁剪错误（卡片或图片边缘被截断、元素溢出被裁掉、圆角被切掉）\n\n## 疑似问题\n疑似问题用于记录：\n- 看起来有偏差\n- 对设计质量重要\n- 但暂时不适合直接作为“必须修改”的正式问题\n\n常见疑似问题类型：\n- 曲线形态疑似更硬\n- 光效疑似过重\n- 背景层次疑似更弱\n- 圆角气质疑似不同\n- 局部留白节奏疑似不同\n\n## 问题描述怎么写\n\n### 正式问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 使用当前截图中可见、可复核的描述\n- 描述差异本身，不复述 reference 里的现成业务对象\n- 句子要能直接指导修改\n\n### 疑似问题\n只写：\n- 问题\n- 建议\n\n要求：\n- 明确这是“疑似”而非已确认事实\n- 建议里写清如何进一步确认\n- 仍然只能基于截图可见证据，不得凭示例补内容\n\n## 不要这样写\n- 写成长段小作文\n- 在问题描述里重复写位置\n- 在问题描述里重复写优先级和状态\n- 在问题描述里塞很多背景解释\n- 直接复制示例句子作为本次结论\n\n\n### false_positives.md\n# Common False Positives\n\n以下内容默认不作为正式问题：\n\n## 1. 动态数据差异\n以下属于用户/运营动态数据，**禁止报为任何问题（confirmed 或 suspected）**，即使两图有差异也不输出：\n- 用户昵称不同（如\"我是沐月\" vs \"发疯的女侠\"）\n- 用户头像不同（头像图片、头像样式）\n- 金额数值不同\n- 时间/日期不同\n- 列表条数不同\n- 运营配置文案不同（如活动说明、奖励描述）\n- 任务进度数字不同（如 0/1、1/3）\n\n前提：结构仍然成立时，不报。如果结构本身发生了变化（比如有头像+昵称 vs 无头像），才可以报结构差异，但不要描述昵称/头像的具体内容不同。\n\n## 2. 截图条件差异\n- 滚动位置不同\n- 截图长度不同\n- 缩放比例不同\n- 图片压缩不同\n\n## 3. 系统层差异\n- 状态栏时间不同\n- Wi-Fi / 电量图标不同\n- 系统默认字体渲染轻微不同\n\n## 4. 低价值细节\n- 1~2px 级别的上下偏移（**注意：如果是卡片/图片边缘明显被裁切、切图不完整，不属于此类，应作为问题上报**）\n- 个别小字号差异\n- 个别小间距差异\n\n注意：视觉感觉型判断（光效、曲线形态、质感、圆角气质、留白节奏等）应纳入疑似问题，不要默认忽略。\n\n## 5. 模板污染信号\n- 问题描述复用了 reference 中现成的业务名或模块名\n- 结论里出现截图中看不到的对象名称\n- 同一批结果多条问题使用高度相似的模板句\n\n## 默认处理建议\n- 证据稳定：进正式问题\n- 有迹象但不稳定：进疑似问题\n- 价值低且证据弱：不纳入问题\n- 若怀疑模板污染：回查读图结果、运行时 prompt 和最终输出的一致性\n\n\n### output_schema.md\n# 输出字段规范\n\n分析阶段只允许输出一个 JSON 代码块，且每条问题都必须包含后续截图所需字段。\n\n## 顶层结构\n\n```json\n{\n  \"confirmed\": [],\n  \"suspected\": []\n}\n```\n\n## confirmed 每条必填字段\n\n```json\n{\n  \"id\": \"1\",\n  \"problem\": \"一句话问题描述\",\n  \"suggestion\": \"一句话修改建议\",\n  \"priority\": \"P0\",\n  \"status\": \"待修改\",\n  \"location\": \"问题所在区域\",\n  \"devCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5},\n  \"designCropRegion\": {\"top\": 0.0, \"bottom\": 0.2, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.02, \"bottom\": 0.1, \"left\": 0.1, \"right\": 0.5}\n}\n```\n\n## suspected 每条必填字段\n\n```json\n{\n  \"id\": \"A1\",\n  \"problem\": \"一句话疑似问题描述\",\n  \"suggestion\": \"一句话建议\",\n  \"priority\": \"P2\",\n  \"status\": \"待确认\",\n  \"location\": \"疑似所在区域\",\n  \"devCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"devBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"designCropRegion\": {\"top\": 0.2, \"bottom\": 0.35, \"left\": 0.0, \"right\": 1.0},\n  \"designBox\": {\"top\": 0.22, \"bottom\": 0.3, \"left\": 0.08, \"right\": 0.45},\n  \"reason\": \"为什么怀疑有问题\",\n  \"basis\": \"截图中可见的证据\",\n  \"whyNotConfirmed\": \"暂不能确认为正式问题的原因\",\n  \"verifySuggestion\": \"建议如何进一步确认\"\n}\n```\n\n## 坐标规则\n\n- 所有坐标字段必须使用 0.0 到 1.0 的比例值。\n- `CropRegion` 表示截图裁切上下文范围（问题所在的模块区域），`Box` 表示需要画红框的精确元素。\n- **devCropRegion 和 designCropRegion 必须分别独立定位**：两张图中同一模块可能不在同一位置（上方可能有插入或缺失的模块），必须在各自图中独立识别该模块区域后再填写。禁止将一张图的 CropRegion 直接照搬到另一张图。\n- **CropRegion 必须覆盖模块区域**：从模块标题行顶部开始，到模块主体底部结束，禁止只裁红框周围一小块，否则截图无法表达上下文。\n- **devBox 和 designBox 必须分别独立定位**，不能复制相同坐标。必须在各自图片中读取问题元素的精确位置后再填写。\n- **Box 必须框到具体问题元素**：文字问题框文字，样式问题框对应元素，不要框整个模块。\n- 禁止坐标投影：不允许把一张图的坐标直接照搬到另一张图。\n- 不要输出 `dev_y` / `design_y` 作为主字段；如果额外输出也不能替代上述四个坐标对象。\n- 任一问题缺少 `devCropRegion`、`devBox`、`designCropRegion`、`designBox` 时，后续截图会失败。\n\n\n### runtime_guardrails.md\n# Runtime Guardrails\n\n## 输出格式约束\n- 面向页面展示的内容只能使用最终结果文本或最终 JSON，不得直接透传 stream-json、reasoning 或 tool 过程文本\n- 若需要生成分析用缩略图或转码图，文件扩展名必须与真实格式一致；输出为 PNG 时，文件名也必须是 `.png`\n\n## 图片引用格式\n- 图片输入必须使用 CodeFlicker 可识别的引用格式：`@绝对路径`（或官方 attachment 格式）；普通文本路径不会自动当作图片读取\n- `@绝对路径` 只表示把本地文件作为附件传入，不代表底层模型一定具备 vision 能力\n- 在调用模型前必须打印并落盘最终 prompt，确保每张图片引用都是本次上传文件的 `@绝对路径`\n- 真实 dev/design 图片必须用 `@绝对路径` 放进 prompt，并要求先做读图验证；若当前模型是纯文本模型或未开启 vision，则必须直接判定为读图失败并停止输出，不得继续分析\n\n## sharp 中间转换陷阱（已验证）\n- **禁止**用 sharp 对上传图片做中间 re-encode 再传给模型：sharp 转码后的 PNG 文件内容会与原图不一致，导致模型读出完全错误的页面内容（如原图是\"AI灵境计划\"，模型读出\"数据概览\"）\n- step1/step2 必须直接使用用户上传的原始文件（`inputs/uicheck/` 目录下），不得经过任何 sharp 压缩或格式转换\n- 若将来需要压缩大图，必须先用 `codeflicker -q` 在终端验证转换后的文件模型能否正确读取内容，再决定是否启用\n\n## codeflicker CLI 模型选择机制（已验证 v0.5.3）\n- **核心发现**：`codeflicker -q` **不继承 IDE 面板选择的模型**，默认走 `wanqing/glm-5`（无视觉能力）；必须显式传 `--model <modelId>`\n- **可用视觉模型 ID**：\n  - `sonnet` → `claude-4.6-sonnet`（有视觉，推荐用于 uicheck）\n  - `flash` → `gemini-3.1-pro`（有视觉，可作为备选）\n  - `wanqing/glm-5` / `wanqing/glm-5.1` → GLM（无视觉，**不能用于读图**）\n  - 其他名称（`gpt-4o`, `claude-3-5-sonnet`, `claude-sonnet` 等）均 fallback 到 GLM\n- **额度耗尽时的危险行为**：当视觉模型额度用完，codeflicker **静默 fallback** 到 GLM，不报错、不警告；GLM 会幻觉出虚假图片内容，输出看起来\"正常\"但完全是编造的\n- **server.js 必须做的事**：\n  1. uicheck step1/step2 都传 `--model sonnet`\n  2. 检测 raw output 中的 `额度上限|fallback to wanqing` 字样，若发现立即返回错误提示给前端，不要继续流程\n  3. 读图验证逻辑也作为第二道防线：验证内容必须与真实图片一致\n\n## codeflicker CLI 调用模式选择（已验证 v0.5.3）\n- **interactive 模式**（无 `-q`）：**不能从 Node.js spawn 调用**，会报 \"Raw mode is not supported on the current process.stdin\" 错误（Ink 框架需要 TTY）。仅适用于终端手动调用\n- **`-q` 模式**：可从 spawn 调用，模型有 Read 工具可用，但关键是**必须配 `--model sonnet` 确保视觉能力**\n- **结论**：server.js 中 uicheck step1/step2 统一用 `-q --model sonnet --output-format stream-json` + `@绝对路径`\n- step1 prompt 改为 `@绝对路径` 直接传图（不再用 Read 工具+相对路径，因为 interactive 模式不可用）\n- step2 prompt 同样用 `@绝对路径` 传两张图\n\n## 背景信息约束\n- 背景信息传给模型时应传纯文本内容，不要把本地文件路径当作背景正文\n\n## 身份稳定性\n- 若为了稳定性压缩分析图，压缩后仍要保持 dev/design 身份不变，并在 prompt 中再次声明身份\n- 文件选择优先使用本次上传状态，其次按修改时间倒序选择最新文件，避免历史残留图片被误选\n\n## 防模板污染\n- 若模型输出明显复述示例或模板句式，优先核对运行时落盘 prompt 与当前源码是否一致，并确认服务已重启到最新版本，避免\"源码已改但旧进程仍在跑\"\n- 参考文件只提供字段说明、硬约束、排除项和中性模板；不得把 reference 中的业务名、模块名、示例句子直接当作本次结论\n- 结论只能来自当次截图中可见证据；截图里看不到的模块名、业务名、文案，不得凭 reference 补写\n- 若某条结论的关键词只出现在 reference、不出现在截图证据中，必须删除或改写为基于截图可见事实的描述\n\n## Python 截图脚本 UTF-8 编码（v12 已修复）\n- `generateScreenshotScript()` 生成的 Python 脚本内嵌中文 JSON 数据（问题描述），脚本开头必须声明 `# -*- coding: utf-8 -*-`\n- 没有编码声明时，Python 3.9 解析器遇到中文 UTF-8 字节会抛 `SyntaxError: Non-UTF-8 code starting with '\\xe5'`，导致 Phase B 截图静默失败\n- **教训**：任何动态生成 Python 脚本并内嵌中文/非 ASCII 数据的场景，必须在脚本开头声明编码\n\n## 疑似问题检出率（v13+ 优化）\n- 取消问题数量上限（confirmed + suspected 均不限制）\n- specText（设计稿模块清单）不再截断 name/content/visual，模型能看到完整描述和视觉特征\n- false_positives.md 中\"极弱的视觉感觉型判断\"不再默认排除，改为建议纳入疑似问题\n- prompt 明确鼓励疑似问题多报：\"宁可多报也不要漏报\"\n\n## assets/examples 默认不进入 analysis\n- assets 和 examples 默认不进入 analysis 阶段 prompt，只在调试截图规则或误判案例时按需使用\n- 截图规范示例（assets/screenshots/）只在调试截图框选规则时按需加载，analysis 阶段不强制读取\n\n## devCropRegion / designCropRegion 独立定位（v14 变更）\n- **旧规则（已废弃）**：强制 devCropRegion 和 designCropRegion 完全相同。这导致同一模块在两张图中位置不同时，一张截图框准、另一张框空或框到错误区域。\n- **新规则**：`devCropRegion` 和 `designCropRegion` 必须**分别在各自图中独立识别模块区域**。CropRegion 表示截图的模块上下文窗口，Box 表示红框精确位置。两张截图的 CropRegion 可以不同，只要各自 CropRegion 覆盖了同一问题模块、Box 框到对应问题元素即可。\n- **写入位置**：`server.js buildUICheckStep2AnalysisPrompt()` 的\"截图坐标强制规则\"段；`output_schema.md` 坐标规则段\n- **验证方法**：检查 outputs/ 目录下同一 issue 的 dev/design 截图，确认两张图都框到了同一模块区域，红框指向同一问题\n\n## 前端 zoomImages 数组覆盖 bug（v13 已修复）\n- **现象**：点击 confirmed 表格截图缩略图，放大图却显示 suspected 的截图（对不上）\n- **根因**：每次 `renderTable()` 都用局部 `zoomImages` 覆盖 `window._zoomImages`；suspected 表格渲染后，confirmed 的所有 idx 全部错位\n- **修复**：改为累积追加（`if (!window._zoomImages) window._zoomImages = []`，直接引用全局数组而非覆盖）；每次新走查开始时重置 `window._zoomImages = []`\n- **位置**：`uiwalkthroughtool/uicheck.html` 第 827 行及走查开始的 reset 处\n\n\n\n### 输出限制\n- 不限制问题数量，宁可多报也不要漏报\n- 疑似问题不要过于保守——只要两图间有任何可见的视觉差异迹象，且不是明确的动态数据差异，都应该纳入 suspected\n- 坐标使用 0.0-1.0 比例\n- 先识别同一对象，再分别给 dev/design 坐标，禁止位置投影\n- 不得框整图、不得框错对象、不得把 design 的位置投影到 dev\n- 每条问题的 problem 必须描述你在两张图中分别看到的具体差异\n\n### 截图坐标强制规则（必须遵守）\n- **devCropRegion 和 designCropRegion 必须分别在各自图中独立识别**：同一模块在两张图中的位置可能不同，必须在各自图中独立识别该模块区域。\n- **CropRegion 必须覆盖模块区域**：从模块标题行顶部到模块主体底部，禁止只裁红框周围一小块。\n- **devBox 和 designBox 必须分别独立定位**：在各自图中读取问题元素的精确位置。\n- **不合格示例**：devBox 和 designBox 完全一样——说明没有独立定位。\n\n### 动态数据禁止上报（强制）\n以下差异**绝对不允许出现在输出 JSON 中**：\n- 用户昵称不同、用户头像不同\n- 金额/数值/时间/日期不同\n- 任务进度数字不同\n- 运营配置文案不同\n只有当**结构本身**发生变化时才可以报。\n\n## 最终输出\n先输出读图验证文字，然后输出一个 JSON 对象，包含模块清单和走查问题：\n```json\n{\n  “modules”: [\n    {“order”: 1, “name”: “模块名称”, “content”: “模块内容概述”, “visual”: “视觉特征概述”, “designCropRegion”: {“top”: 0.0, “bottom”: 0.15, “left”: 0.0, “right”: 1.0}},\n    {“order”: 2, “name”: “模块名称”, “content”: “模块内容概述”, “visual”: “视觉特征概述”, “designCropRegion”: {“top”: 0.15, “bottom”: 0.35, “left”: 0.0, “right”: 1.0}}\n  ],\n  “confirmed”: [],\n  “suspected”: []\n}\n```\n\n坐标说明：\n- modules[].designCropRegion：该模块在设计稿中的位置，top/bottom 从标题行顶部到主体底部，0.0-1.0 比例\n- confirmed/suspected 每条必须包含：id, problem, suggestion, priority, status, location, devCropRegion, devBox, designCropRegion, designBox\n- suspected 还需要：reason, basis, whyNotConfirmed, verifySuggestion\n- devCropRegion 和 designCropRegion 分别独立定位，不要照搬坐标"
+  },
+  {
+    "ts": "2026-05-23T05:06:10.061Z",
+    "phase": "step-after-model",
+    "flow": {
+      "mode": "single",
+      "flowName": "single-page-uicheck-pro",
+      "flowFunction": "buildUICheckPrompt(single-page) -> buildUICheckStep2AnalysisPrompt -> executeScreenshotScript",
+      "isFolderMode": false,
+      "devFiles": [],
+      "designFiles": [],
+      "reason": "upload-mode-single"
+    },
+    "parsedJson": {
+      "confirmed": [
+        {
+          "id": "1",
+          "problem": "权益卡片「成长助推」描述文案不一致：设计稿为「额外获得粉丝」，开发稿为「额外获得收益」",
+          "suggestion": "将开发稿中「成长助推」副标题改为「额外获得粉丝」",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "可享 9 项权益 - 成长助推卡片",
+          "devCropRegion": {
+            "top": 0.255,
+            "bottom": 0.36,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.275,
+            "bottom": 0.31,
+            "left": 0.26,
+            "right": 0.48
+          },
+          "designCropRegion": {
+            "top": 0.255,
+            "bottom": 0.36,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.275,
+            "bottom": 0.31,
+            "left": 0.26,
+            "right": 0.48
+          }
+        },
+        {
+          "id": "2",
+          "problem": "进度条里程碑节点状态样式不一致：设计稿已完成节点为粉色实心圆，开发稿已完成节点为灰色空心圆",
+          "suggestion": "将开发稿中已完成（120/200/300分）的里程碑节点改为粉色实心圆，与设计稿一致",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "提升喜爱分得现金 - 进度条节点",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.555,
+            "bottom": 0.6,
+            "left": 0.55,
+            "right": 0.97
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.555,
+            "bottom": 0.6,
+            "left": 0.55,
+            "right": 0.97
+          }
+        },
+        {
+          "id": "3",
+          "problem": "直播任务文案不一致：设计稿为「开场30分钟以上直播」，开发稿为「开场5分钟以上直播」",
+          "suggestion": "将开发稿中直播任务文案改为「开场30分钟以上直播」",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "做任务提升等级 - 直播任务",
+          "devCropRegion": {
+            "top": 0.645,
+            "bottom": 0.82,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.75,
+            "bottom": 0.795,
+            "left": 0.05,
+            "right": 0.62
+          },
+          "designCropRegion": {
+            "top": 0.645,
+            "bottom": 0.82,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.75,
+            "bottom": 0.795,
+            "left": 0.05,
+            "right": 0.62
+          }
+        }
+      ],
+      "suspected": [
+        {
+          "id": "A1",
+          "problem": "720分里程碑金额疑似不一致：设计稿显示「30元」（粉色），开发稿显示「20元」（绿色），金额数字和颜色均不同",
+          "suggestion": "核实720分对应的正确金额，统一金额数值和文字颜色（建议粉色以匹配设计稿）",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "提升喜爱分得现金 - 里程碑720分",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.475,
+            "bottom": 0.52,
+            "left": 0.05,
+            "right": 0.42
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.475,
+            "bottom": 0.52,
+            "left": 0.05,
+            "right": 0.42
+          },
+          "reason": "金额数字不同（20元 vs 30元）且颜色不同（绿色 vs 粉色），可能涉及业务配置差异或开发漏改",
+          "basis": "开发稿显示「20元」为绿色文字，设计稿显示「30元」为粉色文字，其余里程碑节点颜色一致",
+          "whyNotConfirmed": "金额可能是后端动态配置的数据，也可能是设计稿更新的版本，需要向产品确认正确值",
+          "verifySuggestion": "与产品经理或设计师确认720分对应的正确奖励金额，检查是否为最新版本设计稿"
+        },
+        {
+          "id": "A2",
+          "problem": "进度条填充状态疑似不一致：设计稿 120 分节点之后进度条为灰色，开发稿 120 分节点之后仍有一段粉色填充",
+          "suggestion": "检查开发稿进度条填充逻辑，确保当前进度（120分）对应的粉色填充区域与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "提升喜爱分得现金 - 进度条",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.52,
+            "bottom": 0.555,
+            "left": 0.05,
+            "right": 0.5
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.52,
+            "bottom": 0.555,
+            "left": 0.05,
+            "right": 0.5
+          },
+          "reason": "开发稿进度条粉色填充区域看起来比设计稿更长，设计稿在 120 分节点处开始变灰",
+          "basis": "设计稿中 120 分节点右侧进度条为灰色，开发稿中 120 分节点右侧仍有一段粉色，灰色起始位置不同",
+          "whyNotConfirmed": "可能是当前进度值不同导致（开发稿实际进度可能高于 120 分），而非样式实现问题",
+          "verifySuggestion": "确认两张截图的当前进度值是否一致，若一致则确认为样式问题需修复"
+        },
+        {
+          "id": "M1-S1",
+          "problem": "顶部进度指示器的粉色圆点位置存在差异",
+          "suggestion": "统一进度指示器圆点与粉色进度条的相对位置，确保开发稿与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "顶部进度指示器区域",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0,
+            "bottom": 0.25,
+            "left": 0.2,
+            "right": 0.35
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0,
+            "bottom": 0.25,
+            "left": 0.2,
+            "right": 0.35
+          },
+          "reason": "开发稿中粉色进度条上的白色圆点标记与上方深色圆点的垂直间距，与设计稿中看起来不一致",
+          "basis": "开发稿中圆点在进度条上方有明显间隙，设计稿中圆点位置与进度条的相对关系不同",
+          "whyNotConfirmed": "图片分辨率有限，无法精确测量像素级间距差异",
+          "verifySuggestion": "使用开发工具检查顶部进度指示器组件，对比两个版本中圆点与进度条的垂直间距数值"
+        },
+        {
+          "id": "M1-S2",
+          "problem": "标题左侧的装饰图标（红色小图标）存在差异",
+          "suggestion": "统一标题左侧装饰图标的样式，开发稿与设计稿应保持一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题'可享 9 项权益'左侧装饰图标",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.05,
+            "right": 0.12
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.05,
+            "right": 0.12
+          },
+          "reason": "开发稿中标题左侧的红色装饰图标形状与设计稿中的装饰图标不完全一致，开发稿中图标看起来更简洁",
+          "basis": "肉眼可见开发稿与设计稿中该装饰图标的细节轮廓有差异",
+          "whyNotConfirmed": "图标较小，分辨率不足以确认是同一素材的不同渲染还是有替换",
+          "verifySuggestion": "对比代码与设计稿中标题装饰图标的具体素材和样式定义"
+        },
+        {
+          "id": "M1-S3",
+          "problem": "标题右侧的'展开全部'文字颜色存在差异",
+          "suggestion": "统一'展开全部'文字的颜色值，确保开发稿与设计稿保持一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题右侧'展开全部'文字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.7,
+            "right": 0.95
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.7,
+            "right": 0.95
+          },
+          "reason": "开发稿中'展开全部'文字颜色偏浅灰色，设计稿中颜色略深，灰度值看起来不一致",
+          "basis": "同一文字'展开全部'在两张图中的视觉灰度存在差异",
+          "whyNotConfirmed": "图片经过压缩和渲染，颜色值可能失真，无法精确判断色值差异",
+          "verifySuggestion": "在浏览器开发工具中使用取色器获取'展开全部'文字的实际色值，与设计稿色值对比"
+        },
+        {
+          "id": "M1-S4",
+          "problem": "卡片区域的上边缘与标题区域的间距不同",
+          "suggestion": "统一卡片容器与标题之间的垂直间距，保持开发稿与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题与下方卡片容器之间的垂直间距",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.4,
+            "bottom": 0.65,
+            "left": 0,
+            "right": 1
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.4,
+            "bottom": 0.65,
+            "left": 0,
+            "right": 1
+          },
+          "reason": "开发稿中白色卡片容器上边缘距离标题文字的垂直间距，与设计稿中的间距视觉上不一致",
+          "basis": "开发稿中卡片上边缘更贴近标题区域，设计稿中留白更多",
+          "whyNotConfirmed": "截图裁切范围可能影响对绝对间距的判断，需完整模块截图确认",
+          "verifySuggestion": "检查 CSS 中卡片容器的 margin-top 或 padding 值是否与设计稿标注一致"
+        },
+        {
+          "id": "M4-S1",
+          "problem": "进度条下方里程碑数字（200/300/400/600）字重偏细，设计稿中字重更粗（接近 semibold），开发稿接近 regular。",
+          "suggestion": "将 200/300/400/600 数字的 font-weight 调整为与设计稿一致（建议 semibold / 600）。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条下方里程碑数字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.55,
+            "bottom": 0.68,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.55,
+            "bottom": 0.68,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "reason": "设计稿中里程碑数字笔画更粗更醒目，开发稿中明显更细，视觉层级弱于设计预期。",
+          "basis": "直接对比两张截图中 200/300/400/600 数字的笔画粗细，设计稿数字笔画宽度约为开发稿的 1.3-1.5 倍。",
+          "whyNotConfirmed": "无法从截图精确获取 font-weight 数值，需检查开发代码中的 CSS 属性。",
+          "verifySuggestion": "在浏览器开发者工具中检查对应元素的 font-weight 值，与设计稿标注对比。"
+        },
+        {
+          "id": "M4-S2",
+          "problem": "进度条底部与里程碑标签之间的垂直间距偏小，设计稿中该间距略大。",
+          "suggestion": "增加进度条底部到里程碑标签之间的垂直间距（margin-top 或 gap），使其与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条与里程碑标签之间",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.5,
+            "bottom": 0.6,
+            "left": 0.35,
+            "right": 0.95
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.5,
+            "bottom": 0.62,
+            "left": 0.35,
+            "right": 0.95
+          },
+          "reason": "开发稿中进度条与下方里程碑数字之间的留白紧凑，设计稿中留白更充裕，视觉呼吸感不同。",
+          "basis": "目测开发稿中间距约为设计稿的 2/3，进度条下边缘到数字上边缘的空白区域明显更小。",
+          "whyNotConfirmed": "截图分辨率有限，无法精确测量像素间距。",
+          "verifySuggestion": "使用浏览器开发者工具测量该区域的 margin/padding 值，与设计稿标注间距对比。"
+        },
+        {
+          "id": "M4-S3",
+          "problem": "进度条上的里程碑节点圆圈（圆点）直径偏小，设计稿中圆点略大。",
+          "suggestion": "增大里程碑节点圆圈的直径（width/height），使其与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条上的里程碑节点圆点",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.46,
+            "bottom": 0.54,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.45,
+            "bottom": 0.55,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "reason": "设计稿中的节点圆圈视觉占比更大更醒目，开发稿中圆点偏小，在进度条上的存在感较弱。",
+          "basis": "对比两张截图中节点圆圈的直径与进度条高度的比例关系，设计稿中圆圈直径约为进度条高度的 1.2-1.3 倍，开发稿中约为 1.0-1.1 倍。",
+          "whyNotConfirmed": "截图存在压缩，圆圈边缘可能受抗锯齿影响，难以精确测量直径。",
+          "verifySuggestion": "检查 CSS 中节点圆圈的 width/height 值，与设计稿标注尺寸对比。"
+        },
+        {
+          "id": "M4-S4",
+          "problem": "进度条下方小数字（5/10/20/50）字重偏细，设计稿中字重略粗。",
+          "suggestion": "将 5/10/20/50 数字的 font-weight 调整为与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条下方小数字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.78,
+            "bottom": 0.88,
+            "left": 0.42,
+            "right": 0.88
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.78,
+            "bottom": 0.88,
+            "left": 0.42,
+            "right": 0.88
+          },
+          "reason": "设计稿中底部小数字笔画略粗，与里程碑大数字的字重风格统一；开发稿中偏细，视觉上显得单薄。",
+          "basis": "直接对比两张截图中 5/10/20/50 的笔画粗细，设计稿中笔画宽度略大于开发稿。",
+          "whyNotConfirmed": "小字号下字重差异不明显，且截图可能存在压缩导致细节模糊。",
+          "verifySuggestion": "在浏览器开发者工具中检查对应元素的 font-weight 值，与设计稿标注对比。"
+        }
+      ]
+    },
+    "mergedJson": {
+      "confirmed": [
+        {
+          "id": "1",
+          "problem": "权益卡片「成长助推」描述文案不一致：设计稿为「额外获得粉丝」，开发稿为「额外获得收益」",
+          "suggestion": "将开发稿中「成长助推」副标题改为「额外获得粉丝」",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "可享 9 项权益 - 成长助推卡片",
+          "devCropRegion": {
+            "top": 0.255,
+            "bottom": 0.36,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.275,
+            "bottom": 0.31,
+            "left": 0.26,
+            "right": 0.48
+          },
+          "designCropRegion": {
+            "top": 0.255,
+            "bottom": 0.36,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.275,
+            "bottom": 0.31,
+            "left": 0.26,
+            "right": 0.48
+          },
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_1_design.png"
+          ]
+        },
+        {
+          "id": "2",
+          "problem": "进度条里程碑节点状态样式不一致：设计稿已完成节点为粉色实心圆，开发稿已完成节点为灰色空心圆",
+          "suggestion": "将开发稿中已完成（120/200/300分）的里程碑节点改为粉色实心圆，与设计稿一致",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "提升喜爱分得现金 - 进度条节点",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.555,
+            "bottom": 0.6,
+            "left": 0.55,
+            "right": 0.97
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.555,
+            "bottom": 0.6,
+            "left": 0.55,
+            "right": 0.97
+          },
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_2_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_2_design.png"
+          ]
+        },
+        {
+          "id": "3",
+          "problem": "直播任务文案不一致：设计稿为「开场30分钟以上直播」，开发稿为「开场5分钟以上直播」",
+          "suggestion": "将开发稿中直播任务文案改为「开场30分钟以上直播」",
+          "priority": "P1",
+          "status": "待修改",
+          "location": "做任务提升等级 - 直播任务",
+          "devCropRegion": {
+            "top": 0.645,
+            "bottom": 0.82,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.75,
+            "bottom": 0.795,
+            "left": 0.05,
+            "right": 0.62
+          },
+          "designCropRegion": {
+            "top": 0.645,
+            "bottom": 0.82,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.75,
+            "bottom": 0.795,
+            "left": 0.05,
+            "right": 0.62
+          },
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_3_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_3_design.png"
+          ]
+        }
+      ],
+      "suspected": [
+        {
+          "id": "A1",
+          "problem": "720分里程碑金额疑似不一致：设计稿显示「30元」（粉色），开发稿显示「20元」（绿色），金额数字和颜色均不同",
+          "suggestion": "核实720分对应的正确金额，统一金额数值和文字颜色（建议粉色以匹配设计稿）",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "提升喜爱分得现金 - 里程碑720分",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.475,
+            "bottom": 0.52,
+            "left": 0.05,
+            "right": 0.42
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.475,
+            "bottom": 0.52,
+            "left": 0.05,
+            "right": 0.42
+          },
+          "reason": "金额数字不同（20元 vs 30元）且颜色不同（绿色 vs 粉色），可能涉及业务配置差异或开发漏改",
+          "basis": "开发稿显示「20元」为绿色文字，设计稿显示「30元」为粉色文字，其余里程碑节点颜色一致",
+          "whyNotConfirmed": "金额可能是后端动态配置的数据，也可能是设计稿更新的版本，需要向产品确认正确值",
+          "verifySuggestion": "与产品经理或设计师确认720分对应的正确奖励金额，检查是否为最新版本设计稿",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_A1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_A1_design.png"
+          ]
+        },
+        {
+          "id": "A2",
+          "problem": "进度条填充状态疑似不一致：设计稿 120 分节点之后进度条为灰色，开发稿 120 分节点之后仍有一段粉色填充",
+          "suggestion": "检查开发稿进度条填充逻辑，确保当前进度（120分）对应的粉色填充区域与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "提升喜爱分得现金 - 进度条",
+          "devCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.52,
+            "bottom": 0.555,
+            "left": 0.05,
+            "right": 0.5
+          },
+          "designCropRegion": {
+            "top": 0.455,
+            "bottom": 0.64,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.52,
+            "bottom": 0.555,
+            "left": 0.05,
+            "right": 0.5
+          },
+          "reason": "开发稿进度条粉色填充区域看起来比设计稿更长，设计稿在 120 分节点处开始变灰",
+          "basis": "设计稿中 120 分节点右侧进度条为灰色，开发稿中 120 分节点右侧仍有一段粉色，灰色起始位置不同",
+          "whyNotConfirmed": "可能是当前进度值不同导致（开发稿实际进度可能高于 120 分），而非样式实现问题",
+          "verifySuggestion": "确认两张截图的当前进度值是否一致，若一致则确认为样式问题需修复",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_A2_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_A2_design.png"
+          ]
+        },
+        {
+          "id": "M1-S1",
+          "problem": "顶部进度指示器的粉色圆点位置存在差异",
+          "suggestion": "统一进度指示器圆点与粉色进度条的相对位置，确保开发稿与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "顶部进度指示器区域",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0,
+            "bottom": 0.25,
+            "left": 0.2,
+            "right": 0.35
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0,
+            "bottom": 0.25,
+            "left": 0.2,
+            "right": 0.35
+          },
+          "reason": "开发稿中粉色进度条上的白色圆点标记与上方深色圆点的垂直间距，与设计稿中看起来不一致",
+          "basis": "开发稿中圆点在进度条上方有明显间隙，设计稿中圆点位置与进度条的相对关系不同",
+          "whyNotConfirmed": "图片分辨率有限，无法精确测量像素级间距差异",
+          "verifySuggestion": "使用开发工具检查顶部进度指示器组件，对比两个版本中圆点与进度条的垂直间距数值",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S1_design.png"
+          ]
+        },
+        {
+          "id": "M1-S2",
+          "problem": "标题左侧的装饰图标（红色小图标）存在差异",
+          "suggestion": "统一标题左侧装饰图标的样式，开发稿与设计稿应保持一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题'可享 9 项权益'左侧装饰图标",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.05,
+            "right": 0.12
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.05,
+            "right": 0.12
+          },
+          "reason": "开发稿中标题左侧的红色装饰图标形状与设计稿中的装饰图标不完全一致，开发稿中图标看起来更简洁",
+          "basis": "肉眼可见开发稿与设计稿中该装饰图标的细节轮廓有差异",
+          "whyNotConfirmed": "图标较小，分辨率不足以确认是同一素材的不同渲染还是有替换",
+          "verifySuggestion": "对比代码与设计稿中标题装饰图标的具体素材和样式定义",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S2_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S2_design.png"
+          ]
+        },
+        {
+          "id": "M1-S3",
+          "problem": "标题右侧的'展开全部'文字颜色存在差异",
+          "suggestion": "统一'展开全部'文字的颜色值，确保开发稿与设计稿保持一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题右侧'展开全部'文字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.7,
+            "right": 0.95
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.35,
+            "bottom": 0.5,
+            "left": 0.7,
+            "right": 0.95
+          },
+          "reason": "开发稿中'展开全部'文字颜色偏浅灰色，设计稿中颜色略深，灰度值看起来不一致",
+          "basis": "同一文字'展开全部'在两张图中的视觉灰度存在差异",
+          "whyNotConfirmed": "图片经过压缩和渲染，颜色值可能失真，无法精确判断色值差异",
+          "verifySuggestion": "在浏览器开发工具中使用取色器获取'展开全部'文字的实际色值，与设计稿色值对比",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S3_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S3_design.png"
+          ]
+        },
+        {
+          "id": "M1-S4",
+          "problem": "卡片区域的上边缘与标题区域的间距不同",
+          "suggestion": "统一卡片容器与标题之间的垂直间距，保持开发稿与设计稿一致",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "标题与下方卡片容器之间的垂直间距",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.4,
+            "bottom": 0.65,
+            "left": 0,
+            "right": 1
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.4,
+            "bottom": 0.65,
+            "left": 0,
+            "right": 1
+          },
+          "reason": "开发稿中白色卡片容器上边缘距离标题文字的垂直间距，与设计稿中的间距视觉上不一致",
+          "basis": "开发稿中卡片上边缘更贴近标题区域，设计稿中留白更多",
+          "whyNotConfirmed": "截图裁切范围可能影响对绝对间距的判断，需完整模块截图确认",
+          "verifySuggestion": "检查 CSS 中卡片容器的 margin-top 或 padding 值是否与设计稿标注一致",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S4_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M1-S4_design.png"
+          ]
+        },
+        {
+          "id": "M4-S1",
+          "problem": "进度条下方里程碑数字（200/300/400/600）字重偏细，设计稿中字重更粗（接近 semibold），开发稿接近 regular。",
+          "suggestion": "将 200/300/400/600 数字的 font-weight 调整为与设计稿一致（建议 semibold / 600）。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条下方里程碑数字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.55,
+            "bottom": 0.68,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.55,
+            "bottom": 0.68,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "reason": "设计稿中里程碑数字笔画更粗更醒目，开发稿中明显更细，视觉层级弱于设计预期。",
+          "basis": "直接对比两张截图中 200/300/400/600 数字的笔画粗细，设计稿数字笔画宽度约为开发稿的 1.3-1.5 倍。",
+          "whyNotConfirmed": "无法从截图精确获取 font-weight 数值，需检查开发代码中的 CSS 属性。",
+          "verifySuggestion": "在浏览器开发者工具中检查对应元素的 font-weight 值，与设计稿标注对比。",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S1_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S1_design.png"
+          ]
+        },
+        {
+          "id": "M4-S2",
+          "problem": "进度条底部与里程碑标签之间的垂直间距偏小，设计稿中该间距略大。",
+          "suggestion": "增加进度条底部到里程碑标签之间的垂直间距（margin-top 或 gap），使其与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条与里程碑标签之间",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.5,
+            "bottom": 0.6,
+            "left": 0.35,
+            "right": 0.95
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.5,
+            "bottom": 0.62,
+            "left": 0.35,
+            "right": 0.95
+          },
+          "reason": "开发稿中进度条与下方里程碑数字之间的留白紧凑，设计稿中留白更充裕，视觉呼吸感不同。",
+          "basis": "目测开发稿中间距约为设计稿的 2/3，进度条下边缘到数字上边缘的空白区域明显更小。",
+          "whyNotConfirmed": "截图分辨率有限，无法精确测量像素间距。",
+          "verifySuggestion": "使用浏览器开发者工具测量该区域的 margin/padding 值，与设计稿标注间距对比。",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S2_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S2_design.png"
+          ]
+        },
+        {
+          "id": "M4-S3",
+          "problem": "进度条上的里程碑节点圆圈（圆点）直径偏小，设计稿中圆点略大。",
+          "suggestion": "增大里程碑节点圆圈的直径（width/height），使其与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条上的里程碑节点圆点",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.46,
+            "bottom": 0.54,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.45,
+            "bottom": 0.55,
+            "left": 0.38,
+            "right": 0.92
+          },
+          "reason": "设计稿中的节点圆圈视觉占比更大更醒目，开发稿中圆点偏小，在进度条上的存在感较弱。",
+          "basis": "对比两张截图中节点圆圈的直径与进度条高度的比例关系，设计稿中圆圈直径约为进度条高度的 1.2-1.3 倍，开发稿中约为 1.0-1.1 倍。",
+          "whyNotConfirmed": "截图存在压缩，圆圈边缘可能受抗锯齿影响，难以精确测量直径。",
+          "verifySuggestion": "检查 CSS 中节点圆圈的 width/height 值，与设计稿标注尺寸对比。",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S3_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S3_design.png"
+          ]
+        },
+        {
+          "id": "M4-S4",
+          "problem": "进度条下方小数字（5/10/20/50）字重偏细，设计稿中字重略粗。",
+          "suggestion": "将 5/10/20/50 数字的 font-weight 调整为与设计稿一致。",
+          "priority": "P2",
+          "status": "待确认",
+          "location": "任务进度区域 - 进度条下方小数字",
+          "devCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "devBox": {
+            "top": 0.78,
+            "bottom": 0.88,
+            "left": 0.42,
+            "right": 0.88
+          },
+          "designCropRegion": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 1
+          },
+          "designBox": {
+            "top": 0.78,
+            "bottom": 0.88,
+            "left": 0.42,
+            "right": 0.88
+          },
+          "reason": "设计稿中底部小数字笔画略粗，与里程碑大数字的字重风格统一；开发稿中偏细，视觉上显得单薄。",
+          "basis": "直接对比两张截图中 5/10/20/50 的笔画粗细，设计稿中笔画宽度略大于开发稿。",
+          "whyNotConfirmed": "小字号下字重差异不明显，且截图可能存在压缩导致细节模糊。",
+          "verifySuggestion": "在浏览器开发者工具中检查对应元素的 font-weight 值，与设计稿标注对比。",
+          "images": [
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S4_dev.png",
+            ".claude/skills/uicheck_pro/outputs/issue_M4-S4_design.png"
+          ]
+        }
+      ]
+    }
+  }
+]

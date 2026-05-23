@@ -53,8 +53,8 @@
 - 没有编码声明时，Python 3.9 解析器遇到中文 UTF-8 字节会抛 `SyntaxError: Non-UTF-8 code starting with '\xe5'`，导致 Phase B 截图静默失败
 - **教训**：任何动态生成 Python 脚本并内嵌中文/非 ASCII 数据的场景，必须在脚本开头声明编码
 
-## 疑似问题检出率（v12 优化）
-- 数量上限从 8 改为 15（confirmed + suspected 合计）
+## 疑似问题检出率（v13+ 优化）
+- 取消问题数量上限（confirmed + suspected 均不限制）
 - specText（设计稿模块清单）不再截断 name/content/visual，模型能看到完整描述和视觉特征
 - false_positives.md 中"极弱的视觉感觉型判断"不再默认排除，改为建议纳入疑似问题
 - prompt 明确鼓励疑似问题多报："宁可多报也不要漏报"
@@ -63,11 +63,11 @@
 - assets 和 examples 默认不进入 analysis 阶段 prompt，只在调试截图规则或误判案例时按需使用
 - 截图规范示例（assets/screenshots/）只在调试截图框选规则时按需加载，analysis 阶段不强制读取
 
-## devCropRegion / designCropRegion 必须相同（v13 新增）
-- **问题**：模型为 dev 和 design 输出了不同的 CropRegion，导致两张截图的视窗范围错位，用户无法左右对比
-- **规则**：`devCropRegion` 和 `designCropRegion` 必须完全相同（top/bottom/left/right 四值一致）；`devBox` 和 `designBox` 可以不同，但必须框选同一视觉元素
+## devCropRegion / designCropRegion 独立定位（v14 变更）
+- **旧规则（已废弃）**：强制 devCropRegion 和 designCropRegion 完全相同。这导致同一模块在两张图中位置不同时，一张截图框准、另一张框空或框到错误区域。
+- **新规则**：`devCropRegion` 和 `designCropRegion` 必须**分别在各自图中独立识别模块区域**。CropRegion 表示截图的模块上下文窗口，Box 表示红框精确位置。两张截图的 CropRegion 可以不同，只要各自 CropRegion 覆盖了同一问题模块、Box 框到对应问题元素即可。
 - **写入位置**：`server.js buildUICheckStep2AnalysisPrompt()` 的"截图坐标强制规则"段；`output_schema.md` 坐标规则段
-- **验证方法**：检查 outputs/ 目录下同一 issue 的 dev/design 截图，确认两张图的高度相近（视窗一致）
+- **验证方法**：检查 outputs/ 目录下同一 issue 的 dev/design 截图，确认两张图都框到了同一模块区域，红框指向同一问题
 
 ## 前端 zoomImages 数组覆盖 bug（v13 已修复）
 - **现象**：点击 confirmed 表格截图缩略图，放大图却显示 suspected 的截图（对不上）
