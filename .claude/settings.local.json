@@ -27,7 +27,14 @@
       "Bash(lsof -ti:3000)",
       "Bash(xargs kill -9)",
       "Bash(/Users/jinhuiyu/Desktop/uiCheck/claudeprog/designer-platform/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude --help)",
-      "Bash(curl -s http://localhost:3000/)"
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(rm -rf /Users/jinhuiyu/Desktop/uiCheck/claudeprog/.git)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git reset *)"
+    ],
+    "additionalDirectories": [
+      "/Users/jinhuiyu/Desktop/uiCheck/claudeprog/.git"
     ]
   }
 }
