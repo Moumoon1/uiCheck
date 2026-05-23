@@ -62,6 +62,8 @@ async function callAiApiDirectly(prompt, imagePaths = [], model = null) {
       return await callGoogleApi(baseUrl || 'https://generativelanguage.googleapis.com/v1beta', apiKey, prompt, imageContent, visionModel);
     case 'moonshot':
       return await callMoonshotApi(baseUrl || 'https://api.moonshot.cn/v1', apiKey, prompt, imageContent, visionModel);
+    case 'qwen':
+      return await callOpenAiApi(baseUrl || 'https://dashscope.aliyuncs.com/compatible-mode/v1', apiKey, prompt, imageContent, visionModel || 'qwen3.6-plus');
     case 'custom':
       return await callCustomApi(baseUrl, apiKey, prompt, imageContent, visionModel);
     default:
