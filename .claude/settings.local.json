@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Bash(git config *)",
+      "Bash(networksetup -getwebproxy Wi-Fi)",
+      "Bash(lsof -iTCP -sTCP:LISTEN -n -P)",
+      "Bash(scutil --proxy)",
+      "Bash(node server.js)",
+      "Bash(npm install *)",
+      "Bash(pip3 install *)",
+      "Bash(npm search *)",
+      "Bash(claude --version)",
+      "Bash(curl -s https://raw.githubusercontent.com/anthropics/anthropic-quickstarts/main/README.md)",
+      "Bash(sudo npm install -g @anthropic-ai/claude-agent-sdk-darwin-arm64)",
+      "Bash(mkdir -p node_modules/.bin)",
+      "Bash(ln -sf ../@anthropic-ai/claude-agent-sdk-darwin-arm64/claude node_modules/.bin/claude)",
+      "Bash(chmod +x node_modules/.bin/claude)",
+      "Bash(pkill -f \"node server.js\")",
+      "Bash(PATH=__TRACKED_VAR__/node_modules/.bin:__TRACKED_VAR__ node server.js)",
+      "Bash(npx claude *)",
+      "Bash(chmod +x /Users/jinhuiyu/Desktop/uiCheck/claudeprog/install.sh)",
+      "Bash(node -c server.js)",
+      "Bash(curl -s http://localhost:3000/api/cli-info)",
+      "Bash(node /Users/jinhuiyu/Desktop/uiCheck/claudeprog/designer-platform/server.js)",
+      "Bash(node /Users/jinhuiyu/Desktop/uiCheck/claudeprog/designer-platform/create-claude-link.js)",
+      "Bash(lsof -ti:3000)",
+      "Bash(xargs kill -9)",
+      "Bash(/Users/jinhuiyu/Desktop/uiCheck/claudeprog/designer-platform/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude --help)",
+      "Bash(curl -s http://localhost:3000/)"
+    ]
+  }
+}

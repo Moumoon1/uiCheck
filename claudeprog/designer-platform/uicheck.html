@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>走查 - Design Pilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>走查</h1>
+  </div>
+
+  <div class="page">
+    <img src="UI.png" class="page-logo" alt="UI">
+    <div class="page-desc">上传开发页面截图和设计稿长图，AI 自动对比两者差异，生成带截图标注的走查报告，帮助快速发现样式偏差和模块缺失。</div>
+
+    <!-- 页面类型选择 -->
+    <div class="section">
+      <h3>&#128196; 页面类型</h3>
+      <div class="page-type-toggle">
+        <button class="page-type-btn active" id="btnC" onclick="selectPageType('c')">C端页面</button>
+        <button class="page-type-btn" id="btnB" onclick="selectPageType('b')">B端页面</button>
+        <input type="hidden" id="pageType" value="c">
+      </div>
+      <p class="model-note" id="pageTypeNote">C端：移动端活动页、功能页，关注视觉还原和结构一致性。</p>
+    </div>
+
+    <!-- 上传模块（标题固定，tab 切换内容） -->
+    <div class="section">
+      <h3>&#128187; 页面上传</h3>
+    <div class="upload-tabs">
+      <div class="upload-tab active" data-tab="single" onclick="switchTab('single')">&#128247; 单页面上传</div>
+      <div class="upload-tab" data-tab="folder" onclick="switchTab('folder')">&#128194; 文件夹上传</div>
+    </div>
+
+    <!-- Tab 内容容器 -->
+    <div class="tabs-container">
+    <!-- 单页面上传 -->
+    <div class="tab-content active" id="singleTab">
+      <div>
+        <div class="upload-grid">
+          <div class="upload-box" id="devBox" onclick="document.getElementById('devFile').click()">
+            <input type="file" id="devFile" accept="image/*" onchange="handleImage(this, 'devBox', 'dev')">
+            <div class="upload-label">
+              <span>&#128187;</span>
+              开发长截图
+            </div>
+          </div>
+          <div class="upload-box" id="designBox" onclick="document.getElementById('designFile').click()">
+            <input type="file" id="designFile" accept="image/*" onchange="handleImage(this, 'designBox', 'design')">
+            <div class="upload-label">
+              <span>&#127912;</span>
+              设计稿长图
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 文件夹上传 -->
+    <div class="tab-content" id="folderTab">
+      <div>
+        <div class="upload-grid">
+          <div class="folder-upload-box" id="devFolderBox" onclick="document.getElementById('devFolder').click()">
+            <input type="file" id="devFolder" webkitdirectory directory multiple onchange="handleFolder(this, 'dev')">
+            <div class="upload-label" id="devFolderLabel">
+              <span>&#128187;</span>
+              开发截图文件夹
+            </div>
+          </div>
+          <div class="folder-upload-box" id="designFolderBox" onclick="document.getElementById('designFolder').click()">
+            <input type="file" id="designFolder" webkitdirectory directory multiple onchange="handleFolder(this, 'design')">
+            <div class="upload-label" id="designFolderLabel">
+              <span>&#127912;</span>
+              设计稿文件夹
+            </div>
+          </div>
+        </div>
+        <div class="file-list" id="devFileList"></div>
+        <div class="file-list" id="designFileList"></div>
+        <div class="pair-status" id="pairStatus"></div>
+        <div class="naming-tip">
+          <strong>&#9888;&#65039; 命名规则提醒</strong>
+          <p>开发截图和设计稿必须使用<strong>相同的文件名</strong>才能自动配对对比。例如：</p>
+          <div class="naming-example">
+            <div class="naming-side">
+              <div class="naming-side-title">&#128187; 开发截图文件夹</div>
+              <div class="naming-file">首页.png</div>
+              <div class="naming-file">列表页.png</div>
+              <div class="naming-file">详情页.png</div>
+            </div>
+            <div class="naming-arrow">→ 自动配对 →</div>
+            <div class="naming-side">
+              <div class="naming-side-title">&#127912; 设计稿文件夹</div>
+              <div class="naming-file">首页.png</div>
+              <div class="naming-file">列表页.png</div>
+              <div class="naming-file">详情页.png</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- 背景信息 -->
+    <div class="section">
+      <h3>&#128221; 背景信息（可选）</h3>
+      <textarea id="bgInfo" rows="3" placeholder="补充走查背景，例如：本次重点检查首页改版，关注顶部导航和底部 CTA 按钮的还原度..."></textarea>
+    </div>
+
+    <!-- 模型选择 -->
+    <div class="section">
+      <h3>&#129302; 模型调用方式</h3>
+
+      <!-- Tab 切换 -->
+      <div class="upload-tabs" style="margin-bottom: 20px;">
+        <div class="upload-tab active" id="cliTab" onclick="switchModelMode('cli')">🖥️ CLI 调用</div>
+        <div class="upload-tab" id="apiTab" onclick="switchModelMode('api')">🔑 API 直接调用</div>
+      </div>
+
+      <!-- CLI 模式 -->
+      <div id="cliMode" class="model-mode-content">
+        <!-- CLI 类型提示 -->
+        <div id="cliInfo" style="margin-bottom: 12px; padding: 8px 12px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; font-size: 13px; color: #0369a1; display: none;">
+          <span id="cliToolName"></span>
+        </div>
+
+        <div class="model-dropdown" id="modelDropdown">
+          <div class="model-dropdown-trigger" id="modelTrigger" onclick="toggleModelDropdown()">
+            <span class="model-dropdown-label" id="modelLabel">GPT 5.4（推荐）</span>
+            <svg class="model-dropdown-arrow" id="modelArrow" viewBox="0 0 12 12" width="14" height="14"><path d="M3 4.5L6 7.5L9 4.5" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="model-dropdown-menu" id="modelMenu">
+            <!-- GPT 系列模型（所有 CLI 都支持） -->
+            <div class="model-dropdown-item gpt-model" data-value="gpt-5.5" onclick="selectModel('gpt-5.5', 'GPT 5.5')">
+              <span class="model-item-name">GPT 5.5</span>
+              <span class="model-item-tag new">最新</span>
+            </div>
+            <div class="model-dropdown-item gpt-model selected" data-value="gpt-5.4" onclick="selectModel('gpt-5.4', 'GPT 5.4（推荐）')">
+              <span class="model-item-name">GPT 5.4</span>
+              <span class="model-item-tag recommended">推荐</span>
+            </div>
+
+            <!-- Claude 系列模型（仅 Claude CLI 支持） -->
+            <div class="model-dropdown-item claude-model" data-value="claude-opus-4-7-20250705" onclick="selectModel('claude-opus-4-7-20250705', 'Claude Opus 4.7')" style="display:none;">
+              <span class="model-item-name">Claude Opus 4.7</span>
+            </div>
+            <div class="model-dropdown-item claude-model" data-value="claude-sonnet-4-6-20250514" onclick="selectModel('claude-sonnet-4-6-20250514', 'Claude Sonnet 4.6')" style="display:none;">
+              <span class="model-item-name">Claude Sonnet 4.6</span>
+            </div>
+
+            <!-- 其他模型 -->
+            <div class="model-dropdown-item other-model" data-value="glm-5.1" onclick="selectModel('glm-5.1', 'GLM 5.1')">
+              <span class="model-item-name">GLM 5.1</span>
+            </div>
+            <div class="model-dropdown-item other-model" data-value="gemini-3.1-pro" onclick="selectModel('gemini-3.1-pro', 'Gemini 3.1 Pro')">
+              <span class="model-item-name">Gemini 3.1 Pro</span>
+            </div>
+            <div class="model-dropdown-item other-model" data-value="kimi-k2.5" onclick="selectModel('kimi-k2.5', 'Kimi K2.5')">
+              <span class="model-item-name">Kimi K2.5</span>
+            </div>
+          </div>
+          <input type="hidden" id="visionModel" value="gpt-5.4">
+        </div>
+        <p class="model-note" id="modelNote">选择用于读图的视觉模型。</p>
+
+        <!-- 自定义模型输入 -->
+        <div style="margin-top: 12px;">
+          <input type="text" id="customModel" placeholder="或输入自定义模型名称（如：gpt-4o-vision）"
+                 style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 13px;"
+                 oninput="updateCustomModel()">
+        </div>
+      </div>
+
+      <!-- API 模式 -->
+      <div id="apiMode" class="model-mode-content" style="display: none;">
+        <div style="padding: 16px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <!-- API 提供商选择 -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #374151;">API 提供商</label>
+            <select id="apiProvider" onchange="updateApiPlaceholder()" style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; background: white;">
+              <option value="openai">OpenAI (GPT)</option>
+              <option value="anthropic">Anthropic (Claude)</option>
+              <option value="google">Google (Gemini)</option>
+              <option value="moonshot">Moonshot (Kimi)</option>
+              <option value="custom">自定义</option>
+            </select>
+          </div>
+
+          <!-- API 密钥输入 -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #374151;">API 密钥</label>
+            <input type="password" id="apiKey" placeholder="sk-..."
+                   style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;"
+                   autocomplete="off">
+          </div>
+
+          <!-- API Base URL（可选） -->
+          <div id="baseUrlSection" style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #374151;">
+              API Base URL（可选）
+              <span style="font-weight: normal; color: #9ca3af; font-size: 12px;">- 用于代理或自定义端点</span>
+            </label>
+            <input type="text" id="apiBaseUrl" placeholder="https://api.openai.com/v1"
+                   style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+          </div>
+
+          <!-- 模型名称 -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #374151;">模型名称</label>
+            <input type="text" id="apiModelName" placeholder="gpt-4o 或 claude-sonnet-4-6-20250514"
+                   style="width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+          </div>
+
+          <!-- 提示信息 -->
+          <div style="font-size: 12px; color: #6b7280; padding: 8px; background: #fef3c7; border-radius: 6px; border: 1px solid #fde68a;">
+            ⚠️ <strong>注意：</strong>API 密钥仅在当前会话使用，不会保存到服务器。刷新页面后需要重新输入。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="startReview()">
+      <span class="spinner"></span>
+      <span class="btn-text">开始走查</span>
+    </button>
+
+    <div class="error-msg" id="errorMsg" style="display:none"></div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="loading-steps" id="loadingSteps">
+        <div class="loading-step" id="stepUpload">
+          <span class="step-indicator"></span>
+          <span>上传文件</span>
+        </div>
+        <div class="loading-step" id="stepAnalyze">
+          <span class="step-indicator"></span>
+          <span>CodeFlicker 分析中</span>
+        </div>
+        <div class="loading-step" id="stepDone">
+          <span class="step-indicator"></span>
+          <span>分析完成</span>
+        </div>
+      </div>
+      <div class="loading-text" id="loadingText">请稍候...</div>
+    </div>
+
+    <div class="result-area" id="resultArea">
+      <div class="section">
+        <h3>&#128203; 走查结果</h3>
+        <div class="result-actions" style="display:flex;gap:8px;margin-bottom:16px;justify-content:flex-end;">
+          <button class="copy-btn" onclick="copyResult()">&#128203; 复制结果</button>
+        </div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Custom model dropdown */
+    .model-dropdown {
+      position: relative;
+      user-select: none;
+    }
+    .model-dropdown-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 42px;
+    }
+    .model-dropdown-trigger:hover {
+      border-color: #d1d5db;
+    }
+    .model-dropdown-trigger.open {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+      border-radius: 8px 8px 0 0;
+    }
+    .model-dropdown-label {
+      font-size: 14px;
+      color: #1e293b;
+      font-family: 'Inter', sans-serif;
+    }
+    .model-dropdown-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .model-dropdown-trigger.open .model-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .model-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #6366f1;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      z-index: 10;
+      display: none;
+      overflow: hidden;
+    }
+    .model-dropdown-menu.show {
+      display: block;
+    }
+    .model-dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .model-dropdown-item:hover {
+      background: #f5f3ff;
+    }
+    .model-dropdown-item.selected {
+      background: #f5f3ff;
+    }
+    .model-item-name {
+      font-size: 14px;
+      color: #1e293b;
+    }
+    .model-item-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    .model-item-tag.recommended {
+      background: #ede9fe;
+      color: #6366f1;
+    }
+    .model-item-tag.limited {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .model-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .page-type-toggle {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .page-type-btn {
+      padding: 6px 18px;
+      border-radius: 8px;
+      border: 1.5px solid #e5e7eb;
+      background: #fff;
+      font-size: 14px;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-weight: 500;
+    }
+    .page-type-btn:hover {
+      border-color: #a5b4fc;
+      color: #4f46e5;
+    }
+    .page-type-btn.active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      color: #4f46e5;
+    }
+    .copy-btn {
+      padding: 6px 14px;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      background: #fff;
+      color: #666;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover {
+      border-color: #111;
+      color: #111;
+    }
+    .copy-btn.copied {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    /* Tabs */
+    .upload-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .upload-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .upload-tab.active {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Naming tip */
+    .naming-tip {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #92400e;
+      line-height: 1.6;
+    }
+    .naming-tip strong {
+      color: #78350f;
+    }
+    .naming-tip p {
+      margin: 4px 0 10px;
+    }
+    .naming-example {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+    .naming-side {
+      flex: 1;
+    }
+    .naming-side-title {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #78350f;
+    }
+    .naming-file {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      padding: 2px 8px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 4px;
+      margin-bottom: 3px;
+      display: inline-block;
+    }
+    .naming-arrow {
+      font-size: 12px;
+      color: #92400e;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Folder upload */
+    .folder-upload-box {
+      border: 2px dashed #d4d4d4;
+      border-radius: 10px;
+      padding: 28px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      position: relative;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fafafa;
+    }
+    .folder-upload-box:hover {
+      border-color: #111;
+      background: #f5f5f5;
+    }
+    .folder-upload-box.has-files {
+      border-style: solid;
+      border-color: #e0e0e0;
+      background: #fff;
+    }
+    .folder-upload-box input[type="file"] {
+      display: none;
+    }
+    .folder-label {
+      color: #999;
+      font-size: 14px;
+    }
+    .folder-label span {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    /* File list */
+    .file-list {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .file-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: #f0f0f0;
+      color: #555;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .file-tag .remove-file {
+      cursor: pointer;
+      color: #999;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .file-tag .remove-file:hover {
+      color: #e53e3e;
+    }
+
+    /* Pair status */
+    .pair-status {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      font-size: 13px;
+      color: #166534;
+      display: none;
+    }
+    .pair-status.has-pairs {
+      display: block;
+    }
+    .pair-status.has-unpaired {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+    .pair-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .pair-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pair-tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.7);
+      display: inline-block;
+    }
+    .pair-tag.unpaired {
+      background: rgba(251,191,36,0.2);
+      color: #92400e;
+    }
+
+    @media (max-width: 640px) {
+      .naming-example {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .naming-arrow {
+        text-align: center;
+        padding: 4px 0;
+      }
+    }
+  </style>
+
+  <script>
+    const images = { dev: null, design: null };
+    let resultMarkdown = '';
+    let currentCliTool = 'claude';  // 默认值
+
+    // Tab state
+    let currentTab = 'single';
+    const folderFiles = { dev: [], design: [] };
+
+    // 初始化：获取 CLI 信息并更新模型列表
+    async function initCliInfo() {
+      try {
+        const response = await fetch('/api/cli-info');
+        const data = await response.json();
+        currentCliTool = data.tool;
+
+        console.log('[CLI] 检测到工具:', currentCliTool);
+
+        // 更新 CLI 提示信息
+        const cliInfo = document.getElementById('cliInfo');
+        const cliToolName = document.getElementById('cliToolName');
+        cliInfo.style.display = 'block';
+
+        if (currentCliTool === 'claude') {
+          cliToolName.textContent = '✓ 当前使用 Claude CLI - 支持所有模型';
+          cliInfo.style.background = '#f0f9ff';
+          cliInfo.style.borderColor = '#bae6fd';
+          cliInfo.style.color = '#0369a1';
+
+          // 显示所有模型
+          document.querySelectorAll('.claude-model, .other-model').forEach(el => {
+            el.style.display = 'flex';
+          });
+
+          // 更新提示文字
+          document.getElementById('modelNote').textContent = '选择用于读图的视觉模型。支持 GPT、Claude、Gemini、Kimi 等多种模型。';
+
+        } else if (currentCliTool === 'codex') {
+          cliToolName.textContent = '✓ 当前使用 Codex CLI - 仅支持 GPT 模型';
+          cliInfo.style.background = '#fef3c7';
+          cliInfo.style.borderColor = '#fde68a';
+          cliInfo.style.color = '#92400e';
+
+          // 隐藏非 GPT 模型
+          document.querySelectorAll('.claude-model, .other-model').forEach(el => {
+            el.style.display = 'none';
+          });
+
+          // 确保选中的是 GPT 模型
+          const currentModel = document.getElementById('visionModel').value;
+          if (!currentModel.startsWith('gpt')) {
+            selectModel('gpt-5.4', 'GPT 5.4（推荐）');
+          }
+
+          // 更新提示文字
+          document.getElementById('modelNote').textContent = 'Codex CLI 仅支持 GPT 系列模型。如需使用其他模型，请使用 Claude Code 打开此项目。';
+        }
+
+      } catch (error) {
+        console.error('[CLI] 获取 CLI 信息失败:', error);
+        // 使用默认值
+        currentCliTool = 'claude';
+      }
+    }
+
+    // 页面加载时初始化
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCliInfo);
+    } else {
+      initCliInfo();
+    }
+
+    // Page type toggle (B/C end)
+    function selectPageType(type) {
+      document.getElementById('pageType').value = type;
+      document.getElementById('btnC').classList.toggle('active', type === 'c');
+      document.getElementById('btnB').classList.toggle('active', type === 'b');
+      const note = document.getElementById('pageTypeNote');
+      note.textContent = type === 'b'
+        ? 'B端：管理后台、数据看板、运营工具，关注表格、筛选、操作区的结构还原。'
+        : 'C端：移动端活动页、功能页，关注视觉还原和结构一致性。';
+    }
+
+    // Custom model dropdown
+    function toggleModelDropdown() {
+      const trigger = document.getElementById('modelTrigger');
+      const menu = document.getElementById('modelMenu');
+      const isOpen = trigger.classList.contains('open');
+      trigger.classList.toggle('open');
+      menu.classList.toggle('show');
+    }
+    function selectModel(value, label) {
+      document.getElementById('visionModel').value = value;
+      document.getElementById('modelLabel').textContent = label;
+      document.getElementById('customModel').value = '';  // 清空自定义输入
+      document.querySelectorAll('.model-dropdown-item').forEach(item => {
+        item.classList.toggle('selected', item.dataset.value === value);
+      });
+      toggleModelDropdown();
+    }
+
+    function updateCustomModel() {
+      const customValue = document.getElementById('customModel').value.trim();
+      if (customValue) {
+        document.getElementById('visionModel').value = customValue;
+        document.getElementById('modelLabel').textContent = customValue;
+        // 取消下拉菜单的选中状态
+        document.querySelectorAll('.model-dropdown-item').forEach(item => {
+          item.classList.remove('selected');
+        });
+      }
+    }
+
+    // API 配置相关函数
+    function switchModelMode(mode) {
+      const cliTab = document.getElementById('cliTab');
+      const apiTab = document.getElementById('apiTab');
+      const cliMode = document.getElementById('cliMode');
+      const apiMode = document.getElementById('apiMode');
+
+      if (mode === 'cli') {
+        cliTab.classList.add('active');
+        apiTab.classList.remove('active');
+        cliMode.style.display = 'block';
+        apiMode.style.display = 'none';
+      } else {
+        cliTab.classList.remove('active');
+        apiTab.classList.add('active');
+        cliMode.style.display = 'none';
+        apiMode.style.display = 'block';
+      }
+    }
+
+    function updateApiPlaceholder() {
+      const provider = document.getElementById('apiProvider').value;
+      const apiKeyInput = document.getElementById('apiKey');
+      const baseUrlInput = document.getElementById('apiBaseUrl');
+      const modelInput = document.getElementById('apiModelName');
+
+      const placeholders = {
+        'openai': { key: 'sk-...', url: 'https://api.openai.com/v1', model: 'gpt-4o' },
+        'anthropic': { key: 'sk-ant-...', url: 'https://api.anthropic.com', model: 'claude-sonnet-4-6-20250514' },
+        'google': { key: 'AIza...', url: 'https://generativelanguage.googleapis.com/v1beta', model: 'gemini-pro-vision' },
+        'moonshot': { key: 'sk-...', url: 'https://api.moonshot.cn/v1', model: 'moonshot-v1-8k-vision' },
+        'custom': { key: 'your-api-key', url: 'https://your-api-endpoint', model: 'your-model-name' }
+      };
+
+      apiKeyInput.placeholder = placeholders[provider]?.key || 'your-api-key';
+      baseUrlInput.placeholder = placeholders[provider]?.url || 'https://your-api-endpoint';
+      modelInput.placeholder = placeholders[provider]?.model || 'your-model-name';
+    }
+
+    function getApiConfig() {
+      const apiMode = document.getElementById('apiMode');
+      if (apiMode.style.display === 'none') return null;
+
+      return {
+        provider: document.getElementById('apiProvider').value,
+        apiKey: document.getElementById('apiKey').value.trim(),
+        baseUrl: document.getElementById('apiBaseUrl').value.trim() || null,
+        model: document.getElementById('apiModelName').value.trim()
+      };
+    }
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('modelDropdown');
+      if (!dropdown.contains(e.target)) {
+        document.getElementById('modelTrigger').classList.remove('open');
+        document.getElementById('modelMenu').classList.remove('show');
+      }
+    });
+
+    function switchTab(tab) {
+      currentTab = tab;
+      const y = window.scrollY;
+      document.querySelectorAll('.upload-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === tab + 'Tab'));
+      window.scrollTo(0, y);
+    }
+
+    // Single page upload
+    function handleImage(input, boxId, key) {
+      const file = input.files[0];
+      if (!file) return;
+      const box = document.getElementById(boxId);
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        images[key] = { file, data: e.target.result };
+        box.classList.add('has-image');
+        box.innerHTML = `<img src="${e.target.result}"><button class="remove-btn" onclick="removeImage(event, '${key}', '${boxId}')">&times;</button>`;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage(e, key, boxId) {
+      e.stopPropagation();
+      images[key] = null;
+      const box = document.getElementById(boxId);
+      box.classList.remove('has-image');
+      const icon = key === 'dev' ? '&#128187;' : '&#127912;';
+      const label = key === 'dev' ? '开发长截图' : '设计稿长图';
+      box.innerHTML = `<input type="file" id="${key === 'dev' ? 'devFile' : 'designFile'}" accept="image/*" onchange="handleImage(this, '${boxId}', '${key}')"><div class="upload-label"><span>${icon}</span>${label}</div>`;
+    }
+
+    // Folder upload
+    function handleFolder(input, key) {
+      const files = Array.from(input.files).filter(f => /\.(png|jpg|jpeg|gif|webp|bmp)$/i.test(f));
+      if (files.length === 0) return;
+
+      folderFiles[key] = files;
+      const box = document.getElementById(key === 'dev' ? 'devFolderBox' : 'designFolderBox');
+      const label = document.getElementById(key === 'dev' ? 'devFolderLabel' : 'designFolderLabel');
+      const listEl = document.getElementById(key === 'dev' ? 'devFileList' : 'designFileList');
+
+      box.classList.add('has-files');
+      label.innerHTML = `<span>&#128194;</span>已选择 ${files.length} 张图片`;
+
+      listEl.innerHTML = files.map((f, i) =>
+        `<span class="file-tag">${f.name}<span class="remove-file" onclick="removeFolderFile(event, '${key}', ${i})">&times;</span></span>`
+      ).join('');
+
+      updatePairStatus();
+    }
+
+    function removeFolderFile(e, key, index) {
+      e.stopPropagation();
+      folderFiles[key].splice(index, 1);
+      const listEl = document.getElementById(key === 'dev' ? 'devFileList' : 'designFileList');
+      listEl.innerHTML = folderFiles[key].map((f, i) =>
+        `<span class="file-tag">${f.name}<span class="remove-file" onclick="removeFolderFile(event, '${key}', ${i})">&times;</span></span>`
+      ).join('');
+
+      if (folderFiles[key].length === 0) {
+        const box = document.getElementById(key === 'dev' ? 'devFolderBox' : 'designFolderBox');
+        const label = document.getElementById(key === 'dev' ? 'devFolderLabel' : 'designFolderLabel');
+        box.classList.remove('has-files');
+        const txt = key === 'dev' ? '选择开发截图文件夹' : '选择设计稿文件夹';
+        label.innerHTML = `<span>&#128194;</span>${txt}`;
+      }
+
+      updatePairStatus();
+    }
+
+    function updatePairStatus() {
+      const devNames = new Set(folderFiles.dev.map(f => f.name));
+      const designNames = new Set(folderFiles.design.map(f => f.name));
+
+      const paired = [];
+      const unpairedDev = [];
+      const unpairedDesign = [];
+
+      for (const name of devNames) {
+        if (designNames.has(name)) paired.push(name);
+        else unpairedDev.push(name);
+      }
+      for (const name of designNames) {
+        if (!devNames.has(name)) unpairedDesign.push(name);
+      }
+
+      const el = document.getElementById('pairStatus');
+      if (paired.length === 0 && unpairedDev.length === 0 && unpairedDesign.length === 0) {
+        el.classList.remove('has-pairs', 'has-unpaired');
+        el.style.display = 'none';
+        return;
+      }
+
+      el.style.display = 'block';
+      el.classList.add('has-pairs');
+      if (unpairedDev.length > 0 || unpairedDesign.length > 0) el.classList.add('has-unpaired');
+      else el.classList.remove('has-unpaired');
+
+      let html = '';
+      if (paired.length > 0) {
+        html += `<div class="pair-title">&#9989; 已配对 ${paired.length} 组页面</div>`;
+        html += `<div class="pair-tags">${paired.map(n => `<span class="pair-tag">${n.replace(/\.[^.]+$/, '')}</span>`).join('')}</div>`;
+      }
+      if (unpairedDev.length > 0) {
+        html += `<div class="pair-title" style="margin-top:8px">&#9888;&#65039; 开发侧未配对</div>`;
+        html += `<div class="pair-tags">${unpairedDev.map(n => `<span class="pair-tag unpaired">${n}</span>`).join('')}</div>`;
+      }
+      if (unpairedDesign.length > 0) {
+        html += `<div class="pair-title" style="margin-top:8px">&#9888;&#65039; 设计侧未配对</div>`;
+        html += `<div class="pair-tags">${unpairedDesign.map(n => `<span class="pair-tag unpaired">${n}</span>`).join('')}</div>`;
+      }
+      el.innerHTML = html;
+    }
+
+    // Loading helpers
+    function setLoading(show, step) {
+      const overlay = document.getElementById('loadingOverlay');
+      if (show) {
+        overlay.classList.add('active');
+        if (step) {
+          document.querySelectorAll('.loading-step').forEach(s => s.classList.remove('active'));
+          document.getElementById(step).classList.add('active');
+        }
+      } else {
+        overlay.classList.remove('active');
+      }
+    }
+
+    function setStepDone(step) {
+      document.getElementById(step).classList.remove('active');
+      document.getElementById(step).classList.add('done');
+    }
+
+    function setLoadingText(text) {
+      document.getElementById('loadingText').textContent = text;
+    }
+
+    // Zoom
+    window._zoom = function(idx) {
+      const src = window._zoomImages[idx];
+      if (!src) return;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;display:flex;align-items:center;justify-content:center;cursor:zoom-out';
+      overlay.onclick = function() { document.body.removeChild(overlay); document.body.removeChild(closeBtn); };
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.cssText = 'max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';
+      img.onclick = function(e) { e.stopPropagation(); };
+      const closeBtn = document.createElement('div');
+      closeBtn.innerHTML = '&times;';
+      closeBtn.style.cssText = 'position:fixed;top:16px;right:20px;color:#fff;font-size:28px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.15);border-radius:50%;cursor:pointer;z-index:10001';
+      closeBtn.onclick = function(e) { e.stopPropagation(); document.body.removeChild(overlay); document.body.removeChild(closeBtn); };
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+      document.body.appendChild(closeBtn);
+    };
+
+    // Copy result
+    function copyResult() {
+      const el = document.getElementById('resultContent');
+      const text = el.innerText || el.textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '✓ 已复制';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 复制结果';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Submit
+    async function startReview() {
+      const bgInfo = document.getElementById('bgInfo').value.trim();
+
+      if (currentTab === 'single') {
+        if (!images.dev || !images.design) return alert('请上传两张截图');
+      } else {
+        if (folderFiles.dev.length === 0) return alert('请选择开发截图文件夹');
+        if (folderFiles.design.length === 0) return alert('请选择设计稿文件夹');
+        const devNames = folderFiles.dev.map(f => f.name);
+        const designNames = folderFiles.design.map(f => f.name);
+        const paired = devNames.filter(n => designNames.includes(n));
+        if (paired.length === 0) return alert('没有同名配对的页面，请确保开发截图和设计稿使用相同文件名');
+      }
+
+      const btn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+      const resultArea = document.getElementById('resultArea');
+      const resultContent = document.getElementById('resultContent');
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+      errorMsg.style.display = 'none';
+      resultArea.classList.remove('visible');
+      resultContent.innerHTML = '';
+      resultMarkdown = '';
+      window._zoomImages = [];
+
+      document.querySelectorAll('.loading-step').forEach(s => {
+        s.classList.remove('active', 'done');
+      });
+
+      try {
+        setLoading(true, 'stepUpload');
+        setLoadingText('上传截图中...');
+
+        const formData = new FormData();
+        if (bgInfo) formData.append('files', new Blob([bgInfo], { type: 'text/plain' }), 'background.txt');
+        formData.append('bgInfo', bgInfo);
+        formData.append('mode', currentTab);
+
+        if (currentTab === 'single') {
+          formData.append('files', images.dev.file, 'dev_screenshot.png');
+          formData.append('files', images.design.file, 'design_mockup.png');
+        } else {
+          for (const f of folderFiles.dev) {
+            formData.append('files', f, 'dev_' + f.name);
+          }
+          for (const f of folderFiles.design) {
+            formData.append('files', f, 'design_' + f.name);
+          }
+        }
+
+        const uploadRes = await fetch('/api/upload/uicheck', {
+          method: 'POST',
+          body: formData
+        });
+
+        setStepDone('stepUpload');
+        if (!uploadRes.ok) throw new Error('上传失败');
+
+        setLoading(true, 'stepAnalyze');
+        setLoadingText('CodeFlicker 启动中...');
+        resultArea.classList.add('visible');
+        const visionModel = document.getElementById('visionModel').value;
+        const pageType = document.getElementById('pageType').value;
+
+        // 获取 API 配置
+        const apiConfig = getApiConfig();
+
+        // 构建分析 URL
+        let analyzeUrl = '/api/analyze/uicheck?model=' + encodeURIComponent(visionModel) + '&pageType=' + encodeURIComponent(pageType);
+
+        // 如果使用自定义 API，通过 POST 发送配置
+        if (apiConfig) {
+          // 先发送 API 配置到服务器
+          await fetch('/api/set-api-config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(apiConfig)
+          });
+        }
+
+        const eventSource = new EventSource(analyzeUrl);
+
+        eventSource.onmessage = (e) => {
+          const msg = JSON.parse(e.data);
+          if (msg.type === 'status') {
+            resultContent.innerHTML = `<p style="color:#6366f1">${msg.content}</p>`;
+            setLoadingText(msg.content);
+          } else if (msg.type === 'chunk') {
+            resultMarkdown += msg.content;
+            // Only show content before the JSON table section
+            const tableStart = resultMarkdown.indexOf('## 问题表格');
+            const displayText = tableStart > 0 ? resultMarkdown.substring(0, tableStart) : resultMarkdown;
+            // Strip all code blocks and raw JSON objects
+            const cleaned = displayText
+              .replace(/```[\s\S]*?```/g, '')
+              .replace(/\{[\s\S]*?"confirmed"[\s\S]*?\}/g, '')
+              .trim();
+            if (cleaned) {
+              resultContent.innerHTML = marked.parse(cleaned);
+            }
+            if (resultMarkdown.length > 20) {
+              setLoading(false);
+              setStepDone('stepAnalyze');
+            }
+          } else if (msg.type === 'table') {
+            renderIssueTable(msg.tableType, msg.rows);
+          } else if (msg.type === 'error') {
+            errorMsg.textContent = msg.content;
+            errorMsg.style.display = 'block';
+            setLoading(false);
+            eventSource.close();
+          } else if (msg.type === 'done') {
+            setStepDone('stepAnalyze');
+            setStepDone('stepDone');
+            setLoadingText('分析完成');
+            setTimeout(() => setLoading(false), 600);
+            eventSource.close();
+          }
+        };
+
+        function renderIssueTable(tableType, rows) {
+          if (!rows || rows.length === 0) return;
+          const severityColors = { high: '#ef4444', medium: '#f59e0b', low: '#3b82f6' };
+          const priorityColorMap = { P0: '#ef4444', P1: '#f59e0b', P2: '#3b82f6' };
+          const suspectLevelColors = { '高疑似': '#f97316', '中疑似': '#eab308', '低疑似': '#94a3b8' };
+
+          let html = '';
+          const isConfirmed = tableType === 'confirmed';
+          const title = isConfirmed ? '开发正式问题清单' : '疑似问题 / 待确认项清单';
+          const subtitle = isConfirmed
+            ? '可直接提给前端修改的问题'
+            : '存在偏差迹象，建议设计师进一步复核';
+          const today = new Date().toISOString().slice(0, 10);
+
+          html += `<div class="table-section"><h2 class="table-section-title">${title}</h2>`;
+          html += `<p class="table-section-sub">${subtitle}</p>`;
+          html += '<div class="issue-table-wrapper"><table class="issue-table">';
+          html += '<thead><tr>';
+          html += '<th>序号</th>';
+          html += '<th>问题描述</th>';
+          html += '<th>状态</th>';
+          html += '<th>问题截图</th>';
+          html += '<th>日期</th>';
+          html += '<th>优先级</th>';
+          html += '<th>走查人</th>';
+          html += '<th>跟进人</th>';
+          html += '</tr></thead><tbody>';
+
+          if (!window._zoomImages) window._zoomImages = [];
+          const zoomImages = window._zoomImages;
+          rows.forEach((row, i) => {
+            // Support both old (severity) and new (priority) format
+            const priority = row.priority || (row.severity === 'high' ? 'P0' : row.severity === 'low' ? 'P2' : 'P1');
+            const color = isConfirmed
+              ? (priorityColorMap[priority] || priorityColorMap.P1)
+              : (suspectLevelColors[row.suspectLevel] || suspectLevelColors['中疑似']);
+            const status = row.status || (isConfirmed ? '待修改' : '待确认');
+
+            // Description: only show problem text
+            let desc = '';
+            const problemText = row.problem || row.description || '';
+            if (problemText) desc += `<div class="desc-text">${problemText}</div>`;
+
+            let screenshotHtml = '';
+            if (row.devImg || row.designImg) {
+              screenshotHtml += '<div class="screenshot-pair">';
+              if (row.devImg) {
+                const idx = zoomImages.length;
+                zoomImages.push(row.devImg);
+                screenshotHtml += `<div class="screenshot-item"><img src="${row.devImg}" class="zoomable" onclick="window._zoom(${idx})" alt="开发页"><span class="screenshot-label">开发页</span></div>`;
+              }
+              if (row.designImg) {
+                const idx = zoomImages.length;
+                zoomImages.push(row.designImg);
+                screenshotHtml += `<div class="screenshot-item"><img src="${row.designImg}" class="zoomable" onclick="window._zoom(${idx})" alt="设计页"><span class="screenshot-label">设计稿</span></div>`;
+              }
+              screenshotHtml += '</div>';
+            } else {
+              screenshotHtml = '<div class="no-img">无截图</div>';
+            }
+
+            html += '<tr>';
+            html += `<td class="col-seq">${row.id || (i + 1)}</td>`;
+            html += `<td class="col-desc">${desc}</td>`;
+            html += `<td class="col-status">${status}</td>`;
+            html += `<td class="col-screenshot">${screenshotHtml}</td>`;
+            html += `<td class="col-date">${today}</td>`;
+            html += `<td class="col-priority"><span class="priority-badge" style="background:${color};color:#fff">${priority}</span></td>`;
+            html += '<td class="col-reviewer">AI 走查助手</td>';
+            html += '<td class="col-owner">待指定</td>';
+            html += '</tr>';
+          });
+
+          html += '</tbody></table></div>';
+          resultContent.innerHTML += html;
+        }
+
+        eventSource.onerror = (e) => {
+          setLoading(false);
+          if (!errorMsg.textContent) {
+            errorMsg.textContent = '连接分析服务中断，请查看后端日志。';
+            errorMsg.style.display = 'block';
+          }
+          eventSource.close();
+        };
+      } catch (e) {
+        setLoading(false);
+        errorMsg.textContent = '请求失败: ' + e.message;
+        errorMsg.style.display = 'block';
+      } finally {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

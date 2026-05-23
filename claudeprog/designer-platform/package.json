@@ -1,0 +1,38 @@
+{
+  "name": "design-pilot",
+  "version": "1.0.0",
+  "description": "AI 驱动的 UI 走查平台 - 支持 Claude Code / Codex / 其他 AI 助手",
+  "main": "server.js",
+  "scripts": {
+    "prestart": "node check-deps.js",
+    "start": "node server.js",
+    "postinstall": "node create-claude-link.js",
+    "install-deps": "npm install && pip3 install --index-url https://pypi.org/simple Pillow"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.33.5"
+  },
+  "optionalDependencies": {
+    "@anthropic-ai/claude-agent-sdk-darwin-arm64": "^0.3.148",
+    "@anthropic-ai/claude-agent-sdk-darwin-x64": "^0.3.148",
+    "@anthropic-ai/claude-agent-sdk-linux-x64": "^0.3.148",
+    "@anthropic-ai/claude-agent-sdk-win32-x64": "^0.3.148"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ui-review",
+    "design-review",
+    "claude-code",
+    "codex",
+    "ai-tools"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moumoon1/claudeprog"
+  }
+}

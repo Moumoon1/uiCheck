@@ -1,0 +1,27 @@
+{
+  "title": "某页面设计走查",
+  "project": "项目名",
+  "date": "2026-04-28",
+  "reviewer": "AI 走查助手",
+  "owner_default": "待指定",
+  "formal_issues": [
+    {
+      "id": "1",
+      "problem": "开发页收益卡为双信息结构，设计稿为单核心收益结构。",
+      "suggestion": "按设计稿恢复收益卡信息结构与右上内容形式。",
+      "priority": "P0",
+      "status": "待修改",
+      "images": ["outputs/issue_1_dev.png", "outputs/issue_1_design.png"]
+    }
+  ],
+  "suspected_issues": [
+    {
+      "id": "A1",
+      "problem": "开发页顶部波浪曲线可能比设计稿更生硬。",
+      "suggestion": "建议对该区域做同尺寸局部放大或叠图确认。",
+      "priority": "P2",
+      "status": "待修改",
+      "images": ["outputs/issue_A1_dev.png", "outputs/issue_A1_design.png"]
+    }
+  ]
+}
