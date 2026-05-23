@@ -247,8 +247,6 @@ function detectAndGetCliPath() {
 
     // 3. 检查工作目录的配置文件
     const claudeMdPath = path.join(PARENT_DIR, 'CLAUDE.md');
-    const cursorRulesPath = path.join(PARENT_DIR, '.cursorrules');
-
     if (fs.existsSync(claudeMdPath)) {
       console.log('[CLI] 检测到 Claude Code 环境（通过 CLAUDE.md）');
       return 'claude';
@@ -1365,7 +1363,7 @@ async function generateIssueTable(fullOutput, files, typeDir, isFolderMode, res)
     if (!data) return;
 
     async function imageToBase64(imgPath) {
-      // Resolve relative paths from PARENT_DIR (server cwd may be designer-platform)
+      // Resolve relative paths from PARENT_DIR (server cwd may be uiwalkthroughtool)
       const resolvedPath = imgPath.startsWith('/') ? imgPath : path.join(PARENT_DIR, imgPath);
       if (!resolvedPath || !fs.existsSync(resolvedPath)) return null;
       try {

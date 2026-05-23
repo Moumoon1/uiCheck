@@ -1,2 +1,5 @@
 node_modules/
 .DS_Store
+uiwalkthroughtool/outputs/
+uiwalkthroughtool/runtime_images/
+uiwalkthroughtool/inputs/

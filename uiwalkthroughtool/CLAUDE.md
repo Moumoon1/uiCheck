@@ -29,7 +29,7 @@ node server.js
 ## 项目结构
 
 ```
-designer-platform/
+uiwalkthroughtool/
 ├── server.js           # Express 后端，走查 API 和 Claude API 调用
 ├── uicheck.html        # UI 走查页面
 ├── node_modules/       # npm 依赖

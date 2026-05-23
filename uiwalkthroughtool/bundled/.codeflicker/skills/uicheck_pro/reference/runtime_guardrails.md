@@ -73,4 +73,4 @@
 - **现象**：点击 confirmed 表格截图缩略图，放大图却显示 suspected 的截图（对不上）
 - **根因**：每次 `renderTable()` 都用局部 `zoomImages` 覆盖 `window._zoomImages`；suspected 表格渲染后，confirmed 的所有 idx 全部错位
 - **修复**：改为累积追加（`if (!window._zoomImages) window._zoomImages = []`，直接引用全局数组而非覆盖）；每次新走查开始时重置 `window._zoomImages = []`
-- **位置**：`designer-platform/uicheck.html` 第 827 行及走查开始的 reset 处
+- **位置**：`uiwalkthroughtool/uicheck.html` 第 827 行及走查开始的 reset 处
