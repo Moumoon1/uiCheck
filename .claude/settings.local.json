@@ -24,7 +24,13 @@
       "Bash(node -c /Users/jinhuiyu/Desktop/uiCheck/uiwalkthroughtool/server.js)",
       "Bash(git rev-list *)",
       "Bash(awk '$3 > 50000000 {print $1, $3}')",
-      "Bash(awk '$3 > 50000000 && $2 != \"missing\" {print $1, $2, $3}')"
+      "Bash(awk '$3 > 50000000 && $2 != \"missing\" {print $1, $2, $3}')",
+      "Bash(rm -rf /tmp/uiCheck-fresh)",
+      "Bash(git checkout *)",
+      "Bash(kill 34966)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/uiCheck-fresh"
     ]
   }
 }
